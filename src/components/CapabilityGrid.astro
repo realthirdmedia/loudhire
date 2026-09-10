@@ -1,0 +1,89 @@
+---
+import { capabilities } from '../data/site';
+interface Props {
+  /** Show the longer benefit copy instead of the short line. */
+  detailed?: boolean;
+}
+const { detailed = false } = Astro.props;
+---
+
+<div class="caps">
+  {
+    capabilities.map((c, i) => (
+      <a class="cap" href={c.href}>
+        <span class="cap__index">0{i + 1}</span>
+        <h3 class="cap__name">{c.name}</h3>
+        <p class="cap__text">{detailed ? c.benefit : c.short}</p>
+        <span class="cap__link">Learn more →</span>
+      </a>
+    ))
+  }
+</div>
+
+<style>
+  .caps {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .cap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 1.5rem 1.35rem 1.4rem;
+    background: var(--c-paper);
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: inherit;
+    min-height: 100%;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .cap:hover {
+    box-shadow: var(--shadow);
+    transform: translateY(-2px);
+    color: inherit;
+  }
+  .cap__index {
+    font-family: var(--font-display);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--c-muted);
+  }
+  .cap__name {
+    margin: 0;
+    font-size: 1.35rem;
+  }
+  .cap__text {
+    margin: 0;
+    font-size: var(--text-sm);
+    color: var(--c-muted);
+    flex: 1;
+  }
+  .cap__link {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-xs);
+    color: var(--c-ink);
+    margin-top: 0.5rem;
+  }
+  .cap:hover .cap__link {
+    color: var(--c-orange-deep);
+  }
+  @media (max-width: 70rem) {
+    .caps {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 48rem) {
+    .caps {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 30rem) {
+    .caps {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

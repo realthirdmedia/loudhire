@@ -1,0 +1,248 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PageHero from '../../../components/PageHero.astro';
+import EquipmentCard from '../../../components/EquipmentCard.astro';
+import { equipment, SECTIONS, itemsInSection, categories, categoryUrl } from '../../../lib/equipment';
+
+const title = 'Equipment Hire List: PA, Lighting, Staging, Video, Power & Cabling | Loud Hire';
+const description = `Browse ${equipment.length} items available for dry hire from our Thornbury warehouse near Bristol: loudspeakers, mixers, microphones, stage lighting, Litedeck, LED video wall, generators, distribution and cabling. Day rates shown where listed.`;
+---
+
+<Base title={title} description={description}>
+  <PageHero
+    variant="plain"
+    eyebrow="Dry hire"
+    title="Equipment list"
+    intro={`${equipment.length} items across sound, lighting, staging, video, power and accessories. Search or jump to a section, then enquire with the dates you need.`}
+    ctaLabel="Enquire about equipment hire"
+    ctaHref="/contact/?subject=dry-hire#enquiry"
+    breadcrumb={[
+      { label: 'Home', href: '/' },
+      { label: 'Dry Hire', href: '/dry-hire/' },
+      { label: 'Equipment list', href: '/dry-hire/equipment/' },
+    ]}
+  />
+
+  <div class="toolbar" id="toolbar">
+    <div class="container toolbar__inner">
+      <label class="toolbar__search">
+        <span class="visually-hidden">Search equipment</span>
+        <input type="search" id="eq-search" placeholder="Search, e.g. SQ6, festoon, 63A, Danley" autocomplete="off" />
+      </label>
+      <nav class="toolbar__sections" aria-label="Sections">
+        <a href="#all" data-filter="all" aria-current="true">All</a>
+        {SECTIONS.map((s) => <a href={`#${s.key}`} data-filter={s.key}>{s.name}</a>)}
+      </nav>
+    </div>
+  </div>
+
+  <section class="section section--tight" id="all">
+    <div class="container">
+      <p class="results" id="eq-results" aria-live="polite" hidden></p>
+      {
+        SECTIONS.map((s) => {
+          const items = itemsInSection(s.key);
+          const cats = categories.filter((c) => c.section === s.key);
+          return (
+            <div class="eq-section" id={s.key} data-section={s.key}>
+              <div class="eq-section__head">
+                <div>
+                  <h2>{s.name}</h2>
+                  <p>{s.blurb}</p>
+                </div>
+                <div class="tag-row">
+                  {cats.map((c) => (
+                    <a class="tag tag--outline" href={categoryUrl(c)}>
+                      {c.name} ({c.count})
+                    </a>
+                  ))}
+                </div>
+              </div>
+              <div class="eq-grid">
+                {items.map((item) => (
+                  <EquipmentCard item={item} />
+                ))}
+              </div>
+            </div>
+          );
+        })
+      }
+      <div class="eq-cta">
+        <p>Can't see what you need? We can usually source it, and we work with other hire companies across the South West.</p>
+        <a class="btn btn--primary" href="/contact/?subject=dry-hire#enquiry">Enquire about equipment hire</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .toolbar {
+    position: sticky;
+    top: var(--header-h);
+    z-index: 50;
+    background: var(--c-paper);
+    border-bottom: 1px solid var(--c-line);
+  }
+  .toolbar__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.5rem;
+    padding-block: 0.75rem;
+  }
+  .toolbar__search {
+    flex: 1 1 18rem;
+  }
+  .toolbar__search input {
+    width: 100%;
+    font: inherit;
+    font-size: 1rem;
+    padding: 0.7rem 0.95rem;
+    border: 1px solid #cfccc5;
+    border-radius: var(--radius);
+    background: #fff;
+  }
+  .toolbar__search input:focus {
+    outline: none;
+    border-color: var(--c-orange);
+    box-shadow: 0 0 0 3px rgba(243, 146, 0, 0.25);
+  }
+  .toolbar__sections {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+  .toolbar__sections a {
+    display: inline-block;
+    padding: 0.45rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid var(--c-line);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: var(--text-xs);
+    color: var(--c-ink);
+    text-decoration: none;
+  }
+  .toolbar__sections a[aria-current='true'] {
+    background: var(--c-black);
+    color: #fff;
+    border-color: var(--c-black);
+  }
+  .results {
+    margin: 0 0 1.5rem;
+    color: var(--c-muted);
+    font-size: var(--text-sm);
+  }
+  .eq-section {
+    scroll-margin-top: calc(var(--header-h) + 5.5rem);
+    padding-top: 1rem;
+  }
+  .eq-section + .eq-section {
+    margin-top: 3rem;
+    border-top: 1px solid var(--c-line);
+    padding-top: 2.5rem;
+  }
+  .eq-section__head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: end;
+    gap: 1rem 2rem;
+    margin-bottom: 1.5rem;
+  }
+  .eq-section__head h2 {
+    margin-bottom: 0.2em;
+  }
+  .eq-section__head p {
+    margin: 0;
+    color: var(--c-muted);
+  }
+  .eq-section__head .tag-row {
+    max-width: 34rem;
+  }
+  .eq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(13.5rem, 1fr));
+    gap: 1rem;
+  }
+  .eq-cta {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: var(--c-paper-2);
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem 2rem;
+  }
+  .eq-cta p {
+    margin: 0;
+    max-width: 48ch;
+  }
+  @media (max-width: 40rem) {
+    .toolbar__sections {
+      width: 100%;
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      padding-bottom: 0.25rem;
+    }
+    .eq-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>
+
+<script>
+  const input = document.getElementById('eq-search') as HTMLInputElement | null;
+  const results = document.getElementById('eq-results')!;
+  const sections = Array.from(document.querySelectorAll<HTMLElement>('.eq-section'));
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('.eq[data-search]'));
+  const filterLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('.toolbar__sections a'));
+  let activeSection = 'all';
+
+  const apply = () => {
+    const q = (input?.value || '').trim().toLowerCase();
+    const terms = q.split(/\s+/).filter(Boolean);
+    let shown = 0;
+    for (const card of cards) {
+      const hay = card.dataset.search || '';
+      const inSection = activeSection === 'all' || card.dataset.section === activeSection;
+      const match = terms.every((t) => hay.includes(t));
+      const visible = inSection && match;
+      card.hidden = !visible;
+      if (visible) shown++;
+    }
+    for (const section of sections) {
+      const any = section.querySelector('.eq:not([hidden])');
+      section.hidden = !any;
+    }
+    if (terms.length) {
+      results.hidden = false;
+      results.textContent = shown === 0 ? `No items match "${q}". Try a shorter word, or enquire and we will source it.` : `${shown} item${shown === 1 ? '' : 's'} match "${q}".`;
+    } else {
+      results.hidden = true;
+    }
+  };
+
+  input?.addEventListener('input', apply);
+  for (const link of filterLinks) {
+    link.addEventListener('click', (e) => {
+      const key = link.dataset.filter || 'all';
+      activeSection = key;
+      filterLinks.forEach((l) => l.setAttribute('aria-current', String(l === link)));
+      if (key !== 'all') {
+        // Show only the chosen section and scroll to it.
+        apply();
+      } else {
+        apply();
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  }
+  // Honour a hash on load (e.g. /dry-hire/equipment/#lighting)
+  const hash = location.hash.replace('#', '');
+  const initial = filterLinks.find((l) => l.dataset.filter === hash);
+  if (initial) initial.click();
+</script>

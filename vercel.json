@@ -1,0 +1,2063 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "trailingSlash": true,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        }
+      ]
+    },
+    {
+      "source": "/images/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800, stale-while-revalidate=86400"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/product/generac-vb9-tower-light",
+      "destination": "/dry-hire/equipment/generac-vb9-tower-light/",
+      "permanent": true
+    },
+    {
+      "source": "/product/db-audiotechnik-q7-loudspeaker",
+      "destination": "/dry-hire/equipment/db-audiotechnik-q7-loudspeaker/",
+      "permanent": true
+    },
+    {
+      "source": "/product/jcb-115kva-generator",
+      "destination": "/dry-hire/equipment/jcb-115kva-generator/",
+      "permanent": true
+    },
+    {
+      "source": "/product/allen-and-heath-avantis",
+      "destination": "/dry-hire/equipment/allen-and-heath-avantis/",
+      "permanent": true
+    },
+    {
+      "source": "/product/allen-heath-cq18t",
+      "destination": "/dry-hire/equipment/allen-heath-cq18t/",
+      "permanent": true
+    },
+    {
+      "source": "/product/allen-heath-stage-box-gx4816",
+      "destination": "/dry-hire/equipment/allen-heath-stage-box-gx4816/",
+      "permanent": true
+    },
+    {
+      "source": "/product/eller-0-25-tonne-manual-chain-hoist-9m",
+      "destination": "/dry-hire/equipment/eller-0-25-tonne-manual-chain-hoist-9m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/audix-adx20ip-microphone",
+      "destination": "/dry-hire/equipment/audix-adx20ip-microphone/",
+      "permanent": true
+    },
+    {
+      "source": "/product/stage-box-8-0-10m",
+      "destination": "/dry-hire/equipment/stage-box-8-0-10m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/spectra-flood-mkii-q40",
+      "destination": "/dry-hire/equipment/spectra-flood-mkii-q40/",
+      "permanent": true
+    },
+    {
+      "source": "/product/yamaha-dm3",
+      "destination": "/dry-hire/equipment/yamaha-dm3/",
+      "permanent": true
+    },
+    {
+      "source": "/product/elumen8-cable-ramp-heavy-duty-5-channel-0-9m-sections",
+      "destination": "/dry-hire/equipment/elumen8-cable-ramp-heavy-duty-5-channel-0-9m-sections/",
+      "permanent": true
+    },
+    {
+      "source": "/product/martin-audio-sx-series-sx112",
+      "destination": "/dry-hire/equipment/martin-audio-sx-series-sx112/",
+      "permanent": true
+    },
+    {
+      "source": "/product/artnet-dmx-from-ethernet-converter",
+      "destination": "/dry-hire/equipment/artnet-dmx-from-ethernet-converter/",
+      "permanent": true
+    },
+    {
+      "source": "/product/electro-voice-everse-8",
+      "destination": "/dry-hire/equipment/electro-voice-everse-8/",
+      "permanent": true
+    },
+    {
+      "source": "/product/litetec-pit-rail-cable-access-section",
+      "destination": "/dry-hire/equipment/litetec-pit-rail-cable-access-section/",
+      "permanent": true
+    },
+    {
+      "source": "/product/litetec-pit-rail-standard-section",
+      "destination": "/dry-hire/equipment/litetec-pit-rail-standard-section/",
+      "permanent": true
+    },
+    {
+      "source": "/product/63a-3ph-distro-1-633d15-161",
+      "destination": "/dry-hire/equipment/63a-3ph-distro-1-633d15-161/",
+      "permanent": true
+    },
+    {
+      "source": "/product/sennheiser-e604-microphone",
+      "destination": "/dry-hire/equipment/sennheiser-e604-microphone/",
+      "permanent": true
+    },
+    {
+      "source": "/product/shure-beta-57a-microphone",
+      "destination": "/dry-hire/equipment/shure-beta-57a-microphone/",
+      "permanent": true
+    },
+    {
+      "source": "/product/se-v7-black-dynamic-mic",
+      "destination": "/dry-hire/equipment/se-v7-black-dynamic-mic/",
+      "permanent": true
+    },
+    {
+      "source": "/product/di-box-bss-ar-133",
+      "destination": "/dry-hire/equipment/di-box-bss-ar-133/",
+      "permanent": true
+    },
+    {
+      "source": "/product/fury-200-blinder",
+      "destination": "/dry-hire/equipment/fury-200-blinder/",
+      "permanent": true
+    },
+    {
+      "source": "/product/chauvet-amhaze-stadium",
+      "destination": "/dry-hire/equipment/chauvet-amhaze-stadium/",
+      "permanent": true
+    },
+    {
+      "source": "/product/km-speaker-stand-single",
+      "destination": "/dry-hire/equipment/km-speaker-stand-single/",
+      "permanent": true
+    },
+    {
+      "source": "/product/martin-audio-blackline-x8",
+      "destination": "/dry-hire/equipment/martin-audio-blackline-x8/",
+      "permanent": true
+    },
+    {
+      "source": "/product/4-way-led-par-bar-iwb4-rgbw",
+      "destination": "/dry-hire/equipment/4-way-led-par-bar-iwb4-rgbw/",
+      "permanent": true
+    },
+    {
+      "source": "/product/spectra-par-15q8",
+      "destination": "/dry-hire/equipment/spectra-par-15q8/",
+      "permanent": true
+    },
+    {
+      "source": "/product/spectra-batten-q16hex",
+      "destination": "/dry-hire/equipment/spectra-batten-q16hex/",
+      "permanent": true
+    },
+    {
+      "source": "/product/transcension-powercon-splitter",
+      "destination": "/dry-hire/equipment/transcension-powercon-splitter/",
+      "permanent": true
+    },
+    {
+      "source": "/product/etc-source-four",
+      "destination": "/dry-hire/equipment/etc-source-four/",
+      "permanent": true
+    },
+    {
+      "source": "/product/transcension-up2-pro-dimmer",
+      "destination": "/dry-hire/equipment/transcension-up2-pro-dimmer/",
+      "permanent": true
+    },
+    {
+      "source": "/product/63a-3ph-distro-2-633d363",
+      "destination": "/dry-hire/equipment/63a-3ph-distro-2-633d363/",
+      "permanent": true
+    },
+    {
+      "source": "/product/distro-63a-single-phase-rcbo",
+      "destination": "/dry-hire/equipment/distro-63a-single-phase-rcbo/",
+      "permanent": true
+    },
+    {
+      "source": "/product/festoon-100m-33-lamp",
+      "destination": "/dry-hire/equipment/festoon-100m-33-lamp/",
+      "permanent": true
+    },
+    {
+      "source": "/product/chauvet-ovation-led-fresnel",
+      "destination": "/dry-hire/equipment/chauvet-ovation-led-fresnel/",
+      "permanent": true
+    },
+    {
+      "source": "/product/chauvet-maverick-mk2-wash",
+      "destination": "/dry-hire/equipment/chauvet-maverick-mk2-wash/",
+      "permanent": true
+    },
+    {
+      "source": "/product/swissonic-professional-router-rack-mount",
+      "destination": "/dry-hire/equipment/swissonic-professional-router-rack-mount/",
+      "permanent": true
+    },
+    {
+      "source": "/product/sennheiser-antenna-adp-uhf",
+      "destination": "/dry-hire/equipment/sennheiser-antenna-adp-uhf/",
+      "permanent": true
+    },
+    {
+      "source": "/product/antenna-distribution-unit-with-psu",
+      "destination": "/dry-hire/equipment/antenna-distribution-unit-with-psu/",
+      "permanent": true
+    },
+    {
+      "source": "/product/ldr-canto-250hr-followspot",
+      "destination": "/dry-hire/equipment/ldr-canto-250hr-followspot/",
+      "permanent": true
+    },
+    {
+      "source": "/product/ldr-alba-18-36-200w-led-followspot",
+      "destination": "/dry-hire/equipment/ldr-alba-18-36-200w-led-followspot/",
+      "permanent": true
+    },
+    {
+      "source": "/product/par64-lblk-cp62-medium-flood",
+      "destination": "/dry-hire/equipment/par64-lblk-cp62-medium-flood/",
+      "permanent": true
+    },
+    {
+      "source": "/product/party-light-bar-small",
+      "destination": "/dry-hire/equipment/party-light-bar-small/",
+      "permanent": true
+    },
+    {
+      "source": "/product/di-box-radial-pro48",
+      "destination": "/dry-hire/equipment/di-box-radial-pro48/",
+      "permanent": true
+    },
+    {
+      "source": "/product/w-dmx-micro-f-1-lite-g5-transceiver",
+      "destination": "/dry-hire/equipment/w-dmx-micro-f-1-lite-g5-transceiver/",
+      "permanent": true
+    },
+    {
+      "source": "/product/rapid-qb1",
+      "destination": "/dry-hire/equipment/rapid-qb1/",
+      "permanent": true
+    },
+    {
+      "source": "/product/lemaitre-2-way-pyro-controller",
+      "destination": "/dry-hire/equipment/lemaitre-2-way-pyro-controller/",
+      "permanent": true
+    },
+    {
+      "source": "/product/lemaitre-6-way-pyro-controller",
+      "destination": "/dry-hire/equipment/lemaitre-6-way-pyro-controller/",
+      "permanent": true
+    },
+    {
+      "source": "/product/ldr-canto-1200-msr-followspot",
+      "destination": "/dry-hire/equipment/ldr-canto-1200-msr-followspot/",
+      "permanent": true
+    },
+    {
+      "source": "/product/rode-m5-microphone-matched-pair",
+      "destination": "/dry-hire/equipment/rode-m5-microphone-matched-pair/",
+      "permanent": true
+    },
+    {
+      "source": "/product/akg-d5-microphone",
+      "destination": "/dry-hire/equipment/akg-d5-microphone/",
+      "permanent": true
+    },
+    {
+      "source": "/product/selecon-acclaim-axial-spot",
+      "destination": "/dry-hire/equipment/selecon-acclaim-axial-spot/",
+      "permanent": true
+    },
+    {
+      "source": "/product/selecon-acclaim-fresnel",
+      "destination": "/dry-hire/equipment/selecon-acclaim-fresnel/",
+      "permanent": true
+    },
+    {
+      "source": "/product/chamsys-mq70-desk",
+      "destination": "/dry-hire/equipment/chamsys-mq70-desk/",
+      "permanent": true
+    },
+    {
+      "source": "/product/zero88-flx-s24",
+      "destination": "/dry-hire/equipment/zero88-flx-s24/",
+      "permanent": true
+    },
+    {
+      "source": "/product/danley-dna-20k4-pro-amplifier",
+      "destination": "/dry-hire/equipment/danley-dna-20k4-pro-amplifier/",
+      "permanent": true
+    },
+    {
+      "source": "/product/danley-sh95ho-fills",
+      "destination": "/dry-hire/equipment/danley-sh95ho-fills/",
+      "permanent": true
+    },
+    {
+      "source": "/product/danley-bc415-sub",
+      "destination": "/dry-hire/equipment/danley-bc415-sub/",
+      "permanent": true
+    },
+    {
+      "source": "/product/danley-j7-95-jericho-speakers",
+      "destination": "/dry-hire/equipment/danley-j7-95-jericho-speakers/",
+      "permanent": true
+    },
+    {
+      "source": "/product/danley-sm80-speakers",
+      "destination": "/dry-hire/equipment/danley-sm80-speakers/",
+      "permanent": true
+    },
+    {
+      "source": "/product/danley-thmini15-sub",
+      "destination": "/dry-hire/equipment/danley-thmini15-sub/",
+      "permanent": true
+    },
+    {
+      "source": "/product/audix-d6-microphone",
+      "destination": "/dry-hire/equipment/audix-d6-microphone/",
+      "permanent": true
+    },
+    {
+      "source": "/product/shure-beta-91a-microphone",
+      "destination": "/dry-hire/equipment/shure-beta-91a-microphone/",
+      "permanent": true
+    },
+    {
+      "source": "/product/sennheiser-ew-d-radio-mic-system",
+      "destination": "/dry-hire/equipment/sennheiser-ew-d-radio-mic-system/",
+      "permanent": true
+    },
+    {
+      "source": "/product/stagemobil-xxl",
+      "destination": "/dry-hire/equipment/stagemobil-xxl/",
+      "permanent": true
+    },
+    {
+      "source": "/product/stagemobil-l-stage",
+      "destination": "/dry-hire/equipment/stagemobil-l-stage/",
+      "permanent": true
+    },
+    {
+      "source": "/product/allen-heath-sq6",
+      "destination": "/dry-hire/equipment/allen-heath-sq6/",
+      "permanent": true
+    },
+    {
+      "source": "/product/allen-heath-sq5",
+      "destination": "/dry-hire/equipment/allen-heath-sq5/",
+      "permanent": true
+    },
+    {
+      "source": "/product/heavy-duty-nl4-lead-x-3m",
+      "destination": "/dry-hire/equipment/heavy-duty-nl4-lead-x-3m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/yamaha-hs5-monitor-speaker-pair",
+      "destination": "/dry-hire/equipment/yamaha-hs5-monitor-speaker-pair/",
+      "permanent": true
+    },
+    {
+      "source": "/product/powercon-to-powercon-5m-blue-tape",
+      "destination": "/dry-hire/equipment/powercon-to-powercon-5m-blue-tape/",
+      "permanent": true
+    },
+    {
+      "source": "/product/powercon-to-powercon-3m-brown-tape",
+      "destination": "/dry-hire/equipment/powercon-to-powercon-3m-brown-tape/",
+      "permanent": true
+    },
+    {
+      "source": "/product/powercon-to-powercon-0-5m-grey-tape",
+      "destination": "/dry-hire/equipment/powercon-to-powercon-0-5m-grey-tape/",
+      "permanent": true
+    },
+    {
+      "source": "/product/mic-lead-%C2%BC-mono-jack-to-xlrf",
+      "destination": "/dry-hire/equipment/mic-lead-quarter-mono-jack-to-xlrf/",
+      "permanent": true
+    },
+    {
+      "source": "/product/iec-to-powercon",
+      "destination": "/dry-hire/equipment/iec-to-powercon/",
+      "permanent": true
+    },
+    {
+      "source": "/product/strobe-unit-dmx-1500w",
+      "destination": "/dry-hire/equipment/strobe-unit-dmx-1500w/",
+      "permanent": true
+    },
+    {
+      "source": "/product/13a-truecon-standard",
+      "destination": "/dry-hire/equipment/13a-truecon-standard/",
+      "permanent": true
+    },
+    {
+      "source": "/product/cm-lodestar-0-5-tonne-chain-hoist",
+      "destination": "/dry-hire/equipment/cm-lodestar-0-5-tonne-chain-hoist/",
+      "permanent": true
+    },
+    {
+      "source": "/product/chain-hoist-controller-4-way",
+      "destination": "/dry-hire/equipment/chain-hoist-controller-4-way/",
+      "permanent": true
+    },
+    {
+      "source": "/product/uv-fitting-with-4-tube",
+      "destination": "/dry-hire/equipment/uv-fitting-with-4-tube/",
+      "permanent": true
+    },
+    {
+      "source": "/product/uv-cannon-400w-discharge",
+      "destination": "/dry-hire/equipment/uv-cannon-400w-discharge/",
+      "permanent": true
+    },
+    {
+      "source": "/product/zero88-spice-1210i-dimmer-rack",
+      "destination": "/dry-hire/equipment/zero88-spice-1210i-dimmer-rack/",
+      "permanent": true
+    },
+    {
+      "source": "/product/swisson-dmx-splitter-booster",
+      "destination": "/dry-hire/equipment/swisson-dmx-splitter-booster/",
+      "permanent": true
+    },
+    {
+      "source": "/product/dmx-cable-5-pin-x-1m",
+      "destination": "/dry-hire/equipment/dmx-cable-5-pin-x-1m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/dmx-cable-5-pin-x-1-5m",
+      "destination": "/dry-hire/equipment/dmx-cable-5-pin-x-1-5m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/dmx-cable-5-pin-x-0-75m",
+      "destination": "/dry-hire/equipment/dmx-cable-5-pin-x-0-75m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/litedeck-staging-4-x-2",
+      "destination": "/dry-hire/equipment/litedeck-staging-4-x-2/",
+      "permanent": true
+    },
+    {
+      "source": "/product/litedeck-staging-4-x-4",
+      "destination": "/dry-hire/equipment/litedeck-staging-4-x-4/",
+      "permanent": true
+    },
+    {
+      "source": "/product/litedeck-staging-8-x-2",
+      "destination": "/dry-hire/equipment/litedeck-staging-8-x-2/",
+      "permanent": true
+    },
+    {
+      "source": "/product/litedeck-staging-8-x-4",
+      "destination": "/dry-hire/equipment/litedeck-staging-8-x-4/",
+      "permanent": true
+    },
+    {
+      "source": "/product/63a-3ph-cable-x-10m",
+      "destination": "/dry-hire/equipment/63a-3ph-cable-x-10m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/socapex-cable-10m-m-to-f",
+      "destination": "/dry-hire/equipment/socapex-cable-10m-m-to-f/",
+      "permanent": true
+    },
+    {
+      "source": "/product/socapex-cable-20m-m-to-f",
+      "destination": "/dry-hire/equipment/socapex-cable-20m-m-to-f/",
+      "permanent": true
+    },
+    {
+      "source": "/product/mic-lead-%C2%BC-mono-jack-to-xlrm",
+      "destination": "/dry-hire/equipment/mic-lead-quarter-mono-jack-to-xlrm/",
+      "permanent": true
+    },
+    {
+      "source": "/product/socapex-cable-5m-m-to-f",
+      "destination": "/dry-hire/equipment/socapex-cable-5m-m-to-f/",
+      "permanent": true
+    },
+    {
+      "source": "/product/socapex-cable-3m-m-to-f",
+      "destination": "/dry-hire/equipment/socapex-cable-3m-m-to-f/",
+      "permanent": true
+    },
+    {
+      "source": "/product/fast-fold-rear-projection-screen",
+      "destination": "/dry-hire/equipment/fast-fold-rear-projection-screen/",
+      "permanent": true
+    },
+    {
+      "source": "/product/sony-projector-vpl-fhz66",
+      "destination": "/dry-hire/equipment/sony-projector-vpl-fhz66/",
+      "permanent": true
+    },
+    {
+      "source": "/product/f34-truss-section-1m",
+      "destination": "/dry-hire/equipment/f34-truss-section-1m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/f34-lectern-top",
+      "destination": "/dry-hire/equipment/f34-lectern-top/",
+      "permanent": true
+    },
+    {
+      "source": "/product/f34-truss-base-heavy-duty",
+      "destination": "/dry-hire/equipment/f34-truss-base-heavy-duty/",
+      "permanent": true
+    },
+    {
+      "source": "/product/enttec-open-dmx-ethernet",
+      "destination": "/dry-hire/equipment/enttec-open-dmx-ethernet/",
+      "permanent": true
+    },
+    {
+      "source": "/product/xlr-twin-1-5m-amp-link-lead",
+      "destination": "/dry-hire/equipment/xlr-twin-1-5m-amp-link-lead/",
+      "permanent": true
+    },
+    {
+      "source": "/product/t-bar-1-3m-4-way-adam-hall",
+      "destination": "/dry-hire/equipment/t-bar-1-3m-4-way-adam-hall/",
+      "permanent": true
+    },
+    {
+      "source": "/product/16a-to-16a-h07-2-5mm%c2%b2-50m-white",
+      "destination": "/dry-hire/equipment/16a-to-16a-h07-2-5mm-sq-50m-white/",
+      "permanent": true
+    },
+    {
+      "source": "/product/13a-quad-10m-enclosed-reel",
+      "destination": "/dry-hire/equipment/13a-quad-10m-enclosed-reel/",
+      "permanent": true
+    },
+    {
+      "source": "/product/16a-to-15a-adaptor-lead",
+      "destination": "/dry-hire/equipment/16a-to-15a-adaptor-lead/",
+      "permanent": true
+    },
+    {
+      "source": "/product/16a-to-16a-h07-2-5mm%c2%b2-5m-blue",
+      "destination": "/dry-hire/equipment/16a-to-16a-h07-2-5mm-sq-5m-blue/",
+      "permanent": true
+    },
+    {
+      "source": "/product/16a-to-16a-h07-2-5mm%c2%b2-20m-red",
+      "destination": "/dry-hire/equipment/16a-to-16a-h07-2-5mm-sq-20m-red/",
+      "permanent": true
+    },
+    {
+      "source": "/product/16a-to-16a-h07-2-5mm%c2%b2-10m-green",
+      "destination": "/dry-hire/equipment/16a-to-16a-h07-2-5mm-sq-10m-green/",
+      "permanent": true
+    },
+    {
+      "source": "/product/16a-to-16a-h07-1-5mm%c2%b2-5m-blue",
+      "destination": "/dry-hire/equipment/16a-to-16a-h07-1-5mm-sq-5m-blue/",
+      "permanent": true
+    },
+    {
+      "source": "/product/powercon-5-pin-dmx-combination-cable-2m-purple-tape-dmx",
+      "destination": "/dry-hire/equipment/powercon-5-pin-dmx-combination-cable-2m-purple-tape-dmx/",
+      "permanent": true
+    },
+    {
+      "source": "/product/nl4-y-splitter-lead",
+      "destination": "/dry-hire/equipment/nl4-y-splitter-lead/",
+      "permanent": true
+    },
+    {
+      "source": "/product/32a-plug-to-63a-socket-adaptor",
+      "destination": "/dry-hire/equipment/32a-plug-to-63a-socket-adaptor/",
+      "permanent": true
+    },
+    {
+      "source": "/product/32a-split-to-2-x-16a",
+      "destination": "/dry-hire/equipment/32a-split-to-2-x-16a/",
+      "permanent": true
+    },
+    {
+      "source": "/product/flicker-flame-lantern-basic-up-lighter",
+      "destination": "/dry-hire/equipment/flicker-flame-lantern-basic-up-lighter/",
+      "permanent": true
+    },
+    {
+      "source": "/product/dmx-splitter-booster",
+      "destination": "/dry-hire/equipment/dmx-splitter-booster/",
+      "permanent": true
+    },
+    {
+      "source": "/product/flicker-flame-lantern-%c2%bd-round-wall-mount",
+      "destination": "/dry-hire/equipment/flicker-flame-lantern-half-round-wall-mount/",
+      "permanent": true
+    },
+    {
+      "source": "/product/flicker-flame-lantern-tall-on-base",
+      "destination": "/dry-hire/equipment/flicker-flame-lantern-tall-on-base/",
+      "permanent": true
+    },
+    {
+      "source": "/product/flicker-flame-lantern-short-on-plinth",
+      "destination": "/dry-hire/equipment/flicker-flame-lantern-short-on-plinth/",
+      "permanent": true
+    },
+    {
+      "source": "/product/15a-to-13a-adaptor-lead",
+      "destination": "/dry-hire/equipment/15a-to-13a-adaptor-lead/",
+      "permanent": true
+    },
+    {
+      "source": "/product/5a-to-15a-adaptor-lead",
+      "destination": "/dry-hire/equipment/5a-to-15a-adaptor-lead/",
+      "permanent": true
+    },
+    {
+      "source": "/product/15a-to-13a-twin-adaptor-lead",
+      "destination": "/dry-hire/equipment/15a-to-13a-twin-adaptor-lead/",
+      "permanent": true
+    },
+    {
+      "source": "/product/festoon-50m-50-lamp",
+      "destination": "/dry-hire/equipment/festoon-50m-50-lamp/",
+      "permanent": true
+    },
+    {
+      "source": "/product/distro-32a-single-phase",
+      "destination": "/dry-hire/equipment/distro-32a-single-phase/",
+      "permanent": true
+    },
+    {
+      "source": "/product/distro-63a-single-phase",
+      "destination": "/dry-hire/equipment/distro-63a-single-phase/",
+      "permanent": true
+    },
+    {
+      "source": "/product/stage-brace-doughty-2m-4m",
+      "destination": "/dry-hire/equipment/stage-brace-doughty-2m-4m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/13a-double-30m-reel",
+      "destination": "/dry-hire/equipment/13a-double-30m-reel/",
+      "permanent": true
+    },
+    {
+      "source": "/product/electro-voice-etx-18sp",
+      "destination": "/dry-hire/equipment/electro-voice-etx-18sp/",
+      "permanent": true
+    },
+    {
+      "source": "/product/electro-voice-etx-12p",
+      "destination": "/dry-hire/equipment/electro-voice-etx-12p/",
+      "permanent": true
+    },
+    {
+      "source": "/product/electro-voice-zlx-12bt",
+      "destination": "/dry-hire/equipment/electro-voice-zlx-12bt/",
+      "permanent": true
+    },
+    {
+      "source": "/product/zero88-demux48",
+      "destination": "/dry-hire/equipment/zero88-demux48/",
+      "permanent": true
+    },
+    {
+      "source": "/product/mirrorball-500mm",
+      "destination": "/dry-hire/equipment/mirrorball-500mm/",
+      "permanent": true
+    },
+    {
+      "source": "/product/mirrorball-400mm",
+      "destination": "/dry-hire/equipment/mirrorball-400mm/",
+      "permanent": true
+    },
+    {
+      "source": "/product/mirrorball-rotator-heavy-duty",
+      "destination": "/dry-hire/equipment/mirrorball-rotator-heavy-duty/",
+      "permanent": true
+    },
+    {
+      "source": "/product/iec-to-15a",
+      "destination": "/dry-hire/equipment/iec-to-15a/",
+      "permanent": true
+    },
+    {
+      "source": "/product/13a-to-15a-adaptor-lead",
+      "destination": "/dry-hire/equipment/13a-to-15a-adaptor-lead/",
+      "permanent": true
+    },
+    {
+      "source": "/product/15a-3-way-grelco-splitter-16a-plug",
+      "destination": "/dry-hire/equipment/15a-3-way-grelco-splitter-16a-plug/",
+      "permanent": true
+    },
+    {
+      "source": "/product/15a-3-way-grelco-splitter-15a-plug",
+      "destination": "/dry-hire/equipment/15a-3-way-grelco-splitter-15a-plug/",
+      "permanent": true
+    },
+    {
+      "source": "/product/tubular-wave-ripple-machine",
+      "destination": "/dry-hire/equipment/tubular-wave-ripple-machine/",
+      "permanent": true
+    },
+    {
+      "source": "/product/socapex-through-box-15a",
+      "destination": "/dry-hire/equipment/socapex-through-box-15a/",
+      "permanent": true
+    },
+    {
+      "source": "/product/socapex-cable-8m-m-to-f",
+      "destination": "/dry-hire/equipment/socapex-cable-8m-m-to-f/",
+      "permanent": true
+    },
+    {
+      "source": "/product/socapex-spider-socapex-to-16a-socket",
+      "destination": "/dry-hire/equipment/socapex-spider-socapex-to-16a-socket/",
+      "permanent": true
+    },
+    {
+      "source": "/product/socapex-spider-socapex-to-15a-socket",
+      "destination": "/dry-hire/equipment/socapex-spider-socapex-to-15a-socket/",
+      "permanent": true
+    },
+    {
+      "source": "/product/socapex-spider-16a-plug-to-socapex",
+      "destination": "/dry-hire/equipment/socapex-spider-16a-plug-to-socapex/",
+      "permanent": true
+    },
+    {
+      "source": "/product/socapex-spider-15a-plug-to-socapex",
+      "destination": "/dry-hire/equipment/socapex-spider-15a-plug-to-socapex/",
+      "permanent": true
+    },
+    {
+      "source": "/product/linea-research-xib4-amp",
+      "destination": "/dry-hire/equipment/linea-research-xib4-amp/",
+      "permanent": true
+    },
+    {
+      "source": "/product/metal-halide-floodlight-400w",
+      "destination": "/dry-hire/equipment/metal-halide-floodlight-400w/",
+      "permanent": true
+    },
+    {
+      "source": "/product/16a-ceeform-32a-powercon",
+      "destination": "/dry-hire/equipment/16a-ceeform-32a-powercon/",
+      "permanent": true
+    },
+    {
+      "source": "/product/kam-energy-sd1-multi-function-laser",
+      "destination": "/dry-hire/equipment/kam-energy-sd1-multi-function-laser/",
+      "permanent": true
+    },
+    {
+      "source": "/product/16a-to-iec-hot-for-theatre-lanterns",
+      "destination": "/dry-hire/equipment/16a-to-iec-hot-for-theatre-lanterns/",
+      "permanent": true
+    },
+    {
+      "source": "/product/16a-to-iec-lead",
+      "destination": "/dry-hire/equipment/16a-to-iec-lead/",
+      "permanent": true
+    },
+    {
+      "source": "/product/15a-to-16a-adaptor-lead",
+      "destination": "/dry-hire/equipment/15a-to-16a-adaptor-lead/",
+      "permanent": true
+    },
+    {
+      "source": "/product/nl4-coupler",
+      "destination": "/dry-hire/equipment/nl4-coupler/",
+      "permanent": true
+    },
+    {
+      "source": "/product/15a-to-iec-hot-for-theatre-lanterns",
+      "destination": "/dry-hire/equipment/15a-to-iec-hot-for-theatre-lanterns/",
+      "permanent": true
+    },
+    {
+      "source": "/product/15a-powercon",
+      "destination": "/dry-hire/equipment/15a-powercon/",
+      "permanent": true
+    },
+    {
+      "source": "/product/63a-3ph-cable-x-50m",
+      "destination": "/dry-hire/equipment/63a-3ph-cable-x-50m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/63a-to-63a-cable-15m",
+      "destination": "/dry-hire/equipment/63a-to-63a-cable-15m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/63a-to-63a-cable-10m",
+      "destination": "/dry-hire/equipment/63a-to-63a-cable-10m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/63a-to-63a-cable-5m",
+      "destination": "/dry-hire/equipment/63a-to-63a-cable-5m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/63a-3ph-cable-x-5m",
+      "destination": "/dry-hire/equipment/63a-3ph-cable-x-5m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/32a-to-32a-3m",
+      "destination": "/dry-hire/equipment/32a-to-32a-3m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/32a-3-phase-lead-10m",
+      "destination": "/dry-hire/equipment/32a-3-phase-lead-10m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/32a-to-32a-50m",
+      "destination": "/dry-hire/equipment/32a-to-32a-50m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/32a-to-32a-20m",
+      "destination": "/dry-hire/equipment/32a-to-32a-20m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/32a-to-32a-15m",
+      "destination": "/dry-hire/equipment/32a-to-32a-15m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/32a-to-32a-10m",
+      "destination": "/dry-hire/equipment/32a-to-32a-10m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/dmx-jumper-5-pin-to-3-pin-purple-tape",
+      "destination": "/dry-hire/equipment/dmx-jumper-5-pin-to-3-pin-purple-tape/",
+      "permanent": true
+    },
+    {
+      "source": "/product/dmx-jumper-3-pin-to-5-pin-yellow-tape",
+      "destination": "/dry-hire/equipment/dmx-jumper-3-pin-to-5-pin-yellow-tape/",
+      "permanent": true
+    },
+    {
+      "source": "/product/1-5kw-followspot-dimmer",
+      "destination": "/dry-hire/equipment/1-5kw-followspot-dimmer/",
+      "permanent": true
+    },
+    {
+      "source": "/product/15a-y-splitter",
+      "destination": "/dry-hire/equipment/15a-y-splitter/",
+      "permanent": true
+    },
+    {
+      "source": "/product/15a-grelco-splitter",
+      "destination": "/dry-hire/equipment/15a-grelco-splitter/",
+      "permanent": true
+    },
+    {
+      "source": "/product/15a-to-15a-x-20m-red",
+      "destination": "/dry-hire/equipment/15a-to-15a-x-20m-red/",
+      "permanent": true
+    },
+    {
+      "source": "/product/15a-to-15a-x-15m-green-blue",
+      "destination": "/dry-hire/equipment/15a-to-15a-x-15m-green-blue/",
+      "permanent": true
+    },
+    {
+      "source": "/product/15a-to-15a-x-10m-green",
+      "destination": "/dry-hire/equipment/15a-to-15a-x-10m-green/",
+      "permanent": true
+    },
+    {
+      "source": "/product/15a-to-15a-x-5m-blue",
+      "destination": "/dry-hire/equipment/15a-to-15a-x-5m-blue/",
+      "permanent": true
+    },
+    {
+      "source": "/product/15a-to-15a-x-3m-brown",
+      "destination": "/dry-hire/equipment/15a-to-15a-x-3m-brown/",
+      "permanent": true
+    },
+    {
+      "source": "/product/15a-to-15a-x-2m-yellow",
+      "destination": "/dry-hire/equipment/15a-to-15a-x-2m-yellow/",
+      "permanent": true
+    },
+    {
+      "source": "/product/dmx-cable-5-pin-x-5m",
+      "destination": "/dry-hire/equipment/dmx-cable-5-pin-x-5m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/dmx-cable-5-pin-x-10m",
+      "destination": "/dry-hire/equipment/dmx-cable-5-pin-x-10m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/dmx-cable-5-pin-x-20m",
+      "destination": "/dry-hire/equipment/dmx-cable-5-pin-x-20m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/dmx-cable-5-pin-x-30m",
+      "destination": "/dry-hire/equipment/dmx-cable-5-pin-x-30m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/martin-audio-le12j-monitors",
+      "destination": "/dry-hire/equipment/martin-audio-le12j-monitors/",
+      "permanent": true
+    },
+    {
+      "source": "/product/16a-to-powercon",
+      "destination": "/dry-hire/equipment/16a-to-powercon/",
+      "permanent": true
+    },
+    {
+      "source": "/product/13a-to-16a-adaptor-lead",
+      "destination": "/dry-hire/equipment/13a-to-16a-adaptor-lead/",
+      "permanent": true
+    },
+    {
+      "source": "/product/classic-pro-dim-2-5-master",
+      "destination": "/dry-hire/equipment/classic-pro-dim-2-5-master/",
+      "permanent": true
+    },
+    {
+      "source": "/product/led-white-outdoor-flood-50w",
+      "destination": "/dry-hire/equipment/led-white-outdoor-flood-50w/",
+      "permanent": true
+    },
+    {
+      "source": "/product/120w-100v-line-slave-amp",
+      "destination": "/dry-hire/equipment/120w-100v-line-slave-amp/",
+      "permanent": true
+    },
+    {
+      "source": "/product/120w-6ch-100v-line-amp",
+      "destination": "/dry-hire/equipment/120w-6ch-100v-line-amp/",
+      "permanent": true
+    },
+    {
+      "source": "/product/stand-bar-tube-adaptor",
+      "destination": "/dry-hire/equipment/stand-bar-tube-adaptor/",
+      "permanent": true
+    },
+    {
+      "source": "/product/stand-truss-adaptor",
+      "destination": "/dry-hire/equipment/stand-truss-adaptor/",
+      "permanent": true
+    },
+    {
+      "source": "/product/xlr-cable-3-pin-10m-green-ring",
+      "destination": "/dry-hire/equipment/xlr-cable-3-pin-10m-green-ring/",
+      "permanent": true
+    },
+    {
+      "source": "/product/xlr-cable-3-pin-5m-blue-ring",
+      "destination": "/dry-hire/equipment/xlr-cable-3-pin-5m-blue-ring/",
+      "permanent": true
+    },
+    {
+      "source": "/product/nl2-lead-x-3m",
+      "destination": "/dry-hire/equipment/nl2-lead-x-3m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/nl2-lead-x-5m",
+      "destination": "/dry-hire/equipment/nl2-lead-x-5m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/nl2-lead-x-20m",
+      "destination": "/dry-hire/equipment/nl2-lead-x-20m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/nl2-lead-x-10m",
+      "destination": "/dry-hire/equipment/nl2-lead-x-10m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/nl8-lead-x-20m",
+      "destination": "/dry-hire/equipment/nl8-lead-x-20m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/nl4-lead-x-20m",
+      "destination": "/dry-hire/equipment/nl4-lead-x-20m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/nl4-lead-x-10m",
+      "destination": "/dry-hire/equipment/nl4-lead-x-10m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/nl4-lead-x-5m",
+      "destination": "/dry-hire/equipment/nl4-lead-x-5m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/nl4-link-lead-0-80m",
+      "destination": "/dry-hire/equipment/nl4-link-lead-0-80m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/nl4-link-lead-0-65m",
+      "destination": "/dry-hire/equipment/nl4-link-lead-0-65m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/innox-speaker-stand-pair",
+      "destination": "/dry-hire/equipment/innox-speaker-stand-pair/",
+      "permanent": true
+    },
+    {
+      "source": "/product/akg-drum-mic-set-session-1",
+      "destination": "/dry-hire/equipment/akg-drum-mic-set-session-1/",
+      "permanent": true
+    },
+    {
+      "source": "/product/akg-c747-lectern-microphone",
+      "destination": "/dry-hire/equipment/akg-c747-lectern-microphone/",
+      "permanent": true
+    },
+    {
+      "source": "/product/shure-sm57",
+      "destination": "/dry-hire/equipment/shure-sm57/",
+      "permanent": true
+    },
+    {
+      "source": "/product/crank-stand-3m-alto",
+      "destination": "/dry-hire/equipment/crank-stand-3m-alto/",
+      "permanent": true
+    },
+    {
+      "source": "/product/shure-sm58",
+      "destination": "/dry-hire/equipment/shure-sm58/",
+      "permanent": true
+    },
+    {
+      "source": "/product/crank-stand-4m-adam-hall",
+      "destination": "/dry-hire/equipment/crank-stand-4m-adam-hall/",
+      "permanent": true
+    },
+    {
+      "source": "/product/120w-4ch-100v-line-amp",
+      "destination": "/dry-hire/equipment/120w-4ch-100v-line-amp/",
+      "permanent": true
+    },
+    {
+      "source": "/product/rh40v-rectangular-horn-100v",
+      "destination": "/dry-hire/equipment/rh40v-rectangular-horn-100v/",
+      "permanent": true
+    },
+    {
+      "source": "/product/32a-3-phase-lead-50m",
+      "destination": "/dry-hire/equipment/32a-3-phase-lead-50m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/doughty-12-5kg-stage-weight",
+      "destination": "/dry-hire/equipment/doughty-12-5kg-stage-weight/",
+      "permanent": true
+    },
+    {
+      "source": "/product/elumen8-tour-batten-tw",
+      "destination": "/dry-hire/equipment/elumen8-tour-batten-tw/",
+      "permanent": true
+    },
+    {
+      "source": "/product/32a-3-phase-lead-25m",
+      "destination": "/dry-hire/equipment/32a-3-phase-lead-25m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/32a-3-phase-lead-5m",
+      "destination": "/dry-hire/equipment/32a-3-phase-lead-5m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/32a-63a-3-phase-lead-2m",
+      "destination": "/dry-hire/equipment/32a-63a-3-phase-lead-2m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/32a-3-phase-lead-2-5m",
+      "destination": "/dry-hire/equipment/32a-3-phase-lead-2-5m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/led-rgb-outdoor-flood-50w-black",
+      "destination": "/dry-hire/equipment/led-rgb-outdoor-flood-50w-black/",
+      "permanent": true
+    },
+    {
+      "source": "/product/led-rgb-outdoor-flood-50w-grey",
+      "destination": "/dry-hire/equipment/led-rgb-outdoor-flood-50w-grey/",
+      "permanent": true
+    },
+    {
+      "source": "/product/festoon-12m-40-lamp",
+      "destination": "/dry-hire/equipment/festoon-12m-40-lamp/",
+      "permanent": true
+    },
+    {
+      "source": "/product/festoon-7%c2%bdm-10-lamp-16a-plug",
+      "destination": "/dry-hire/equipment/festoon-7-halfm-10-lamp-16a-plug/",
+      "permanent": true
+    },
+    {
+      "source": "/product/festoon-20m-20-lamp",
+      "destination": "/dry-hire/equipment/festoon-20m-20-lamp/",
+      "permanent": true
+    },
+    {
+      "source": "/product/powercon-to-13a-1-way-cable-1-0m",
+      "destination": "/dry-hire/equipment/powercon-to-13a-1-way-cable-1-0m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/powercon-to-13a-4-way-cable-1-0m",
+      "destination": "/dry-hire/equipment/powercon-to-13a-4-way-cable-1-0m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/powercon-3-pin-dmx-combination-cable-1-5m-grey-tape-yellow-tape-dmx",
+      "destination": "/dry-hire/equipment/powercon-3-pin-dmx-combination-cable-1-5m-grey-tape-yellow-tape-dmx/",
+      "permanent": true
+    },
+    {
+      "source": "/product/powercon-to-iec-3-pin-dmx-combination-cable-1-5m",
+      "destination": "/dry-hire/equipment/powercon-to-iec-3-pin-dmx-combination-cable-1-5m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/iec-to-powercon-3-pin-dmx-combination-cable-1-5m",
+      "destination": "/dry-hire/equipment/iec-to-powercon-3-pin-dmx-combination-cable-1-5m/",
+      "permanent": true
+    },
+    {
+      "source": "/product/powercon-3-pin-dmx-combination-cable-3m-brown-tape-yellow-tape-dmx",
+      "destination": "/dry-hire/equipment/powercon-3-pin-dmx-combination-cable-3m-brown-tape-yellow-tape-dmx/",
+      "permanent": true
+    },
+    {
+      "source": "/product/marquee-clamp",
+      "destination": "/dry-hire/equipment/marquee-clamp/",
+      "permanent": true
+    },
+    {
+      "source": "/product/battery-pack-12v-76ah",
+      "destination": "/dry-hire/equipment/battery-pack-12v-76ah/",
+      "permanent": true
+    },
+    {
+      "source": "/product/inverter-unit-1000w",
+      "destination": "/dry-hire/equipment/inverter-unit-1000w/",
+      "permanent": true
+    },
+    {
+      "source": "/product/scaffolding-putlog-5",
+      "destination": "/dry-hire/equipment/scaffolding-putlog-5/",
+      "permanent": true
+    },
+    {
+      "source": "/product/festoon-100m-100-lamp",
+      "destination": "/dry-hire/equipment/festoon-100m-100-lamp/",
+      "permanent": true
+    },
+    {
+      "source": "/product/fg-wilson-20kva-32a-3phase-gen-set",
+      "destination": "/dry-hire/equipment/fg-wilson-20kva-32a-3phase-gen-set/",
+      "permanent": true
+    },
+    {
+      "source": "/product/zero88-betapack-3",
+      "destination": "/dry-hire/equipment/zero88-betapack-3/",
+      "permanent": true
+    },
+    {
+      "source": "/product/13a-to-iec-lead",
+      "destination": "/dry-hire/equipment/13a-to-iec-lead/",
+      "permanent": true
+    },
+    {
+      "source": "/product/soundcraft-ui-12",
+      "destination": "/dry-hire/equipment/soundcraft-ui-12/",
+      "permanent": true
+    },
+    {
+      "source": "/product/16a-to-16a-h07-1-5mm%c2%b2-2m-yellow",
+      "destination": "/dry-hire/equipment/16a-to-16a-h07-1-5mm-sq-2m-yellow/",
+      "permanent": true
+    },
+    {
+      "source": "/product/13a-4-way-10m-black-green-marker",
+      "destination": "/dry-hire/equipment/13a-4-way-10m-black-green-marker/",
+      "permanent": true
+    },
+    {
+      "source": "/product/13a-4-way-3m-black-brown-marker",
+      "destination": "/dry-hire/equipment/13a-4-way-3m-black-brown-marker/",
+      "permanent": true
+    },
+    {
+      "source": "/product/13a-4-way-5m-black-blue-marker",
+      "destination": "/dry-hire/equipment/13a-4-way-5m-black-blue-marker/",
+      "permanent": true
+    },
+    {
+      "source": "/product/16a-to-13a-4-way-black",
+      "destination": "/dry-hire/equipment/16a-to-13a-4-way-black/",
+      "permanent": true
+    },
+    {
+      "source": "/product/32a-ceeform-32a-powercon",
+      "destination": "/dry-hire/equipment/32a-ceeform-32a-powercon/",
+      "permanent": true
+    },
+    {
+      "source": "/product/linea-research-48m10-amp",
+      "destination": "/dry-hire/equipment/linea-research-48m10-amp/",
+      "permanent": true
+    },
+    {
+      "source": "/product/linea-research-44m20-amp",
+      "destination": "/dry-hire/equipment/linea-research-44m20-amp/",
+      "permanent": true
+    },
+    {
+      "source": "/product/13a-powercon",
+      "destination": "/dry-hire/equipment/13a-powercon/",
+      "permanent": true
+    },
+    {
+      "source": "/product/63a-3ph-distro-1-633d323332316",
+      "destination": "/dry-hire/equipment/63a-3ph-distro-1-633d323332316/",
+      "permanent": true
+    },
+    {
+      "source": "/product/63a-3ph-to-x2-32a-3ph",
+      "destination": "/dry-hire/equipment/63a-3ph-to-x2-32a-3ph/",
+      "permanent": true
+    },
+    {
+      "source": "/product/32a-3ph-distro-to-x3-32a-1ph",
+      "destination": "/dry-hire/equipment/32a-3ph-distro-to-x3-32a-1ph/",
+      "permanent": true
+    },
+    {
+      "source": "/product/16a-2-way-splitter",
+      "destination": "/dry-hire/equipment/16a-2-way-splitter/",
+      "permanent": true
+    },
+    {
+      "source": "/product/16a-3-way-splits",
+      "destination": "/dry-hire/equipment/16a-3-way-splits/",
+      "permanent": true
+    },
+    {
+      "source": "/product/nl4-to-nl8-fm",
+      "destination": "/dry-hire/equipment/nl4-to-nl8-fm/",
+      "permanent": true
+    },
+    {
+      "source": "/product/nl8-link-lead-1-0m",
+      "destination": "/dry-hire/equipment/nl8-link-lead-1-0m/",
+      "permanent": true
+    },
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/sample-page",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/sample-page-2",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/bristol-pa-hire",
+      "destination": "/event-production/sound/",
+      "permanent": true
+    },
+    {
+      "source": "/bristol-pa-hire/equipment-lease",
+      "destination": "/dry-hire/#lease",
+      "permanent": true
+    },
+    {
+      "source": "/bristol-pa-hire/events-in-bristol",
+      "destination": "/news-and-projects/projects/",
+      "permanent": true
+    },
+    {
+      "source": "/broadcast",
+      "destination": "/event-production/video/",
+      "permanent": true
+    },
+    {
+      "source": "/live-events",
+      "destination": "/event-production/festivals/",
+      "permanent": true
+    },
+    {
+      "source": "/live-events-2",
+      "destination": "/event-production/festivals/",
+      "permanent": true
+    },
+    {
+      "source": "/production-services",
+      "destination": "/event-production/",
+      "permanent": true
+    },
+    {
+      "source": "/production-services/corporate-event-management",
+      "destination": "/event-production/corporate-events/",
+      "permanent": true
+    },
+    {
+      "source": "/production-services/festivals",
+      "destination": "/event-production/festivals/",
+      "permanent": true
+    },
+    {
+      "source": "/production-services/parties",
+      "destination": "/event-production/private-events/",
+      "permanent": true
+    },
+    {
+      "source": "/production-services/performing-arts",
+      "destination": "/event-production/performing-arts/",
+      "permanent": true
+    },
+    {
+      "source": "/production-services/production-packages",
+      "destination": "/event-production/",
+      "permanent": true
+    },
+    {
+      "source": "/production-services/public-announcement-horn-speakers",
+      "destination": "/news-and-projects/public-announcement-horn-speakers/",
+      "permanent": true
+    },
+    {
+      "source": "/corporate",
+      "destination": "/event-production/corporate-events/",
+      "permanent": true
+    },
+    {
+      "source": "/sound",
+      "destination": "/event-production/sound/",
+      "permanent": true
+    },
+    {
+      "source": "/event-sound-design",
+      "destination": "/event-production/sound/",
+      "permanent": true
+    },
+    {
+      "source": "/bristol-lighting-hire",
+      "destination": "/event-production/lighting/",
+      "permanent": true
+    },
+    {
+      "source": "/bristol-lighting-hire/bristol-event-lighting-projects",
+      "destination": "/news-and-projects/service/lighting/",
+      "permanent": true
+    },
+    {
+      "source": "/staging",
+      "destination": "/event-production/staging/",
+      "permanent": true
+    },
+    {
+      "source": "/theatre-lighting-hire",
+      "destination": "/news-and-projects/theatre-lighting-and-sound-hire/",
+      "permanent": true
+    },
+    {
+      "source": "/martin-audio-hire-bristol",
+      "destination": "/news-and-projects/martin-audio-line-array/",
+      "permanent": true
+    },
+    {
+      "source": "/great-sound-without-feedback",
+      "destination": "/news-and-projects/great-sound-without-feedback/",
+      "permanent": true
+    },
+    {
+      "source": "/case-studies",
+      "destination": "/news-and-projects/projects/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio",
+      "destination": "/news-and-projects/projects/",
+      "permanent": true
+    },
+    {
+      "source": "/news/portfolio",
+      "destination": "/news-and-projects/projects/",
+      "permanent": true
+    },
+    {
+      "source": "/news",
+      "destination": "/news-and-projects/",
+      "permanent": true
+    },
+    {
+      "source": "/feed",
+      "destination": "/news-and-projects/",
+      "permanent": true
+    },
+    {
+      "source": "/news/feed",
+      "destination": "/news-and-projects/",
+      "permanent": true
+    },
+    {
+      "source": "/author/admin",
+      "destination": "/news-and-projects/",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/thank_you",
+      "destination": "/thank-you/",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy-2",
+      "destination": "/privacy-policy/",
+      "permanent": true
+    },
+    {
+      "source": "/equipment-rental",
+      "destination": "/dry-hire/",
+      "permanent": true
+    },
+    {
+      "source": "/equipment-rental/sound",
+      "destination": "/dry-hire/#sound",
+      "permanent": true
+    },
+    {
+      "source": "/equipment-rental/lighting",
+      "destination": "/dry-hire/#lighting",
+      "permanent": true
+    },
+    {
+      "source": "/equipment-rental/effects",
+      "destination": "/dry-hire/#lighting",
+      "permanent": true
+    },
+    {
+      "source": "/equipment-rental/staging",
+      "destination": "/dry-hire/#staging",
+      "permanent": true
+    },
+    {
+      "source": "/equipment-rental/video",
+      "destination": "/dry-hire/#video",
+      "permanent": true
+    },
+    {
+      "source": "/equipment-rental/power",
+      "destination": "/dry-hire/#power",
+      "permanent": true
+    },
+    {
+      "source": "/equipment-rental/cable-rental",
+      "destination": "/dry-hire/#accessories",
+      "permanent": true
+    },
+    {
+      "source": "/equipment-rental/party-packages",
+      "destination": "/dry-hire/#packages",
+      "permanent": true
+    },
+    {
+      "source": "/dry-hire-explorer",
+      "destination": "/dry-hire/",
+      "permanent": true
+    },
+    {
+      "source": "/ex-hire-equipment",
+      "destination": "/dry-hire/",
+      "permanent": true
+    },
+    {
+      "source": "/store",
+      "destination": "/dry-hire/equipment/",
+      "permanent": true
+    },
+    {
+      "source": "/shop",
+      "destination": "/dry-hire/equipment/",
+      "permanent": true
+    },
+    {
+      "source": "/cart",
+      "destination": "/dry-hire/",
+      "permanent": true
+    },
+    {
+      "source": "/checkout",
+      "destination": "/dry-hire/",
+      "permanent": true
+    },
+    {
+      "source": "/my-account",
+      "destination": "/dry-hire/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/sound",
+      "destination": "/dry-hire/equipment/#sound",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/lighting",
+      "destination": "/dry-hire/equipment/#lighting",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/cable",
+      "destination": "/dry-hire/equipment/#accessories",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/staging-hardware",
+      "destination": "/dry-hire/equipment/#staging",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/uncategorized",
+      "destination": "/dry-hire/equipment/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/sound/dj-decks-players",
+      "destination": "/dry-hire/equipment/#sound",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/staging-hardware/drapes-curtains",
+      "destination": "/dry-hire/equipment/#staging",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/power",
+      "destination": "/dry-hire/equipment/category/power/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/staging",
+      "destination": "/dry-hire/equipment/category/staging/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/video",
+      "destination": "/dry-hire/equipment/category/video/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/effects",
+      "destination": "/dry-hire/equipment/category/effects/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/packages",
+      "destination": "/dry-hire/equipment/category/packages/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/accessory",
+      "destination": "/dry-hire/equipment/category/accessory/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/computing-networkingcomms",
+      "destination": "/dry-hire/equipment/category/computing-networkingcomms/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/stage-roof",
+      "destination": "/dry-hire/equipment/category/stage-roof/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/sound/amplifiers",
+      "destination": "/dry-hire/equipment/category/amplifiers/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/sound/audio",
+      "destination": "/dry-hire/equipment/category/audio/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/sound/microphones",
+      "destination": "/dry-hire/equipment/category/microphones/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/sound/mixers",
+      "destination": "/dry-hire/equipment/category/mixers/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/sound/speakers",
+      "destination": "/dry-hire/equipment/category/speakers/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/lighting/dimmers-data",
+      "destination": "/dry-hire/equipment/category/dimmers-data/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/lighting/lighting-effects",
+      "destination": "/dry-hire/equipment/category/lighting-effects/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/lighting/outdoor-lighting",
+      "destination": "/dry-hire/equipment/category/outdoor-lighting/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/lighting/stage-lighting",
+      "destination": "/dry-hire/equipment/category/stage-lighting/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/cable/cable-mains-power",
+      "destination": "/dry-hire/equipment/category/cable-mains-power/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/cable/cable-speaker-microphone-control",
+      "destination": "/dry-hire/equipment/category/cable-speaker-microphone-control/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/staging-hardware/rigging",
+      "destination": "/dry-hire/equipment/category/rigging/",
+      "permanent": true
+    },
+    {
+      "source": "/news/led-video-wall-hire",
+      "destination": "/news-and-projects/led-video-wall-hire/",
+      "permanent": true
+    },
+    {
+      "source": "/news/konligo-fastival-hire",
+      "destination": "/news-and-projects/konligo-fastival-stage-roof/",
+      "permanent": true
+    },
+    {
+      "source": "/news/pa-system-hire-2024",
+      "destination": "/news-and-projects/2023-in-review/",
+      "permanent": true
+    },
+    {
+      "source": "/news/bristol-wireless-microphone-hire",
+      "destination": "/news-and-projects/wireless-microphone-hire/",
+      "permanent": true
+    },
+    {
+      "source": "/news/danley-sound-labs-pa-investments-for-2023",
+      "destination": "/news-and-projects/danley-sound-labs-pa/",
+      "permanent": true
+    },
+    {
+      "source": "/news/allen-and-heath-sq-digital-mixers-added-to-hire",
+      "destination": "/news-and-projects/allen-and-heath-sq-mixers/",
+      "permanent": true
+    },
+    {
+      "source": "/news/sennheiser-ew-d-radio-microphones-added-to-hire",
+      "destination": "/news-and-projects/sennheiser-ew-d-radio-microphones/",
+      "permanent": true
+    },
+    {
+      "source": "/news/loud-hire-get-new-website",
+      "destination": "/news-and-projects/",
+      "permanent": true
+    },
+    {
+      "source": "/news/2022-review-loud-hire-bristol",
+      "destination": "/news-and-projects/2022-review/",
+      "permanent": true
+    },
+    {
+      "source": "/news/big-screen-coming-soon",
+      "destination": "/news-and-projects/led-video-wall-hire/",
+      "permanent": true
+    },
+    {
+      "source": "/news/covid-19-statement",
+      "destination": "/news-and-projects/",
+      "permanent": true
+    },
+    {
+      "source": "/news/theatre-lighting-hire-2",
+      "destination": "/news-and-projects/theatre-lighting-and-sound-hire/",
+      "permanent": true
+    },
+    {
+      "source": "/news/theatre-lighting-hire",
+      "destination": "/news-and-projects/theatre-lighting-and-sound-hire/",
+      "permanent": true
+    },
+    {
+      "source": "/news/stage-lighting-investments-for-2019",
+      "destination": "/news-and-projects/stage-lighting-investments-2019/",
+      "permanent": true
+    },
+    {
+      "source": "/news/digital-amplifier-technology",
+      "destination": "/news-and-projects/digital-amplifier-technology/",
+      "permanent": true
+    },
+    {
+      "source": "/news/new-elumen8-alu-hex-par-64-led-stage-lighting",
+      "destination": "/news-and-projects/elumen8-alu-hex-par-64/",
+      "permanent": true
+    },
+    {
+      "source": "/news/2018-event-hire",
+      "destination": "/news-and-projects/2018-event-hire/",
+      "permanent": true
+    },
+    {
+      "source": "/news/martin-audio-hire-bristol",
+      "destination": "/news-and-projects/martin-audio-line-array/",
+      "permanent": true
+    },
+    {
+      "source": "/news/1141-2",
+      "destination": "/news-and-projects/public-announcement-horn-speakers/",
+      "permanent": true
+    },
+    {
+      "source": "/news/great-sound-without-feedback",
+      "destination": "/news-and-projects/great-sound-without-feedback/",
+      "permanent": true
+    },
+    {
+      "source": "/news/category/video",
+      "destination": "/news-and-projects/service/video/",
+      "permanent": true
+    },
+    {
+      "source": "/news/category/staging",
+      "destination": "/news-and-projects/service/staging/",
+      "permanent": true
+    },
+    {
+      "source": "/news/category/pa-systems",
+      "destination": "/news-and-projects/service/sound/",
+      "permanent": true
+    },
+    {
+      "source": "/news/category/pa-systems/microphone-hire",
+      "destination": "/news-and-projects/service/sound/",
+      "permanent": true
+    },
+    {
+      "source": "/news/category/pa-systems/sound-mixers",
+      "destination": "/news-and-projects/service/sound/",
+      "permanent": true
+    },
+    {
+      "source": "/news/category/stage-lighting",
+      "destination": "/news-and-projects/service/lighting/",
+      "permanent": true
+    },
+    {
+      "source": "/news/category/equipment-hire",
+      "destination": "/news-and-projects/news/",
+      "permanent": true
+    },
+    {
+      "source": "/news/category/news",
+      "destination": "/news-and-projects/news/",
+      "permanent": true
+    },
+    {
+      "source": "/news/category/bristol",
+      "destination": "/news-and-projects/",
+      "permanent": true
+    },
+    {
+      "source": "/news/category/uncategorized",
+      "destination": "/news-and-projects/",
+      "permanent": true
+    },
+    {
+      "source": "/news/category/allgemein",
+      "destination": "/news-and-projects/",
+      "permanent": true
+    },
+    {
+      "source": "/news/category/personal",
+      "destination": "/news-and-projects/",
+      "permanent": true
+    },
+    {
+      "source": "/news/portfolio/british-airways-summer-fly-in-event",
+      "destination": "/news-and-projects/british-airways-summer-fly-in/",
+      "permanent": true
+    },
+    {
+      "source": "/news/portfolio/hawkstone-tv-launch",
+      "destination": "/news-and-projects/hawkstone-advert-launch/",
+      "permanent": true
+    },
+    {
+      "source": "/news/portfolio/video-wall-for-stretch-tent",
+      "destination": "/news-and-projects/video-wall-for-stretch-tent/",
+      "permanent": true
+    },
+    {
+      "source": "/news/portfolio/downend-fireworks-lighting",
+      "destination": "/news-and-projects/downend-fireworks-lighting/",
+      "permanent": true
+    },
+    {
+      "source": "/news/portfolio/tall-ships",
+      "destination": "/news-and-projects/gloucester-tall-ships-festival/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/eats-everything",
+      "destination": "/news-and-projects/eats-everything-hot-air-balloon/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/the-wurzels",
+      "destination": "/news-and-projects/the-wurzels-bath-racecourse/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/shield-group",
+      "destination": "/news-and-projects/shield-group-corporate-festival/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/gorgon-city-2",
+      "destination": "/news-and-projects/gorgon-city-private-party/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/festival-birthday-party",
+      "destination": "/news-and-projects/festival-birthday-party-herefordshire/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/proms-in-park",
+      "destination": "/news-and-projects/proms-in-the-park-speech-house/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/tipi-wedding",
+      "destination": "/news-and-projects/festival-style-tipi-wedding/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/mount-without-bristol",
+      "destination": "/news-and-projects/shakespeare-at-the-mount-without/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/aerospace-bristols-5th-anniversary",
+      "destination": "/news-and-projects/aerospace-bristol-5th-anniversary/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/christmas-concert-ilford-london",
+      "destination": "/news-and-projects/christmas-concert-ilford/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/santas-float",
+      "destination": "/news-and-projects/santas-float-bristol/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/the-queens-jubilee",
+      "destination": "/news-and-projects/ilford-queens-jubilee/",
+      "permanent": true
+    },
+    {
+      "source": "/sitemap_index.xml",
+      "destination": "/sitemap-index.xml",
+      "permanent": true
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/sitemap-index.xml",
+      "permanent": true
+    },
+    {
+      "source": "/post-sitemap.xml",
+      "destination": "/sitemap-index.xml",
+      "permanent": true
+    },
+    {
+      "source": "/page-sitemap.xml",
+      "destination": "/sitemap-index.xml",
+      "permanent": true
+    },
+    {
+      "source": "/product-sitemap.xml",
+      "destination": "/sitemap-index.xml",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio-sitemap.xml",
+      "destination": "/sitemap-index.xml",
+      "permanent": true
+    },
+    {
+      "source": "/category-sitemap.xml",
+      "destination": "/sitemap-index.xml",
+      "permanent": true
+    },
+    {
+      "source": "/product_cat-sitemap.xml",
+      "destination": "/sitemap-index.xml",
+      "permanent": true
+    },
+    {
+      "source": "/pa_hire-duration-sitemap.xml",
+      "destination": "/sitemap-index.xml",
+      "permanent": true
+    },
+    {
+      "source": "/author-sitemap.xml",
+      "destination": "/sitemap-index.xml",
+      "permanent": true
+    },
+    {
+      "source": "/news/page/:rest*",
+      "destination": "/news-and-projects/",
+      "permanent": true
+    },
+    {
+      "source": "/case-studies/page/:rest*",
+      "destination": "/news-and-projects/projects/",
+      "permanent": true
+    },
+    {
+      "source": "/product-tag/:rest*",
+      "destination": "/dry-hire/equipment/",
+      "permanent": true
+    },
+    {
+      "source": "/product_brand/:rest*",
+      "destination": "/dry-hire/equipment/",
+      "permanent": true
+    },
+    {
+      "source": "/pa_hire-duration/:rest*",
+      "destination": "/dry-hire/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/:rest*",
+      "destination": "/dry-hire/equipment/",
+      "permanent": true
+    },
+    {
+      "source": "/product/:rest*",
+      "destination": "/dry-hire/equipment/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/:rest*",
+      "destination": "/news-and-projects/projects/",
+      "permanent": true
+    },
+    {
+      "source": "/news/portfolio/:rest*",
+      "destination": "/news-and-projects/projects/",
+      "permanent": true
+    },
+    {
+      "source": "/news/category/:rest*",
+      "destination": "/news-and-projects/",
+      "permanent": true
+    },
+    {
+      "source": "/news/:rest*",
+      "destination": "/news-and-projects/",
+      "permanent": true
+    },
+    {
+      "source": "/author/:rest*",
+      "destination": "/news-and-projects/",
+      "permanent": true
+    }
+  ]
+}

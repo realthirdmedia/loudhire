@@ -1,0 +1,20 @@
+---
+/**
+ * Server-side fallback for any path that is not a real page.
+ * Old WordPress URLs are redirected (301) using src/data/redirects.mjs;
+ * everything else gets the 404 page. vercel.json handles the same redirects
+ * at the edge first; this route is the safety net (and covers local `astro dev`).
+ */
+import NotFound from '../components/NotFound.astro';
+import { resolveRedirect } from '../data/redirects.mjs';
+
+export const prerender = false;
+
+const destination = resolveRedirect(Astro.url.pathname);
+if (destination) {
+  return Astro.redirect(destination, 301);
+}
+Astro.response.status = 404;
+---
+
+<NotFound />

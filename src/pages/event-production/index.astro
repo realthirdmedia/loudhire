@@ -1,0 +1,238 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import CapabilityGrid from '../../components/CapabilityGrid.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import EntryCard from '../../components/EntryCard.astro';
+import ContactSection from '../../components/ContactSection.astro';
+import { eventTypePages } from '../../data/eventProduction';
+import { getProjects } from '../../lib/entries';
+import heroImage from '../../assets/projects/shield-group/stage-crowd.jpg';
+
+const projects = (await getProjects()).filter((p) => p.data.featured).slice(0, 6);
+
+const faqs = [
+  {
+    q: 'How much notice do you need?',
+    a: 'As much as you can give us for a full production package, because the best dates go early. That said, our rapid-deployment stock means we regularly quote and deliver events with one to two weeks’ notice.',
+  },
+  {
+    q: 'Do you visit the site first?',
+    a: 'Yes, wherever we can. Site visits across Bristol, the Cotswolds and the surrounding area are free, and they are the fastest way to get an accurate plan and quote.',
+  },
+  {
+    q: 'Which areas do you cover?',
+    a: 'We are based in Thornbury, just north of Bristol, and most of our work is across Bristol, Bath, the Cotswolds, Gloucestershire and the wider South West. We also travel further for the right project, including London and Devon.',
+  },
+  {
+    q: 'Are you insured?',
+    a: 'Yes. We hold public liability, employers’ liability and professional indemnity insurance, and every item of equipment is tested in our warehouse before it leaves.',
+  },
+  {
+    q: 'Do you work with venues, agencies and other production companies?',
+    a: 'All the time. We supply venues on regular contracts, work alongside agencies and event organisers, and dry-hire equipment to other production companies when they need extra stock.',
+  },
+];
+
+const title = 'Event Production Services Bristol & the Cotswolds | Complete Packages';
+const description =
+  'Complete event production packages: sound, lighting, staging, video and power planned and delivered by one team. Corporate events, brand launches, festivals, private events and performing arts across Bristol, the Cotswolds and the South West.';
+---
+
+<Base title={title} description={description}>
+  <PageHero
+    variant="banner"
+    image={heroImage}
+    imageAlt="Crowd in front of a lit festival stage at dusk"
+    eyebrow="Event production"
+    title="One production partner for the whole event."
+    intro="Sound, lighting, staging, video and power, planned together and delivered by one crew. Based in Thornbury, working across Bristol, the Cotswolds and the wider South West."
+    ctaLabel="Discuss your event"
+    ctaHref="/contact/"
+    secondaryLabel="See our projects"
+    secondaryHref="/news-and-projects/projects/"
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Why one partner</span>
+        <h2>Fewer suppliers, fewer surprises.</h2>
+        <p>
+          Most event problems happen in the gaps between suppliers: the stage that arrives before the power, the screen nobody can hear, the lighting rig that trips the venue supply. When one team plans and delivers all five disciplines, those gaps close. You get one site visit, one technical plan, one quote, one crew and one person to call.
+        </p>
+      </div>
+      <CapabilityGrid detailed />
+    </div>
+  </section>
+
+  <section class="section section--paper-2">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Who we work with</span>
+        <h2>Complete packages for every kind of event.</h2>
+        <p>Corporate clients, brands, venues, agencies and organisers who need production that arrives on time and works first time.</p>
+      </div>
+      <div class="types">
+        {
+          eventTypePages.map((t) => (
+            <a class="type" href={`/event-production/${t.slug}/`}>
+              <div class="type__media">
+                <Image src={t.image} alt={t.imageAlt} widths={[480, 720, 960]} sizes="(max-width: 40rem) 92vw, (max-width: 64rem) 46vw, 380px" loading="lazy" decoding="async" format="webp" quality={70} />
+              </div>
+              <div class="type__body">
+                <h3>{t.navName}</h3>
+                <p>{t.intro}</p>
+                <span class="text-link">Read more</span>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container process">
+      <div>
+        <span class="eyebrow">How it works</span>
+        <h2>From brief to breakdown.</h2>
+        <p class="lead">
+          A clear process that scales from a single-room conference to a three-day festival. You will always know what is happening next and who is doing it.
+        </p>
+        <p>
+          We only quote for what the event needs, and we only describe services we actually provide. If something is better supplied by a specialist, we will tell you, and we regularly work alongside our sister company Big Stage Hire for large outdoor stages.
+        </p>
+        <a class="btn btn--primary" href="/contact/">Discuss your event</a>
+      </div>
+      <ProcessSteps />
+    </div>
+  </section>
+
+  <section class="section section--paper-2">
+    <div class="container">
+      <div class="section-head section-head--split">
+        <div>
+          <span class="eyebrow">Recent projects</span>
+          <h2>What complete production looks like.</h2>
+        </div>
+        <a class="text-link" href="/news-and-projects/projects/">All projects</a>
+      </div>
+      <div class="grid grid--3">
+        {projects.map((entry) => <EntryCard entry={entry} showDate={false} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="section-head">
+        <span class="eyebrow">Questions</span>
+        <h2>Before you get in touch</h2>
+      </div>
+      <dl class="faq">
+        {
+          faqs.map((f) => (
+            <div class="faq__item">
+              <dt>{f.q}</dt>
+              <dd>{f.a}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <ContactSection />
+</Base>
+
+<style>
+  .types {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1.25rem, 2.5vw, 2rem);
+  }
+  .type {
+    display: flex;
+    flex-direction: column;
+    background: var(--c-paper);
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .type:hover {
+    box-shadow: var(--shadow);
+    transform: translateY(-2px);
+    color: inherit;
+  }
+  .type__media {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--c-paper-3);
+  }
+  .type__media :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .type__body {
+    padding: 1.25rem 1.35rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+  }
+  .type__body h3 {
+    margin: 0;
+  }
+  .type__body p {
+    margin: 0;
+    color: var(--c-muted);
+    font-size: var(--text-sm);
+    flex: 1;
+  }
+  .process {
+    display: grid;
+    grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: start;
+  }
+  .faq {
+    margin: 0;
+  }
+  .faq__item {
+    padding: 1.25rem 0;
+    border-top: 1px solid var(--c-line);
+  }
+  .faq__item:last-child {
+    border-bottom: 1px solid var(--c-line);
+  }
+  .faq dt {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-lg);
+    color: var(--c-ink);
+    margin-bottom: 0.4rem;
+  }
+  .faq dd {
+    margin: 0;
+    color: var(--c-muted);
+  }
+  @media (max-width: 64rem) {
+    .types {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .process {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 40rem) {
+    .types {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

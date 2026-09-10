@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+import { getLatest } from '../lib/entries';
+import EntryCard from '../components/EntryCard.astro';
+const latest = await getLatest(3);
+---
+
+<Base title="Thank you" description="Thanks for your enquiry. We will be in touch shortly." noindex>
+  <section class="section">
+    <div class="container container--narrow thanks">
+      <span class="eyebrow">Enquiry sent</span>
+      <h1>Thank you. We'll be in touch.</h1>
+      <p class="lead">
+        We aim to reply within one working day. If it is urgent, call <a href={site.phoneHref}>{site.phone}</a> and we will pick it up straight away.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="/">Back to the homepage</a>
+        <a class="btn btn--ghost" href="/news-and-projects/projects/">Browse our projects</a>
+      </div>
+    </div>
+  </section>
+  <section class="section section--paper-2">
+    <div class="container">
+      <div class="section-head"><h2>While you wait</h2></div>
+      <div class="grid grid--3">{latest.map((e) => <EntryCard entry={e} />)}</div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .thanks .btn-row {
+    margin-top: 1.5rem;
+  }
+</style>

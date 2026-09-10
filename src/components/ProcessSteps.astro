@@ -1,0 +1,97 @@
+---
+const steps = [
+  {
+    name: 'Brief',
+    text: 'Tell us about the event, the venue and the audience. If the details are still moving, we can work from a rough outline.',
+  },
+  {
+    name: 'Site visit and technical planning',
+    text: 'We visit the site where we can, then produce a plan covering stage, sound, lighting, video and power, with a clear quote.',
+  },
+  {
+    name: 'Preparation',
+    text: 'Every item is tested and prepped in our Thornbury warehouse before it leaves. Nothing arrives straight off another job.',
+  },
+  {
+    name: 'Installation',
+    text: 'Our crew builds to the plan, on schedule, including overnight or short-window builds where the venue needs it.',
+  },
+  {
+    name: 'Event support',
+    text: 'Engineers stay on site to run the show: mixing, lighting operation, playback and whatever the day throws up.',
+  },
+  {
+    name: 'Breakdown',
+    text: 'A tidy, quick de-rig so the venue is handed back on time.',
+  },
+];
+---
+
+<ol class="steps">
+  {
+    steps.map((s, i) => (
+      <li class="step">
+        <span class="step__num">{i + 1}</span>
+        <div>
+          <h3 class="step__name">{s.name}</h3>
+          <p class="step__text">{s.text}</p>
+        </div>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0;
+  }
+  .step {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: 1rem;
+    padding: 0 0 1.5rem 0;
+    position: relative;
+  }
+  .step::after {
+    content: '';
+    position: absolute;
+    left: 1.25rem;
+    top: 2.5rem;
+    bottom: 0;
+    width: 1px;
+    background: var(--c-line);
+  }
+  .step:last-child {
+    padding-bottom: 0;
+  }
+  .step:last-child::after {
+    display: none;
+  }
+  .step__num {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: var(--c-black);
+    color: var(--c-orange);
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .step__name {
+    font-size: 1.05rem;
+    margin: 0.45rem 0 0.25rem;
+  }
+  .step__text {
+    margin: 0;
+    font-size: var(--text-sm);
+    color: var(--c-muted);
+  }
+</style>

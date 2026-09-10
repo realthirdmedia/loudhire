@@ -1,0 +1,166 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../../layouts/Base.astro';
+import EquipmentCard from '../../../components/EquipmentCard.astro';
+import ContactSection from '../../../components/ContactSection.astro';
+import { equipment, equipmentImage, formatPrice, enquireUrl, itemsInCategory, categories, categoryUrl, sectionName } from '../../../lib/equipment';
+
+export function getStaticPaths() {
+  return equipment.map((item) => ({ params: { slug: item.slug }, props: { item } }));
+}
+
+const { item } = Astro.props;
+const img = equipmentImage(item);
+const category = categories.find((c) => c.slug === item.categorySlug);
+const related = itemsInCategory(item.categorySlug).filter((i) => i.slug !== item.slug).slice(0, 6);
+const paragraphs = item.description ? item.description.split(/\n+/).map((p) => p.trim()).filter(Boolean) : [];
+
+const title = `${item.name} Hire | ${sectionName(item.section)} Dry Hire, Bristol`;
+const description = `${item.name} available for dry hire from Loud Hire in Thornbury, near Bristol. ${formatPrice(item)}. ${item.description ? item.description.split('\n')[0].slice(0, 120) : `${item.category} equipment for events across Bristol, the Cotswolds and the South West.`}`;
+
+const productLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: item.name,
+  category: item.category,
+  image: img ? new URL(img.src, Astro.site).href : undefined,
+  description: item.description || `${item.name} for hire`,
+  brand: undefined,
+  offers: item.pricePerDay
+    ? {
+        '@type': 'Offer',
+        priceCurrency: 'GBP',
+        price: item.pricePerDay,
+        availability: 'https://schema.org/InStock',
+        url: new URL(Astro.url.pathname, Astro.site).href,
+        priceSpecification: { '@type': 'UnitPriceSpecification', price: item.pricePerDay, priceCurrency: 'GBP', unitText: 'per day, excluding VAT' },
+      }
+    : undefined,
+};
+---
+
+<Base title={title} description={description} jsonLd={[productLd]} ogImage={img ? img.src : undefined}>
+  <section class="section section--tight">
+    <div class="container">
+      <nav class="crumb" aria-label="Breadcrumb">
+        <a href="/dry-hire/">Dry Hire</a> <span>/</span>
+        <a href="/dry-hire/equipment/">Equipment list</a> <span>/</span>
+        <a href={`/dry-hire/equipment/#${item.section}`}>{sectionName(item.section)}</a> <span>/</span>
+        {category && <a href={categoryUrl(category)}>{category.name}</a>}
+      </nav>
+      <div class="item">
+        <div class="item__media">
+          {img ? <Image src={img} alt={item.name} widths={[480, 800]} sizes="(max-width: 48rem) 92vw, 480px" fit="contain" loading="eager" decoding="async" format="webp" quality={78} /> : <span class="muted">No image available</span>}
+        </div>
+        <div class="item__body">
+          <span class="eyebrow">{item.category.replace(/ - /g, ': ')}</span>
+          <h1>{item.name}</h1>
+          <p class="item__price">{formatPrice(item)}</p>
+          {paragraphs.length > 0 ? <div class="prose">{paragraphs.map((p) => <p>{p}</p>)}</div> : <p class="muted">Ask us for the full specification and availability.</p>}
+          <div class="btn-row">
+            <a class="btn btn--primary" href={enquireUrl(item)}>Enquire about this item</a>
+            <a class="text-link" href={`/dry-hire/equipment/#${item.section}`}>All {sectionName(item.section).toLowerCase()} equipment</a>
+          </div>
+          <ul class="item__notes">
+            <li>Prices are per day and exclude VAT. Weekly rates available.</li>
+            <li>Collect from Thornbury (by appointment) or ask for a delivery quote.</li>
+            <li>Tested before every hire. Dry hire customers are responsible for insuring equipment while on hire.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {
+    related.length > 0 && (
+      <section class="section section--tight section--paper-2">
+        <div class="container">
+          <div class="section-head section-head--split">
+            <div>
+              <h2>More {category?.name.toLowerCase() ?? 'items'}</h2>
+            </div>
+            {category && (
+              <a class="text-link" href={categoryUrl(category)}>
+                All {category.name.toLowerCase()} ({category.count})
+              </a>
+            )}
+          </div>
+          <div class="eq-grid">
+            {related.map((r) => (
+              <EquipmentCard item={r} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <ContactSection heading="Enquire about equipment hire" text="Send us the dates and the list, and we will confirm availability and quote the whole hire." />
+</Base>
+
+<style>
+  .crumb {
+    font-size: var(--text-xs);
+    color: var(--c-muted);
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .crumb a {
+    text-decoration: none;
+  }
+  .item {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    align-items: start;
+  }
+  .item__media {
+    background: #fff;
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    aspect-ratio: 4 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .item__media :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .item__body h1 {
+    font-size: var(--text-3xl);
+  }
+  .item__price {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.35rem;
+    color: var(--c-orange-deep);
+    margin-bottom: 1.25rem;
+  }
+  .item__body .btn-row {
+    margin-top: 1.5rem;
+  }
+  .item__notes {
+    margin: 1.75rem 0 0;
+    padding-left: 1.1rem;
+    font-size: var(--text-xs);
+    color: var(--c-muted);
+  }
+  .eq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(13.5rem, 1fr));
+    gap: 1rem;
+  }
+  @media (max-width: 48rem) {
+    .item {
+      grid-template-columns: 1fr;
+    }
+    .eq-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+import { nav } from '../data/site';
+---
+
+<Base title="Page not found" description="That page does not exist or has moved." noindex>
+  <section class="section">
+    <div class="container container--narrow">
+      <span class="eyebrow">404</span>
+      <h1>We can't find that page.</h1>
+      <p class="lead">It may have moved during our site refresh. Try one of these instead, or use the search on the equipment list.</p>
+      <ul class="links">
+        {nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+        <li><a href="/dry-hire/equipment/">Equipment list</a></li>
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .links {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .links a {
+    display: inline-block;
+    padding: 0.55rem 0.95rem;
+    border: 1px solid var(--c-line);
+    border-radius: 999px;
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--c-ink);
+  }
+  .links a:hover {
+    border-color: var(--c-orange);
+    color: var(--c-orange-deep);
+  }
+</style>

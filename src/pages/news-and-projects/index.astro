@@ -1,0 +1,14 @@
+---
+import EntryListing from '../../components/EntryListing.astro';
+import { getEntries } from '../../lib/entries';
+const entries = await getEntries();
+---
+
+<EntryListing
+  entries={entries}
+  active="all"
+  title="News and projects"
+  metaTitle="News & Projects | Event Production in Bristol, the Cotswolds & the South West"
+  description="Case studies and news from Loud Hire: event production projects across Bristol, the Cotswolds and the South West, plus new equipment, guides and company news."
+  intro="Case studies from real events and news from the warehouse, in one place. Filter by projects, news or the service you are interested in."
+/>

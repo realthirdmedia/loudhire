@@ -1,0 +1,65 @@
+---
+import { Image } from 'astro:assets';
+import { entryUrl, formatDate, typeLabel, type Entry } from '../lib/entries';
+import { serviceLabel } from '../data/site';
+
+interface Props {
+  entry: Entry;
+  /** Eager-load the image (above the fold). */
+  eager?: boolean;
+  /** Larger card variant for feature grids. */
+  size?: 'default' | 'large';
+  showDate?: boolean;
+}
+
+const { entry, eager = false, size = 'default', showDate = true } = Astro.props;
+const { data } = entry;
+const projectMeta = [data.client, data.location].filter(Boolean).join(' · ');
+---
+
+<a
+  class:list={['card', 'entry-card', { 'entry-card--large': size === 'large' }]}
+  href={entryUrl(entry)}
+  data-type={data.type}
+  data-services={data.services.join(' ')}
+>
+  <div class="card__media">
+    <Image
+      src={data.cover}
+      alt={data.coverAlt}
+      widths={[480, 720, 960, 1200]}
+      sizes={size === 'large' ? '(max-width: 40rem) 92vw, (max-width: 64rem) 46vw, 600px' : '(max-width: 40rem) 92vw, (max-width: 64rem) 46vw, 400px'}
+      loading={eager ? 'eager' : 'lazy'}
+      decoding="async"
+      format="webp"
+      quality={72}
+    />
+  </div>
+  <div class="card__body">
+    <div class="card__meta">
+      <span class:list={['tag', { 'tag--orange': data.type !== 'news' }]}>{typeLabel(entry)}</span>
+      {showDate && !data.hideDate && <time datetime={data.date.toISOString()}>{formatDate(data.date)}</time>}
+      {data.hideDate && projectMeta && <span>{projectMeta}</span>}
+    </div>
+    <h3 class="card__title">{data.title}</h3>
+    <p class="card__text">{data.summary}</p>
+    {
+      data.services.length > 0 && (
+        <div class="card__foot tag-row">
+          {data.services.map((s) => (
+            <span class="tag tag--outline">{serviceLabel[s]}</span>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</a>
+
+<style>
+  .entry-card--large .card__title {
+    font-size: 1.35rem;
+  }
+  .entry-card--large .card__body {
+    padding: 1.5rem 1.6rem 1.7rem;
+  }
+</style>

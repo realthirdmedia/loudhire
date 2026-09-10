@@ -1,0 +1,14 @@
+---
+import EntryListing from '../../components/EntryListing.astro';
+import { getProjects } from '../../lib/entries';
+const entries = await getProjects();
+---
+
+<EntryListing
+  entries={entries}
+  active="projects"
+  title="Projects"
+  metaTitle="Event Production Projects & Case Studies | Bristol, Cotswolds & South West"
+  description="Case studies of events Loud Hire has delivered: brand launches, corporate events, festivals, private parties and theatre across Bristol, the Cotswolds and the South West, with the brief, the kit and the client's feedback."
+  intro="The brief, what we delivered and what the client said. Every project is a real event with the equipment list to match."
+/>

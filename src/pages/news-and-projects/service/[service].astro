@@ -1,0 +1,21 @@
+---
+import EntryListing from '../../../components/EntryListing.astro';
+import { capabilities } from '../../../data/site';
+import { getEntries } from '../../../lib/entries';
+
+export function getStaticPaths() {
+  return capabilities.map((c) => ({ params: { service: c.key }, props: { capability: c } }));
+}
+
+const { capability } = Astro.props;
+const entries = (await getEntries()).filter((e) => e.data.services.includes(capability.key));
+---
+
+<EntryListing
+  entries={entries}
+  active={capability.key}
+  title={`${capability.name}: news and projects`}
+  metaTitle={`${capability.name} Projects & News | Loud Hire, Bristol & the Cotswolds`}
+  description={`Projects and news involving ${capability.name.toLowerCase()} from Loud Hire: ${capability.short}`}
+  intro={capability.short}
+/>

@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+
+<Base title="Privacy Policy" description="How Loud Hire collects and uses information from visitors to this website and from enquiries.">
+  <section class="section">
+    <div class="container container--narrow prose">
+      <span class="eyebrow">Privacy policy</span>
+      <h1>Privacy policy</h1>
+      <p>We would like to make you aware of the information we collect from your interactions with our website and our service.</p>
+
+      <h2>Site analytics and cookies</h2>
+      <p>
+        When you visit our website we may collect information for the duration of your session, including your device's IP address, approximate location and time of visit, the browser and operating system you use, and how you interact with the site, for example the pages you view, the order you view them in, how long you spend on them, at what point you contact or call us, any errors you encounter and page response times.
+      </p>
+      <p>We analyse this information to administer the site, review its performance and improve the experience for visitors. Where analytics tools are used they are standard products such as Google Analytics.</p>
+
+      <h2>Contact enquiries</h2>
+      <p>We may collect your information via the contact form on our website, by email or by phone. The information you provide will only be used to contact you about your enquiry and related customer service matters. We do not add enquiries to mailing lists.</p>
+      <p>Enquiries submitted through the website are delivered to us by email through a third-party form delivery service, and we store your information securely. We will contact you directly if there is ever a security breach affecting your data.</p>
+
+      <h2>Your rights</h2>
+      <p>
+        You have the right to request the information we hold about you and to ask us to remove it. To do so, contact us at <a href={`mailto:${site.email}`}>{site.email}</a>. Please allow seven working days for us to respond.
+      </p>
+      <p>If you have any further questions, please <a href="/contact/">contact us</a>.</p>
+    </div>
+  </section>
+</Base>

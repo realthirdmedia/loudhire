@@ -1,0 +1,122 @@
+[
+ {
+  "slug": "power",
+  "name": "Power",
+  "section": "power",
+  "count": 25
+ },
+ {
+  "slug": "speakers",
+  "name": "Speakers",
+  "section": "sound",
+  "count": 15
+ },
+ {
+  "slug": "mixers",
+  "name": "Mixers",
+  "section": "sound",
+  "count": 7
+ },
+ {
+  "slug": "rigging",
+  "name": "Rigging",
+  "section": "staging",
+  "count": 18
+ },
+ {
+  "slug": "microphones",
+  "name": "Microphones",
+  "section": "sound",
+  "count": 13
+ },
+ {
+  "slug": "cable-speaker-microphone-control",
+  "name": "Cable - Speaker Microphone & Control",
+  "section": "accessories",
+  "count": 29
+ },
+ {
+  "slug": "stage-lighting",
+  "name": "Stage Lighting",
+  "section": "lighting",
+  "count": 18
+ },
+ {
+  "slug": "dimmers-data",
+  "name": "Dimmers and Data",
+  "section": "lighting",
+  "count": 10
+ },
+ {
+  "slug": "staging",
+  "name": "Staging",
+  "section": "staging",
+  "count": 6
+ },
+ {
+  "slug": "audio",
+  "name": "Audio",
+  "section": "sound",
+  "count": 2
+ },
+ {
+  "slug": "effects",
+  "name": "Effects",
+  "section": "lighting",
+  "count": 3
+ },
+ {
+  "slug": "outdoor-lighting",
+  "name": "Outdoor Lighting",
+  "section": "lighting",
+  "count": 10
+ },
+ {
+  "slug": "computing-networkingcomms",
+  "name": "Computing Networking & Comms",
+  "section": "accessories",
+  "count": 1
+ },
+ {
+  "slug": "accessory",
+  "name": "Accessory",
+  "section": "sound",
+  "count": 3
+ },
+ {
+  "slug": "packages",
+  "name": "Packages",
+  "section": "lighting",
+  "count": 1
+ },
+ {
+  "slug": "amplifiers",
+  "name": "Amplifiers",
+  "section": "sound",
+  "count": 7
+ },
+ {
+  "slug": "stage-roof",
+  "name": "Stage Roof - Big Stage Hire",
+  "section": "staging",
+  "count": 2
+ },
+ {
+  "slug": "cable-mains-power",
+  "name": "Cable - Mains Power",
+  "section": "power",
+  "count": 71
+ },
+ {
+  "slug": "lighting-effects",
+  "name": "Lighting Effects",
+  "section": "lighting",
+  "count": 13
+ },
+ {
+  "slug": "video",
+  "name": "Video",
+  "section": "video",
+  "count": 2
+ }
+]

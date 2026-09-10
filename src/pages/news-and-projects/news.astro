@@ -1,0 +1,14 @@
+---
+import EntryListing from '../../components/EntryListing.astro';
+import { getNews } from '../../lib/entries';
+const entries = await getNews();
+---
+
+<EntryListing
+  entries={entries}
+  active="news"
+  title="News"
+  metaTitle="News | New Equipment, Guides & Updates from Loud Hire"
+  description="News from Loud Hire in Thornbury: new hire stock, technical guides and updates from a busy year of events across Bristol, the Cotswolds and the South West."
+  intro="New stock, technical guides and updates from the warehouse."
+/>
