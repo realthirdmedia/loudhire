@@ -193,12 +193,35 @@ export function exactRedirects() {
 }
 
 /**
+ * Comparable form of a path: no trailing slash, percent-encoding decoded
+ * (old product URLs contain characters like ² and ½), lower case.
+ */
+function normalise(pathname) {
+  let p = pathname.replace(/\/+$/, '') || '/';
+  try {
+    p = decodeURIComponent(p);
+  } catch {
+    // leave malformed encodings as they are
+  }
+  return p.toLowerCase();
+}
+
+let exactCache = null;
+function normalisedExact() {
+  if (!exactCache) {
+    exactCache = {};
+    for (const [from, to] of Object.entries(exactRedirects())) exactCache[normalise(from)] = to;
+  }
+  return exactCache;
+}
+
+/**
  * Resolve an incoming pathname to a redirect destination, or null.
  * Exact matches first, then the longest matching catch-all prefix.
  */
 export function resolveRedirect(pathname) {
-  const clean = pathname.replace(/\/+$/, '') || '/';
-  const exact = exactRedirects();
+  const clean = normalise(pathname);
+  const exact = normalisedExact();
   if (exact[clean]) return exact[clean];
   let best = null;
   for (const [pattern, dest] of Object.entries(patternRedirects)) {
