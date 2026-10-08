@@ -35,12 +35,14 @@ export const nav = [
   { label: 'Home', href: '/' },
   { label: 'Event Production', href: '/event-production/' },
   { label: 'Dry Hire', href: '/dry-hire/' },
+  { label: 'Packages', href: '/quote/#packages' },
+  { label: 'Quote Basket', href: '/quote/' },
   { label: 'News & Projects', href: '/news-and-projects/' },
   { label: 'About', href: '/about/' },
   { label: 'Contact', href: '/contact/' },
 ] as const;
 
-export const cta = { label: 'Discuss your event', href: '/contact/' } as const;
+export const cta = { label: 'Build a quote', href: '/quote/' } as const;
 
 /** The five capabilities. Order matters: it is the order they appear everywhere. */
 export const capabilities = [

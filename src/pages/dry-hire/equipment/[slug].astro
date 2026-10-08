@@ -58,7 +58,7 @@ const productLd = {
           <p class="item__price">{formatPrice(item)}</p>
           {paragraphs.length > 0 ? <div class="prose">{paragraphs.map((p) => <p>{p}</p>)}</div> : <p class="muted">Ask us for the full specification and availability.</p>}
           <div class="btn-row">
-            <a class="btn btn--primary" href={enquireUrl(item)}>Enquire about this item</a>
+            <a class="btn btn--primary" href={enquireUrl(item)}>Add to quote basket</a>
             <a class="text-link" href={`/dry-hire/equipment/#${item.section}`}>All {sectionName(item.section).toLowerCase()} equipment</a>
           </div>
           <ul class="item__notes">
