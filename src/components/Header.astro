@@ -80,6 +80,7 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
     font-family: var(--font-display);
     font-weight: 600;
     font-size: 0.92rem;
+    white-space: nowrap;
     border-radius: var(--radius);
     transition: color 0.15s ease, background-color 0.15s ease;
   }
@@ -140,7 +141,7 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
     transform: translateY(-7px) rotate(-45deg);
   }
 
-  @media (max-width: 78rem) {
+  @media (max-width: 96rem) {
     .header__phone {
       display: none;
     }
