@@ -78,4 +78,4 @@ export function formatPrice(item: EquipmentItem) {
   return `£${value}/day + VAT`;
 }
 
-export const enquireUrl = (item: EquipmentItem) => `/contact/?item=${encodeURIComponent(item.name)}#enquiry`;
+export const enquireUrl = (item: EquipmentItem) => `/quote/?search=${encodeURIComponent(item.name)}#equipment`;
