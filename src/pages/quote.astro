@@ -11,16 +11,34 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
     variant="plain"
     eyebrow="Quote basket"
     title="Build your hire request"
-    intro="Choose equipment and packages, add your dates, then send one request. We’ll confirm availability and a final price with you. No payment or account needed."
+    intro="Choose a production package or build your own equipment basket, add your dates, then send one request. No payment or account needed."
     breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Quote basket', href: '/quote/' }]}
   />
 
   <section class="section section--tight">
     <div class="container quote-layout">
       <div class="quote-main">
-        <div class="quote-panel" id="equipment">
+        <div class="quote-screen-nav" id="quote-screen-nav" hidden>
+          <a href="/quote/">← Choose again</a>
+          <button id="quote-switch" type="button">Switch route</button>
+        </div>
+        <div class="quote-panel quote-choice" id="quote-choice">
+          <span class="eyebrow">1 / Choose your route</span>
+          <h2>How would you like to start?</h2>
+          <p>Start with a set production package or choose the equipment yourself. Both routes use the same basket and enquiry form.</p>
+          <div class="quote-choice__options">
+            <button class="quote-route" type="button" data-quote-mode="packages" aria-pressed="false">
+              <strong>Pre-built package</strong><span>Choose a festival or corporate AV setup with equipment and crew already bundled at a guide price.</span><em>Browse packages →</em>
+            </button>
+            <button class="quote-route" type="button" data-quote-mode="equipment" aria-pressed="false">
+              <strong>Bespoke package</strong><span>Pick the exact sound, lighting, staging and other hire items you need from the live catalogue.</span><em>Build your package →</em>
+            </button>
+          </div>
+        </div>
+
+        <div class="quote-panel" id="equipment" hidden>
           <div class="quote-heading">
-            <div><span class="eyebrow">1 / Choose items</span><h2>Dry hire equipment</h2></div>
+            <div><span class="eyebrow">1 / Build your package</span><h2>Bespoke package</h2></div>
             <p>Products are pulled from Loud Hire’s Current RMS catalogue. Rates are indicative and availability is confirmed after your request.</p>
           </div>
           <div class="catalog-controls">
@@ -32,9 +50,9 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
           <button id="catalog-more" class="btn btn--outline" type="button" hidden>Show more equipment</button>
         </div>
 
-        <div class="quote-panel" id="packages">
+        <div class="quote-panel" id="packages" hidden>
           <div class="quote-heading">
-            <div><span class="eyebrow">Also available</span><h2>Production packages</h2></div>
+            <div><span class="eyebrow">1 / Choose a package</span><h2>Pre-built packages</h2></div>
             <p>Starting prices exclude VAT. We’ll tailor the final quote to the venue, schedule and any extras.</p>
           </div>
           <div class="package-tabs" role="tablist" aria-label="Package type">
@@ -58,7 +76,7 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
           <p class="muted package-note">Festival headline prices are for DJ setups and a 4–5 hour show per day. Full band and other extras can be requested in the basket. Corporate package engineer hours will be confirmed in the final quote.</p>
         </div>
 
-        <form id="quote-form" class="quote-panel" novalidate>
+        <form id="quote-form" class="quote-panel" novalidate hidden>
           <div class="quote-heading"><div><span class="eyebrow">2 / Tell us when</span><h2>Dates and venues</h2></div></div>
           <div id="periods">
             <fieldset class="period-card">
@@ -95,18 +113,23 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
         </form>
       </div>
 
-      <aside class="basket" aria-label="Quote basket">
+      <aside class="basket" id="quote-basket" aria-label="Quote basket" hidden>
         <div class="basket__heading"><h2>Your basket</h2><span id="basket-count">0 items</span></div>
         <div id="basket-lines"><p class="muted">Your basket is empty. Add equipment or a package to get started.</p></div>
         <p class="basket__note">Prices shown are guides, excluding VAT. We’ll confirm availability, hire period and any service charges before you commit.</p>
         <a class="btn btn--primary basket__cta" href="#quote-form">Continue to dates and details</a>
       </aside>
     </div>
+    <p id="basket-feedback" class="basket-feedback" role="status" aria-live="polite" hidden></p>
   </section>
 </Base>
 
 <style is:global>
   .quote-layout{display:grid;grid-template-columns:minmax(0,1fr) 20rem;gap:2rem;align-items:start}.quote-main{display:grid;gap:1.5rem}.quote-panel,.basket{border:1px solid var(--c-line);border-radius:var(--radius-lg);background:var(--c-paper);padding:clamp(1.2rem,3vw,2rem)}.quote-heading{display:flex;justify-content:space-between;gap:1.5rem;align-items:end;margin-bottom:1.4rem}.quote-heading h2{margin:.2rem 0 0}.quote-heading p{max-width:32rem;margin:0;color:var(--c-muted);font-size:var(--text-sm)}.catalog-controls{display:flex;gap:.75rem;margin-bottom:1.25rem}.catalog-controls label:first-child{flex:1}.catalog-controls input,.catalog-controls select,#quote-form input:not([type=checkbox]),#quote-form textarea{width:100%;font:inherit;padding:.75rem;border:1px solid #cbc8c1;border-radius:var(--radius);background:white}.catalog-controls select{min-width:12rem}.catalog-grid,.package-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(13rem,1fr));gap:1rem}.catalog-card,.package-card{border:1px solid var(--c-line);border-radius:var(--radius);background:#fff;overflow:hidden;display:flex;flex-direction:column}.catalog-card__image{height:9rem;display:flex;align-items:center;justify-content:center;background:#faf9f6}.catalog-card__image img{width:100%;height:100%;object-fit:contain}.catalog-card__body{padding:1rem;display:flex;flex-direction:column;gap:.5rem;flex:1}.catalog-card__group,.package-card__type{font-size:.72rem;text-transform:uppercase;letter-spacing:.07em;font-weight:800;color:var(--c-orange-deep)}.catalog-card h3,.package-card h3{font-size:1rem;line-height:1.35;margin:0}.catalog-card p,.package-card p{font-size:var(--text-xs);color:var(--c-muted);margin:0}.catalog-card__foot{margin-top:auto;padding-top:.5rem;display:grid;gap:.6rem}.catalog-card__foot strong{font-size:.82rem}.catalog-card__foot button{width:100%}#catalog-more{margin-top:1.2rem}.package-tabs{display:flex;gap:.5rem;margin-bottom:1.2rem;flex-wrap:wrap}.package-tab{font:inherit;font-weight:700;border:1px solid var(--c-line);background:#fff;border-radius:999px;padding:.6rem 1rem;cursor:pointer}.package-tab[aria-selected=true]{background:var(--c-black);color:white}.package-card{padding:1.1rem;gap:.7rem}.package-card[hidden]{display:none}.package-card ul{padding-left:1rem;margin:.1rem 0;color:var(--c-muted);font-size:var(--text-xs);line-height:1.5;flex:1}.package-card__foot{border-top:1px solid var(--c-line);padding-top:.8rem;display:grid;gap:.7rem}.package-card__foot small{font-size:.7rem}.package-note{font-size:var(--text-xs);margin:1rem 0 0}.basket{position:sticky;top:calc(var(--header-h) + 1rem)}.basket__heading{display:flex;justify-content:space-between;align-items:center;gap:.5rem}.basket__heading h2{font-size:1.3rem;margin:0}.basket__heading span{font-size:var(--text-xs);color:var(--c-muted)}.basket-line{padding:1rem 0;border-bottom:1px solid var(--c-line)}.basket-line strong{display:block;font-size:.9rem}.basket-line small{display:block;color:var(--c-muted);margin:.25rem 0}.basket-line__actions{display:flex;align-items:center;gap:.5rem;margin-top:.5rem}.basket-line__actions button{font:inherit;border:1px solid var(--c-line);background:#fff;border-radius:var(--radius);width:1.8rem;height:1.8rem;cursor:pointer}.basket-line__actions .remove{width:auto;border:0;color:var(--c-orange-deep);margin-left:auto}.basket__note,.form-fineprint{font-size:var(--text-xs);color:var(--c-muted);line-height:1.5}.basket__cta{width:100%;text-align:center}.period-card{border:1px solid var(--c-line);border-radius:var(--radius);padding:1rem;margin:0 0 1rem;display:grid;gap:1rem}.period-card legend{font-weight:800;padding:0 .3rem}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}#quote-form label{display:grid;gap:.35rem;font-size:var(--text-sm);font-weight:700}#quote-form>label{margin-top:1rem}.service-options{display:flex;flex-wrap:wrap;gap:.6rem 1rem}.service-options label{display:flex!important;align-items:center;gap:.4rem!important;font-weight:500!important}.service-options input{accent-color:var(--c-orange)}.period-remove{justify-self:start}.contact-heading{margin-top:2.2rem}#quote-message{font-size:var(--text-sm)}#quote-message:not(:empty){padding:.8rem;border-radius:var(--radius);background:#fff2df}#quote-message[data-success]{background:#e7f4e9;color:#145125}@media(max-width:66rem){.quote-layout{grid-template-columns:1fr}.basket{position:static;grid-row:1}}@media(max-width:42rem){.quote-heading{display:block}.quote-heading p{margin-top:.5rem}.catalog-controls,.form-grid{display:grid;grid-template-columns:1fr}.catalog-grid,.package-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:30rem){.catalog-grid,.package-grid{grid-template-columns:1fr}}
+  .basket-feedback:not([hidden]){position:fixed;z-index:40;right:1rem;bottom:1rem;max-width:min(25rem,calc(100vw - 2rem));margin:0;padding:.8rem 1rem;border-radius:var(--radius);background:var(--c-black);color:white;box-shadow:0 8px 24px #0003;font-size:var(--text-sm)}
+  .quote-choice h2{margin:.35rem 0}.quote-choice>p{margin:0 0 1.25rem;color:var(--c-muted);font-size:var(--text-sm)}.quote-choice__options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.quote-route{display:grid;align-content:start;gap:.55rem;text-align:left;padding:1.25rem;border:2px solid var(--c-line);border-radius:var(--radius-lg);background:white;cursor:pointer;font:inherit;color:inherit}.quote-route:hover,.quote-route[aria-pressed=true]{border-color:var(--c-orange)}.quote-route strong{font-size:1.15rem}.quote-route span{color:var(--c-muted);font-size:var(--text-sm)}.quote-route em{font-style:normal;font-weight:800;color:var(--c-orange-deep);margin-top:.25rem}.quote-route:focus-visible{outline:3px solid var(--c-orange-deep);outline-offset:3px}#equipment,#packages,#quote-basket{scroll-margin-top:calc(var(--header-h) + 1rem)}
+  .quote-screen-nav:not([hidden]){display:flex;justify-content:space-between;align-items:center;gap:1rem;font-size:var(--text-sm);font-weight:800}.quote-screen-nav a,.quote-screen-nav button{color:var(--c-orange-deep);font:inherit;text-decoration:none}.quote-screen-nav button{padding:0;border:0;background:none;cursor:pointer}
+  @media(max-width:42rem){.quote-choice__options{grid-template-columns:1fr}}
 </style>
 
 <script>
@@ -126,10 +149,43 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
   const list = byId('catalog-list');
   const status = byId('catalog-status');
   const basketLines = byId('basket-lines');
+  const basketFeedback = byId('basket-feedback');
+  let feedbackTimeout: number | undefined;
   const search = byId('catalog-search') as HTMLInputElement;
   const group = byId('catalog-group') as HTMLSelectElement;
   const pounds = (value: number) => `£${value.toLocaleString('en-GB', { maximumFractionDigits: 2 })}`;
   search.value = new URLSearchParams(location.search).get('search') || '';
+  const routeButtons = document.querySelectorAll<HTMLButtonElement>('.quote-route');
+  const showRoute = (mode: 'packages' | 'equipment', scroll = false) => {
+    byId('quote-choice').hidden = true;
+    byId('quote-screen-nav').hidden = false;
+    byId('quote-form').hidden = false;
+    byId('quote-basket').hidden = false;
+    byId('packages').hidden = mode !== 'packages';
+    byId('equipment').hidden = mode !== 'equipment';
+    byId('quote-switch').textContent = mode === 'packages' ? 'Build a bespoke package →' : 'View pre-built packages →';
+    localStorage.setItem('loudhire-quote-mode', mode);
+    routeButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.quoteMode === mode)));
+    if (scroll) byId(mode).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+  const selectRoute = (mode: 'packages' | 'equipment') => {
+    showRoute(mode, true);
+    history.pushState(null, '', `${location.pathname}${location.search}#${mode}`);
+  };
+  routeButtons.forEach((button) => button.addEventListener('click', () => {
+    selectRoute(button.dataset.quoteMode as 'packages' | 'equipment');
+  }));
+  byId('quote-switch').addEventListener('click', () => selectRoute(byId('packages').hidden ? 'packages' : 'equipment'));
+  const routeFromUrl = (): 'packages' | 'equipment' | null => {
+    if (location.hash === '#packages') return 'packages';
+    if (location.hash === '#equipment' || search.value) return 'equipment';
+    if (location.hash === '#quote-basket' || location.hash === '#quote-form') return localStorage.getItem('loudhire-quote-mode') === 'packages' ? 'packages' : 'equipment';
+    return null;
+  };
+  const initialRoute = routeFromUrl();
+  if (initialRoute) { showRoute(initialRoute); if (location.hash) requestAnimationFrame(() => byId(location.hash.slice(1)).scrollIntoView()); }
+  window.addEventListener('hashchange', () => { const mode = routeFromUrl(); if (mode) showRoute(mode); });
+  window.addEventListener('popstate', () => { const mode = routeFromUrl(); if (mode) showRoute(mode); else location.reload(); });
   const el = (tag: string, className?: string, value?: string) => {
     const node = document.createElement(tag); if (className) node.className = className;
     if (value !== undefined) node.textContent = value; return node;
@@ -140,6 +196,11 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
     if (existing) existing.quantity = Math.min(100, existing.quantity + 1);
     else basket.push({ type, id, quantity: 1 });
     save();
+    const item = type === 'product' ? products.find((product) => product.id === Number(id)) : quotePackages.find((pkg) => pkg.id === id);
+    basketFeedback.textContent = `${item?.name || 'Item'} added to your basket`;
+    basketFeedback.hidden = false;
+    window.clearTimeout(feedbackTimeout);
+    feedbackTimeout = window.setTimeout(() => { basketFeedback.hidden = true; }, 2800);
   };
 
   function renderCatalog() {
@@ -168,6 +229,7 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
     basketLines.replaceChildren();
     const count = basket.reduce((sum, line) => sum + line.quantity, 0);
     byId('basket-count').textContent = `${count} item${count === 1 ? '' : 's'}`;
+    window.dispatchEvent(new CustomEvent('loudhire:basket-updated', { detail: count }));
     if (!basket.length) { basketLines.append(el('p', 'muted', 'Your basket is empty. Add equipment or a package to get started.')); return; }
     basket.forEach((line, index) => {
       const item = line.type === 'product' ? products.find((p) => p.id === Number(line.id)) : quotePackages.find((p) => p.id === line.id);
