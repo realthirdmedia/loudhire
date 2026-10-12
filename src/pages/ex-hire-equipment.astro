@@ -1,0 +1,16 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { site } from '../data/site';
+---
+<Base title="Ex-hire equipment for sale | Loud Hire, Bristol" description="Enquire about ex-hire sound, lighting, staging and power equipment from Loud Hire in Thornbury, near Bristol. Contact us for the current stock list, condition and prices.">
+  <PageHero variant="plain" eyebrow="Equipment sales" title="Ex-hire equipment for sale" intro="Looking for used professional sound, lighting or event equipment? Contact our Thornbury team for the current ex-hire stock list, condition details and prices." ctaLabel="Ask about ex-hire stock" ctaHref="mailto:sales@loudhire.co.uk" breadcrumb={[{label:'Home',href:'/'},{label:'Ex-hire equipment',href:'/ex-hire-equipment/'}]} />
+  <section class="section section--tight"><div class="container prose">
+    <h2>Ask us what is available</h2>
+    <p>Our previous ex-hire list included loudspeakers, amplifiers, digital mixing desks, lighting fixtures, control equipment, power distribution and stage decks. The selection changes as equipment is sold and our hire stock is updated.</p>
+    <p>Tell us the make, model or type of equipment you are looking for. We will confirm what is available, its condition, what is included and the price before you arrange a purchase.</p>
+    <p>Email <a href="mailto:sales@loudhire.co.uk">sales@loudhire.co.uk</a> or call <a href={site.phoneHref}>{site.phone}</a>. Warehouse visits are by appointment.</p>
+    <h2>Need equipment for an event?</h2>
+    <p><a href="/dry-hire/equipment/">Browse our hire equipment</a> or <a href="/quote/">build a hire quote</a>.</p>
+  </div></section>
+</Base>
