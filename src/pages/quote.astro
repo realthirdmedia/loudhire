@@ -1,25 +1,22 @@
 ---
 import Base from '../layouts/Base.astro';
-import PageHero from '../components/PageHero.astro';
 import { quotePackages } from '../lib/quotePackages';
+import quoteBanner from '../assets/pages/hero-konligo.jpg';
 
 const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
 ---
 
 <Base title="Build a hire quote | Loud Hire" description="Choose equipment and event production packages, add your dates and venue, and ask Loud Hire for a tailored quote. No payment or account needed.">
-  <PageHero
-    variant="plain"
-    eyebrow="Quote basket"
-    title="Build your hire request"
-    intro="Choose a production package or build your own equipment basket, add your dates, then send one request. No payment or account needed."
-    breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Quote basket', href: '/quote/' }]}
-  />
-
-  <section class="section section--tight">
+  <section class="section section--tight quote-app">
+    <div class="container quote-app__intro">
+      <span class="eyebrow">Loud Hire / quote builder</span>
+      <h1>Build your hire request</h1>
+      <p>Explore the equipment, add what you need, then send Tom one enquiry. No payment or account needed.</p>
+    </div>
     <div class="container quote-layout">
-      <div class="quote-main">
+      <div class="quote-main" id="quote-main">
         <div class="quote-screen-nav" id="quote-screen-nav" hidden>
-          <a href="/quote/">← Choose again</a>
+          <a id="quote-back" href="/quote/">← Choose again</a>
         </div>
         <div class="quote-panel quote-choice" id="quote-choice">
           <span class="eyebrow">1 / Choose your route</span>
@@ -27,10 +24,10 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
           <p>Start with a set production package or choose the equipment yourself. Both routes use the same basket and enquiry form.</p>
           <div class="quote-choice__options">
             <button class="quote-route" type="button" data-quote-mode="packages" aria-pressed="false">
-              <strong>Pre-built package</strong><span>Choose a hire package from Loud Hire’s live catalogue or a festival or corporate setup.</span><em>Browse packages →</em>
+              <span class="quote-route__visual" aria-hidden="true">◫</span><strong>Pre-built package</strong><span>Start with a ready made sound or production setup, then tailor its contents.</span><em>Browse packages →</em>
             </button>
             <button class="quote-route" type="button" data-quote-mode="equipment" aria-pressed="false">
-              <strong>Bespoke package</strong><span>Pick the exact sound, lighting, staging and other hire items you need from the live catalogue.</span><em>Build your package →</em>
+              <span class="quote-route__visual" aria-hidden="true">◈</span><strong>Bespoke package</strong><span>Choose the exact sound, lighting, staging and other items you need.</span><em>Choose equipment →</em>
             </button>
           </div>
         </div>
@@ -39,6 +36,14 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
           <h3>Start with</h3>
           <button class="quote-sidebar-mode" type="button" data-sidebar-mode="packages" aria-current="false">Pre-built packages</button>
           <button class="quote-sidebar-mode" type="button" data-sidebar-mode="equipment" aria-current="false">Bespoke package</button>
+          <nav id="package-types-nav" aria-label="Package categories" hidden>
+            <h3>Packages</h3>
+            <div class="package-tabs" role="group" aria-label="Package type">
+              <button type="button" class="package-tab" data-package-tab="RMS hire" aria-selected="true">Equipment hire</button>
+              <button type="button" class="package-tab" data-package-tab="Festival production" aria-selected="false">Festival production</button>
+              <button type="button" class="package-tab" data-package-tab="Corporate AV" aria-selected="false">Corporate AV</button>
+            </div>
+          </nav>
           <nav id="catalog-categories-nav" aria-label="Equipment categories" hidden>
             <h3>Categories</h3>
             <div id="catalog-category-list" class="catalog-category-list"></div>
@@ -46,9 +51,13 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
         </aside>
 
         <div class="quote-panel" id="equipment" hidden>
-          <div class="quote-heading">
-            <div><span class="eyebrow">1 / Build your package</span><h2>Bespoke package</h2></div>
-            <p>Products are pulled from Loud Hire’s Current RMS catalogue. Rates are indicative and availability is confirmed after your request.</p>
+          <div class="quote-feature">
+            <img src={quoteBanner.src} alt="Loud Hire stage and event equipment in use" />
+            <div class="quote-feature__copy"><span class="eyebrow">Bespoke package</span><h2>Make it yours.</h2><p>Choose from Loud Hire’s live equipment catalogue and build a request around your event.</p></div>
+          </div>
+          <div id="catalog-home">
+            <div class="quote-section-heading"><div><span class="eyebrow">Find your kit</span><h2>What do you need?</h2></div><p>Start with a category or search everything below.</p></div>
+            <div id="catalog-category-tiles" class="catalog-category-tiles"></div>
           </div>
           <div class="catalog-controls">
             <label><span class="visually-hidden">Search equipment</span><input id="catalog-search" type="search" placeholder="Search all equipment" /></label>
@@ -60,14 +69,13 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
         </div>
 
         <div class="quote-panel" id="packages" hidden>
+          <div class="quote-feature quote-feature--packages">
+            <img src={quoteBanner.src} alt="Loud Hire production at an outdoor event" />
+            <div class="quote-feature__copy"><span class="eyebrow">Pre-built packages</span><h2>A head start for your event.</h2><p>Pick a setup, tailor its contents and send it for a quote.</p></div>
+          </div>
           <div class="quote-heading">
             <div><span class="eyebrow">1 / Choose a package</span><h2>Pre-built packages</h2></div>
             <p>Starting prices exclude VAT. We’ll tailor the final quote to the venue, schedule and any extras.</p>
-          </div>
-          <div class="package-tabs" role="tablist" aria-label="Package type">
-            <button type="button" class="package-tab" data-package-tab="RMS hire" aria-selected="true">Equipment hire packages</button>
-            <button type="button" class="package-tab" data-package-tab="Festival production" aria-selected="false">Festival production</button>
-            <button type="button" class="package-tab" data-package-tab="Corporate AV" aria-selected="false">Corporate AV</button>
           </div>
           <label id="rms-package-search-wrap" class="catalog-controls"><span class="visually-hidden">Search hire packages</span><input id="rms-package-search" type="search" placeholder="Search hire packages, e.g. RCF or radio mic" /></label>
           <p id="rms-package-status" class="muted" role="status">Loading hire packages from Current RMS…</p>
@@ -90,6 +98,7 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
         </div>
 
         <form id="quote-form" class="quote-panel" novalidate hidden>
+          <div class="quote-step-title"><span class="eyebrow">Final step</span><h2>Tell us about your event</h2><p>We’ll check availability and return a tailored quote. Nothing is booked at this stage.</p></div>
           <div class="quote-heading"><div><span class="eyebrow">2 / Tell us when</span><h2>Dates and venues</h2></div></div>
           <div id="periods">
             <fieldset class="period-card">
@@ -127,11 +136,17 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
       </div>
 
       <aside class="basket" id="quote-basket" aria-label="Quote basket" hidden>
-        <div class="basket__heading"><h2>Your basket</h2><span id="basket-count">0 items</span></div>
+        <div class="basket__heading"><div><span class="eyebrow">Review your request</span><h2>Your basket</h2></div><span id="basket-count">0 items</span></div>
         <div id="basket-lines"><p class="muted">Your basket is empty. Add equipment or a package to get started.</p></div>
         <p class="basket__note">Prices shown are guides, excluding VAT. We’ll confirm availability, hire period and any service charges before you commit.</p>
         <a class="btn btn--primary basket__cta" href="#quote-form">Continue to dates and details</a>
       </aside>
+    </div>
+    <div class="quote-bottom-bar" id="quote-bottom-bar" hidden>
+      <div class="container quote-bottom-bar__inner">
+        <div class="quote-bottom-bar__summary"><span class="quote-bottom-bar__icon" aria-hidden="true">▤</span><span><strong>Your quote basket</strong><small id="bottom-basket-count">0 items added</small></span></div>
+        <button id="bottom-basket-open" class="btn btn--primary" type="button">Review basket <span aria-hidden="true">→</span></button>
+      </div>
     </div>
     <p id="basket-feedback" class="basket-feedback" role="status" aria-live="polite" hidden></p>
     <dialog id="product-config" class="product-config" aria-labelledby="product-config-title">
@@ -178,6 +193,34 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
   @media(max-width:42rem){.quote-main{grid-template-columns:1fr}.quote-route-sidebar{grid-column:1;grid-row:auto;position:static;max-height:none;overflow:visible;grid-template-columns:repeat(2,minmax(0,1fr))}.quote-route-sidebar h3{grid-column:1/-1}.quote-sidebar-mode{height:100%}#catalog-categories-nav{grid-column:1/-1;min-width:0}.catalog-category-list{display:flex;overflow-x:auto;gap:.45rem;padding:.1rem .1rem .6rem;scroll-snap-type:x proximity}.catalog-category{flex:0 0 9rem;scroll-snap-align:start;background:#fff;border-color:var(--c-line)}#equipment,#packages,#quote-form{grid-column:1}}
   @media(max-width:30rem){#equipment .catalog-grid{grid-template-columns:1fr}}
   @media(max-width:42rem){.quote-choice__options{grid-template-columns:1fr}}
+  /* The quote builder has its own browsing layout: one navigation rail and one product canvas. */
+  .quote-app{background:#f5f5f2;min-height:calc(100vh - var(--header-h));padding-top:1.6rem;padding-bottom:6rem}
+  .quote-app__intro{margin-bottom:1.35rem}.quote-app__intro h1{font-size:clamp(1.8rem,3vw,2.6rem);margin:.2rem 0}.quote-app__intro p{margin:0;color:var(--c-muted);font-size:var(--text-sm)}
+  .quote-layout{display:block}.quote-main{grid-template-columns:12.5rem minmax(0,1fr);gap:1.3rem;align-items:start}
+  .quote-panel{background:#fff;padding:clamp(1rem,2.4vw,1.8rem);box-shadow:0 4px 20px #00000008}
+  #quote-choice{max-width:62rem;margin:1.5rem auto;padding:2rem}
+  .quote-route{min-height:15rem;padding:1.5rem;box-shadow:0 6px 22px #0000000b}.quote-route__visual{display:grid;place-items:center;width:3.4rem;height:3.4rem;border-radius:.8rem;background:#fff2d9;color:var(--c-orange-deep);font-size:2rem}.quote-route strong{font-size:1.4rem}
+  .quote-route-sidebar{top:calc(var(--header-h) + 1rem);padding:.5rem 0}.quote-route-sidebar h3{padding-left:.55rem;font-size:.8rem;text-transform:uppercase;letter-spacing:.07em;color:var(--c-muted)}
+  .quote-sidebar-mode{border:0;background:transparent;font-size:.9rem;padding:.85rem .7rem;border-radius:.45rem}.quote-sidebar-mode[aria-current=true]{background:#fff;color:var(--c-black);box-shadow:inset 3px 0 var(--c-orange),0 2px 8px #0000000b}
+  #catalog-categories-nav,#package-types-nav{margin-top:1.1rem;padding-top:1rem;border-top:1px solid var(--c-line)}
+  .catalog-category-list{gap:.1rem}.catalog-category{padding:.5rem;border-radius:.35rem}.catalog-category[aria-current=true]{box-shadow:inset 3px 0 var(--c-orange);border-color:transparent;color:var(--c-black)}.catalog-category__image{width:2.6rem;height:2.6rem;background:#fff}
+  .package-tabs{display:grid;gap:.2rem;margin:0}.package-tab{text-align:left;border:0;border-radius:.4rem;background:transparent;padding:.75rem .6rem;font-size:.83rem}.package-tab[aria-selected=true]{background:#fff;color:var(--c-black);box-shadow:inset 3px 0 var(--c-orange),0 2px 8px #0000000b}
+  .quote-feature{position:relative;min-height:13rem;overflow:hidden;border-radius:var(--radius);background:#171717;margin-bottom:1.65rem;color:#fff}.quote-feature img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.56)}.quote-feature__copy{position:relative;z-index:1;padding:clamp(1.3rem,3vw,2.5rem);max-width:35rem}.quote-feature .eyebrow{color:#ffb42d}.quote-feature h2{font-size:clamp(1.7rem,3.2vw,2.75rem);margin:.25rem 0}.quote-feature p{margin:0;line-height:1.45;max-width:28rem}
+  .quote-section-heading{display:flex;align-items:end;justify-content:space-between;gap:1rem;margin:0 0 1rem}.quote-section-heading h2{margin:.15rem 0 0;font-size:1.55rem}.quote-section-heading p{margin:0;color:var(--c-muted);font-size:var(--text-sm)}
+  .catalog-category-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem;margin-bottom:1.75rem}.catalog-tile{display:grid;grid-template-columns:minmax(0,1fr) 46%;align-items:center;min-height:8.5rem;overflow:hidden;text-align:left;background:#f6f5f1;border:1px solid var(--c-line);border-radius:var(--radius);padding:0 0 0 1rem;font:inherit;color:var(--c-black);cursor:pointer}.catalog-tile:hover,.catalog-tile:focus-visible{border-color:var(--c-orange);box-shadow:0 3px 12px #00000016}.catalog-tile strong{font-size:1rem;line-height:1.2}.catalog-tile small{display:block;color:var(--c-muted);font-size:.72rem;margin-top:.25rem}.catalog-tile img{width:100%;height:8.5rem;object-fit:contain;mix-blend-mode:multiply;padding:.45rem}.catalog-tile__placeholder{font-size:2.5rem;color:var(--c-orange);text-align:center}
+  #equipment .catalog-controls{margin-top:.6rem}.catalog-controls input{background:#fff}.catalog-card__image{height:12rem;background:#f7f7f5}.catalog-card__body{min-height:10rem}.catalog-grid,.package-grid,#equipment .catalog-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  #quote-basket{position:static;max-width:52rem;margin:1rem auto 0;padding:clamp(1.2rem,3vw,2rem);box-shadow:0 4px 20px #0000000b}.basket__heading{margin-bottom:1rem}.basket__heading h2{font-size:2rem;margin:.2rem 0 0}.basket-line{padding:1.2rem 0}.basket__cta{max-width:24rem;margin-top:1rem}
+  .quote-main[data-screen=basket] .quote-screen-nav,.quote-main[data-screen=details] .quote-screen-nav{grid-column:1/-1}.quote-main[data-screen=details]{grid-template-columns:1fr}.quote-main[data-screen=details] #quote-form{grid-column:1;max-width:52rem;width:100%;margin:0 auto}.quote-step-title h2{font-size:1.9rem;margin:.25rem 0}.quote-step-title p{color:var(--c-muted);margin:0 0 1.6rem}
+  .quote-bottom-bar:not([hidden]){display:block;position:fixed;inset:auto 0 0;z-index:45;background:#fff;border-top:1px solid var(--c-line);box-shadow:0 -7px 24px #00000012}.quote-bottom-bar__inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:5.25rem}.quote-bottom-bar__summary{display:flex;align-items:center;gap:.8rem}.quote-bottom-bar__summary strong,.quote-bottom-bar__summary small{display:block}.quote-bottom-bar__summary small{font-size:.75rem;color:var(--c-muted)}.quote-bottom-bar__icon{display:grid;place-items:center;width:2.7rem;height:2.7rem;border-radius:.45rem;background:#fff1d9;color:var(--c-orange-deep);font-size:1.45rem}
+  body:has(.quote-app) .header__basket{display:flex}.basket-feedback:not([hidden]){bottom:6.3rem}
+  #catalog-home[hidden],#package-types-nav[hidden],#quote-bottom-bar[hidden],#quote-basket[hidden],#quote-form[hidden],#equipment[hidden],#packages[hidden],#quote-choice[hidden]{display:none}
+  @media(max-width:70rem){.catalog-category-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.catalog-grid,.package-grid,#equipment .catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:48rem){.quote-main{grid-template-columns:1fr}.quote-route-sidebar{grid-column:1;grid-row:auto;position:static;max-height:none;overflow:visible;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem}.quote-route-sidebar h3{grid-column:1/-1}.quote-sidebar-mode{background:#fff}.quote-route-sidebar nav{grid-column:1/-1}#catalog-categories-nav{min-width:0}.catalog-category-list{display:flex;overflow-x:auto;gap:.4rem;padding:.2rem .1rem .6rem}.catalog-category{flex:0 0 9.5rem;background:#fff;border:1px solid var(--c-line)}.package-tabs{display:flex;overflow-x:auto}.package-tab{flex:0 0 auto;background:#fff}#equipment,#packages,#quote-form{grid-column:1}.quote-feature{min-height:11rem}.catalog-category-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:35rem){.quote-app{padding-top:1rem}.quote-app__intro h1{font-size:1.65rem}.quote-section-heading{display:block}.quote-section-heading p{margin-top:.35rem}.catalog-tile{min-height:7rem}.catalog-tile img{height:7rem}.catalog-grid,.package-grid,#equipment .catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.catalog-card__image{height:8rem}.quote-bottom-bar__inner{min-height:4.6rem}.quote-bottom-bar__icon{display:none}.quote-bottom-bar .btn{font-size:.85rem;padding:.65rem .8rem}}
+  @media(max-width:27rem){.catalog-category-tiles,.catalog-grid,.package-grid,#equipment .catalog-grid{grid-template-columns:1fr}.catalog-tile{min-height:6.5rem}.catalog-tile img{height:6.5rem}}
+  .quote-feature h2{color:#fff}
+  #catalog-results-heading{scroll-margin-top:calc(var(--header-h) + 1rem)}
+  .basket__cta[hidden]{display:none}
 </style>
 
 <script>
@@ -196,7 +239,7 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
   let activeDetail: RmsProductDetail | null = null;
   let editingIndex: number | null = null;
   let visibleCount = 24;
-  let selectedGroup: string | null = null;
+  let selectedGroup: string | null = 'home';
   const byId = (id: string) => document.getElementById(id)!;
   const list = byId('catalog-list');
   const status = byId('catalog-status');
@@ -211,13 +254,19 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
   };
   search.value = new URLSearchParams(location.search).get('search') || '';
   const routeButtons = document.querySelectorAll<HTMLButtonElement>('.quote-route');
+  const savedMode = (): 'packages' | 'equipment' => localStorage.getItem('loudhire-quote-mode') === 'packages' ? 'packages' : 'equipment';
   const showRoute = (mode: 'packages' | 'equipment', scroll = false) => {
+    byId('quote-main').dataset.screen = 'browse';
     byId('quote-choice').hidden = true;
     byId('quote-screen-nav').hidden = false;
+    (byId('quote-back') as HTMLAnchorElement).href = '/quote/';
+    byId('quote-back').textContent = '← Choose again';
     byId('quote-route-sidebar').hidden = false;
     byId('catalog-categories-nav').hidden = mode !== 'equipment';
-    byId('quote-form').hidden = false;
-    byId('quote-basket').hidden = false;
+    byId('package-types-nav').hidden = mode !== 'packages';
+    byId('quote-form').hidden = true;
+    byId('quote-basket').hidden = true;
+    byId('quote-bottom-bar').hidden = false;
     byId('packages').hidden = mode !== 'packages';
     byId('equipment').hidden = mode !== 'equipment';
     localStorage.setItem('loudhire-quote-mode', mode);
@@ -225,7 +274,7 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
     document.querySelectorAll<HTMLButtonElement>('.quote-sidebar-mode').forEach((button) => {
       button.setAttribute('aria-current', String(button.dataset.sidebarMode === mode));
     });
-    if (scroll) (matchMedia('(max-width:42rem)').matches ? byId('quote-route-sidebar') : byId(mode))
+    if (scroll) (matchMedia('(max-width:48rem)').matches ? byId('quote-route-sidebar') : byId(mode))
       .scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
   const selectRoute = (mode: 'packages' | 'equipment') => {
@@ -238,27 +287,61 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
   document.querySelectorAll<HTMLButtonElement>('.quote-sidebar-mode').forEach((button) => button.addEventListener('click', () => {
     selectRoute(button.dataset.sidebarMode as 'packages' | 'equipment');
   }));
-  const routeFromUrl = (): 'packages' | 'equipment' | null => {
-    if (location.hash === '#packages') return 'packages';
-    if (location.hash === '#equipment' || search.value) return 'equipment';
-    if (location.hash === '#quote-basket' || location.hash === '#quote-form') return localStorage.getItem('loudhire-quote-mode') === 'packages' ? 'packages' : 'equipment';
-    return null;
+  const showBasket = () => {
+    byId('quote-main').dataset.screen = 'basket';
+    byId('quote-choice').hidden = true;
+    byId('quote-screen-nav').hidden = false;
+    (byId('quote-back') as HTMLAnchorElement).href = `#${savedMode()}`;
+    byId('quote-back').textContent = '← Back to browsing';
+    byId('quote-route-sidebar').hidden = true;
+    byId('equipment').hidden = true;
+    byId('packages').hidden = true;
+    byId('quote-form').hidden = true;
+    byId('quote-basket').hidden = false;
+    byId('quote-bottom-bar').hidden = true;
   };
-  const initialRoute = routeFromUrl();
-  if (initialRoute) {
-    showRoute(initialRoute);
-    if (location.hash) {
-      const scrollToInitialRoute = () => requestAnimationFrame(() => {
-        const mobileRoute = matchMedia('(max-width:42rem)').matches &&
-          (initialRoute === 'packages' || initialRoute === 'equipment');
-        (mobileRoute ? byId('quote-route-sidebar') : byId(location.hash.slice(1))).scrollIntoView();
-      });
-      if (document.readyState === 'complete') scrollToInitialRoute();
-      else window.addEventListener('load', scrollToInitialRoute, { once: true });
-    }
-  }
-  window.addEventListener('hashchange', () => { const mode = routeFromUrl(); if (mode) showRoute(mode); });
-  window.addEventListener('popstate', () => { const mode = routeFromUrl(); if (mode) showRoute(mode); else location.reload(); });
+  const showDetails = () => {
+    byId('quote-main').dataset.screen = 'details';
+    byId('quote-choice').hidden = true;
+    byId('quote-screen-nav').hidden = false;
+    (byId('quote-back') as HTMLAnchorElement).href = '#quote-basket';
+    byId('quote-back').textContent = '← Back to basket';
+    byId('quote-route-sidebar').hidden = true;
+    byId('equipment').hidden = true;
+    byId('packages').hidden = true;
+    byId('quote-basket').hidden = true;
+    byId('quote-bottom-bar').hidden = true;
+    byId('quote-form').hidden = false;
+  };
+  const showChoice = () => {
+    byId('quote-main').dataset.screen = 'choice';
+    byId('quote-choice').hidden = false;
+    byId('quote-screen-nav').hidden = true;
+    byId('quote-route-sidebar').hidden = true;
+    byId('equipment').hidden = true;
+    byId('packages').hidden = true;
+    byId('quote-basket').hidden = true;
+    byId('quote-form').hidden = true;
+    byId('quote-bottom-bar').hidden = true;
+  };
+  const showLocation = () => {
+    if (location.hash === '#quote-basket') showBasket();
+    else if (location.hash === '#quote-form') showDetails();
+    else if (location.hash === '#packages') showRoute('packages');
+    else if (location.hash === '#equipment' || search.value) showRoute('equipment');
+    else showChoice();
+  };
+  showLocation();
+  if (location.hash) window.addEventListener('load', () => requestAnimationFrame(() => window.scrollTo(0, 0)), { once: true });
+  window.addEventListener('hashchange', showLocation);
+  window.addEventListener('popstate', showLocation);
+  byId('bottom-basket-open').addEventListener('click', () => { history.pushState(null, '', '#quote-basket'); showBasket(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  document.querySelector<HTMLAnchorElement>('.header__basket')?.addEventListener('click', (event) => {
+    event.preventDefault(); history.pushState(null, '', '#quote-basket'); showBasket(); window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  document.querySelector<HTMLAnchorElement>('.basket__cta')?.addEventListener('click', (event) => {
+    event.preventDefault(); history.pushState(null, '', '#quote-form'); showDetails(); window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
   const el = (tag: string, className?: string, value?: string) => {
     const node = document.createElement(tag); if (className) node.className = className;
     if (value !== undefined) node.textContent = value; return node;
@@ -371,7 +454,6 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
       if (aRank !== -1 || bRank !== -1) return (aRank === -1 ? featured.length : aRank) - (bRank === -1 ? featured.length : bRank);
       return a.localeCompare(b);
     });
-    selectedGroup ??= names[0] || null;
     const categoryList = byId('catalog-category-list');
     categoryList.replaceChildren();
     function addCategory(name: string | null, count: number, image: string | null) {
@@ -384,21 +466,40 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
       copy.append(el('span', 'catalog-category__name', name || 'View all'),
         el('span', 'catalog-category__count', `${count} item${count === 1 ? '' : 's'}`));
       button.append(thumb, copy);
-      button.addEventListener('click', () => { search.value = ''; selectedGroup = name; visibleCount = 24; renderCatalog(); });
+      button.addEventListener('click', () => { search.value = ''; selectedGroup = name; visibleCount = 24; renderCatalog(); byId('catalog-results-heading').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
       categoryList.append(button);
     }
+    addCategory('home', 0, null);
+    const homeButton = categoryList.firstElementChild as HTMLButtonElement;
+    homeButton.querySelector('.catalog-category__name')!.textContent = 'Explore';
+    homeButton.querySelector('.catalog-category__count')!.textContent = 'Categories & picks';
     addCategory(null, equipment.length, null);
     for (const name of names) {
       const category = categories.get(name)!;
       addCategory(name, category.count, category.image);
     }
+    const tiles = byId('catalog-category-tiles'); tiles.replaceChildren();
+    for (const name of names.slice(0, 6)) {
+      const category = categories.get(name)!;
+      const tile = el('button', 'catalog-tile') as HTMLButtonElement; tile.type = 'button';
+      const copy = el('span'); copy.append(el('strong', '', name), el('small', '', `${category.count} items`));
+      tile.append(copy);
+      if (category.image) { const image = document.createElement('img'); image.src = category.image; image.alt = ''; image.loading = 'lazy'; tile.append(image); }
+      else tile.append(el('span', 'catalog-tile__placeholder', '◈'));
+      tile.addEventListener('click', () => { search.value = ''; selectedGroup = name; visibleCount = 24; renderCatalog(); byId('catalog-results-heading').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+      tiles.append(tile);
+    }
   }
 
   function renderCatalog() {
     const query = search.value.trim().toLowerCase();
-    const filtered = products.filter((p) => !p.isPackage && (query || selectedGroup === null || p.group === selectedGroup) &&
-      `${p.name} ${p.group} ${p.description}`.toLowerCase().includes(query));
-    byId('catalog-results-heading').textContent = query ? 'Search results' : selectedGroup || 'All equipment';
+    const equipment = products.filter((p) => !p.isPackage);
+    const featured = ['Speakers', 'Microphones', 'Mixers', 'Lighting', 'Staging', 'Video'];
+    const picks = featured.flatMap((group) => equipment.filter((product) => product.group === group && product.image).slice(0, 2));
+    const filtered = query ? equipment.filter((p) => `${p.name} ${p.group} ${p.description}`.toLowerCase().includes(query)) :
+      selectedGroup === 'home' ? picks : selectedGroup === null ? equipment : equipment.filter((p) => p.group === selectedGroup);
+    byId('catalog-home').hidden = !!query || selectedGroup !== 'home';
+    byId('catalog-results-heading').textContent = query ? 'Search results' : selectedGroup === 'home' ? 'Equipment to explore' : selectedGroup || 'All equipment';
     document.querySelectorAll<HTMLButtonElement>('.catalog-category').forEach((button) => {
       button.setAttribute('aria-current', String(!query && button.dataset.group === (selectedGroup || '')));
     });
@@ -419,7 +520,7 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
       });
       foot.append(button); body.append(foot); card.append(media, body); list.append(card);
     }
-    status.textContent = `${filtered.length} equipment item${filtered.length === 1 ? '' : 's'} found${filtered.length > visibleCount ? ` · showing ${visibleCount}` : ''}`;
+    status.textContent = selectedGroup === 'home' && !query ? 'Browse a selection below, or choose a category to see more.' : `${filtered.length} equipment item${filtered.length === 1 ? '' : 's'} found${filtered.length > visibleCount ? ` · showing ${visibleCount}` : ''}`;
     (byId('catalog-more') as HTMLButtonElement).hidden = filtered.length <= visibleCount;
   }
 
@@ -451,7 +552,9 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
     basketLines.replaceChildren();
     const count = basket.reduce((sum, line) => sum + line.quantity, 0);
     byId('basket-count').textContent = `${count} item${count === 1 ? '' : 's'}`;
+    byId('bottom-basket-count').textContent = `${count} item${count === 1 ? '' : 's'} added`;
     window.dispatchEvent(new CustomEvent('loudhire:basket-updated', { detail: count }));
+    (document.querySelector('.basket__cta') as HTMLAnchorElement).hidden = !basket.length;
     if (!basket.length) { basketLines.append(el('p', 'muted', 'Your basket is empty. Add equipment or a package to get started.')); return; }
     basket.forEach((line, index) => {
       const item = line.type === 'product' ? products.find((p) => p.id === Number(line.id)) : quotePackages.find((p) => p.id === line.id);
