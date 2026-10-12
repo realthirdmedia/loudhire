@@ -30,7 +30,7 @@ const description =
     <div class="hero__media">
       <Image
         src={heroImage}
-        alt="Outdoor stage with a lit roof at dusk, crowd dancing and the Cotswold hills behind"
+        alt=""
         widths={[768, 1280, 1920, 2400]}
         sizes="100vw"
         loading="eager"
@@ -39,6 +39,15 @@ const description =
         format="webp"
         quality={70}
       />
+      <iframe
+        class="hero__video"
+        title="Loud Hire event production video"
+        data-src="https://www.youtube-nocookie.com/embed/aDiawmgLrug?autoplay=1&mute=1&controls=0&loop=1&playlist=aDiawmgLrug&playsinline=1&rel=0&iv_load_policy=3"
+        allow="autoplay; encrypted-media"
+        referrerpolicy="strict-origin-when-cross-origin"
+        tabindex="-1"
+        aria-hidden="true"
+      ></iframe>
     </div>
     <div class="container hero__content">
       <p class="hero__strap">{site.tagline}</p>
@@ -52,6 +61,13 @@ const description =
       </div>
     </div>
   </section>
+
+  <script>
+    const heroVideo = document.querySelector<HTMLIFrameElement>('.hero__video');
+    if (heroVideo && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      heroVideo.src = heroVideo.dataset.src || '';
+    }
+  </script>
 
   <!-- Trust strip -->
   <section class="trust">
@@ -226,12 +242,25 @@ const description =
     object-fit: cover;
     object-position: 50% 45%;
   }
+  .hero__media {
+    container-type: size;
+  }
+  .hero__video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: max(100cqw, 177.78cqh);
+    height: max(56.25cqw, 100cqh);
+    border: 0;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
   .hero__media::after {
     content: '';
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(to top, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.55) 40%, rgba(0, 0, 0, 0.15) 75%, rgba(0, 0, 0, 0.25) 100%);
+      linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.68) 45%, rgba(0, 0, 0, 0.35) 100%);
   }
   .hero__content {
     position: relative;
@@ -246,11 +275,10 @@ const description =
     font-size: var(--text-sm);
     color: #fff;
     margin: 0 0 1.25rem;
-    padding: 0.55rem 0.9rem 0.55rem 0.8rem;
-    border-left: 3px solid var(--c-orange);
+    padding: 0.55rem 0.9rem;
     background: rgba(0, 0, 0, 0.55);
     backdrop-filter: blur(4px);
-    border-radius: 0 var(--radius) var(--radius) 0;
+    border-radius: var(--radius);
     max-width: 100%;
   }
   .hero h1 {
