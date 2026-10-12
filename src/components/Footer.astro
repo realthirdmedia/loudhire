@@ -28,6 +28,11 @@ const year = new Date().getFullYear();
           <a href={`mailto:${site.email}`}>{site.email}</a>
         </p>
         <p class="footer__small">{site.hours}</p>
+        <a class="footer__reviews" href="https://maps.google.com/?cid=5436811372523858860" rel="noopener" aria-label="Read Loud Hire's five-star Google reviews">
+          <span class="footer__reviews-stars" aria-hidden="true">★★★★★</span>
+          <strong>5.0 on Google</strong>
+          <span class="footer__reviews-link">Read reviews →</span>
+        </a>
       </div>
 
       <div class="footer__col">
@@ -109,6 +114,26 @@ const year = new Date().getFullYear();
   }
   .footer__cta-text {
     margin: 0;
+  }
+  .footer__reviews {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem 0.65rem;
+    margin-top: 0.6rem;
+    font-size: var(--text-sm);
+  }
+  .footer__reviews-stars {
+    color: var(--c-orange);
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+  .footer__reviews strong {
+    color: #fff;
+  }
+  .footer__reviews-link {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
   }
   .footer__grid {
     display: grid;
