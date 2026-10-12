@@ -247,8 +247,15 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
   const initialRoute = routeFromUrl();
   if (initialRoute) {
     showRoute(initialRoute);
-    if (location.hash) requestAnimationFrame(() => (matchMedia('(max-width:42rem)').matches &&
-      (initialRoute === 'packages' || initialRoute === 'equipment') ? byId('quote-route-sidebar') : byId(location.hash.slice(1))).scrollIntoView());
+    if (location.hash) {
+      const scrollToInitialRoute = () => requestAnimationFrame(() => {
+        const mobileRoute = matchMedia('(max-width:42rem)').matches &&
+          (initialRoute === 'packages' || initialRoute === 'equipment');
+        (mobileRoute ? byId('quote-route-sidebar') : byId(location.hash.slice(1))).scrollIntoView();
+      });
+      if (document.readyState === 'complete') scrollToInitialRoute();
+      else window.addEventListener('load', scrollToInitialRoute, { once: true });
+    }
   }
   window.addEventListener('hashchange', () => { const mode = routeFromUrl(); if (mode) showRoute(mode); });
   window.addEventListener('popstate', () => { const mode = routeFromUrl(); if (mode) showRoute(mode); else location.reload(); });
