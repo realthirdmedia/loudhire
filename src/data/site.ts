@@ -36,7 +36,6 @@ export const nav = [
   { label: 'Event Production', href: '/event-production/' },
   { label: 'Dry Hire', href: '/dry-hire/' },
   { label: 'Packages', href: '/quote/#packages' },
-  { label: 'Quote Basket', href: '/quote/' },
   { label: 'News & Projects', href: '/news-and-projects/' },
   { label: 'About', href: '/about/' },
   { label: 'Contact', href: '/contact/' },
