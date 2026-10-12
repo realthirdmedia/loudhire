@@ -5,9 +5,7 @@
  * src/pages/[...legacy].astro (server-side fallback for anything else).
  * Product URLs (/product/<slug>/) are generated from src/data/equipment.json.
  */
-import { createRequire } from 'node:module';
-const require = createRequire(import.meta.url);
-const equipment = require('./equipment.json');
+import equipment from './equipment.json' with { type: 'json' };
 
 const NP = '/news-and-projects';
 const EQ = '/dry-hire/equipment';
