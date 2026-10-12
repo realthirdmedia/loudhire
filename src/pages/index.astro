@@ -4,6 +4,7 @@ import Base from '../layouts/Base.astro';
 import EntryCard from '../components/EntryCard.astro';
 import ContactSection from '../components/ContactSection.astro';
 import CapabilityGrid from '../components/CapabilityGrid.astro';
+import BalloonRelease from '../components/BalloonRelease.astro';
 import ProcessSteps from '../components/ProcessSteps.astro';
 import { site, cta, eventTypes, testimonials } from '../data/site';
 import { getLatest, getEntriesByIds, entryUrl } from '../lib/entries';
@@ -141,7 +142,8 @@ const description =
   }
 
   <!-- 3. Capabilities -->
-  <section class="section section--paper-2">
+  <section class="section section--paper-2 capabilities-section">
+    <BalloonRelease />
     <div class="container">
       <div class="section-head section-head--center">
         <span class="eyebrow">What we deliver</span>
@@ -240,6 +242,14 @@ const description =
 </Base>
 
 <style>
+  .capabilities-section {
+    position: relative;
+    isolation: isolate;
+  }
+  .capabilities-section > .container {
+    position: relative;
+    z-index: 1;
+  }
   /* Hero */
   .hero {
     position: relative;
