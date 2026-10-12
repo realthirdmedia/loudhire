@@ -54,8 +54,8 @@ export const pageRedirects = {
 
   // Shop / equipment rental
   '/equipment-rental': '/dry-hire/',
-  '/equipment-rental/sound': '/dry-hire/#sound',
-  '/equipment-rental/lighting': '/dry-hire/#lighting',
+  '/equipment-rental/sound': '/dry-hire/sound/',
+  '/equipment-rental/lighting': '/dry-hire/lighting/',
   '/equipment-rental/effects': '/dry-hire/#lighting',
   '/equipment-rental/staging': '/dry-hire/#staging',
   '/equipment-rental/video': '/dry-hire/#video',
@@ -64,7 +64,6 @@ export const pageRedirects = {
   '/equipment-rental/party-packages': '/dry-hire/party-packages/',
   '/party-packages': '/dry-hire/party-packages/',
   '/dry-hire-explorer': '/dry-hire/',
-  '/ex-hire-equipment': '/dry-hire/',
   '/store': `${EQ}/`,
   '/shop': `${EQ}/`,
   '/cart': '/dry-hire/',
@@ -100,35 +99,6 @@ export const pageRedirects = {
   '/product-category/cable/cable-speaker-microphone-control': `${EQ}/category/cable-speaker-microphone-control/`,
   '/product-category/staging-hardware/rigging': `${EQ}/category/rigging/`,
   '/product-category/hvac': `${EQ}/category/power/`,
-
-  // Products added to the old WordPress sitemap after the static catalogue
-  // snapshot. Send each to its closest live equipment category until stock and
-  // product content have been confirmed for a dedicated page.
-  '/product/martin-audio-w8lm': `${EQ}/category/speakers/`,
-  '/product/martin-audio-w8lmd': `${EQ}/category/speakers/`,
-  '/product/112m-loudspeaker': `${EQ}/category/speakers/`,
-  '/product/qsc-gxd8-amplifier': `${EQ}/category/amplifiers/`,
-  '/product/chauvet-rogue-1l-beam': `${EQ}/category/stage-lighting/`,
-  '/product/ipg-wp60ss-60kva-3phase-generator': `${EQ}/category/power/`,
-  '/product/instagrid-one': `${EQ}/category/power/`,
-  '/product/db-audiotechnik-c7-top': `${EQ}/category/speakers/`,
-  '/product/db-audiotechnik-c7-subwoofer': `${EQ}/category/speakers/`,
-  '/product/db-audiotechnik-d12-amplifier': `${EQ}/category/amplifiers/`,
-  '/product/db-audiotechnik-q-subwoofer-q-sub': `${EQ}/category/speakers/`,
-  '/product/iiyama-pl7564u-75-4k-commercial-display': `${EQ}/category/video/`,
-  '/product/db-audiotechnik-d20-amplifier': `${EQ}/category/amplifiers/`,
-  '/product/drum-mic-set-audix-dp7': `${EQ}/category/microphones/`,
-  '/product/elumen8-evora-850-zoom-spot': `${EQ}/category/stage-lighting/`,
-  '/product/elumen8-tour-batten-tw-ip-rated': `${EQ}/category/stage-lighting/`,
-  '/product/gtdeck-staging-2m-x-1m': `${EQ}/category/staging/`,
-  '/product/broughton-ffht32-3phase-28kw-heater': `${EQ}/category/power/`,
-  '/product/500mm-x-1000mm-led-panel-3-9mm-pitch-ip-rated': `${EQ}/category/video/`,
-  '/product/500mm-x-500mm-led-panel-3-9mm-pitch-ip-rated': `${EQ}/category/video/`,
-  '/product/allen-heath-sq5-plus': `${EQ}/category/mixers/`,
-  '/product/rcf-nx-932-a-active-speaker': `${EQ}/category/speakers/`,
-  '/product/rcf-sub-18-ax-active-subwoofer': `${EQ}/category/speakers/`,
-  '/product/chamsys-quickq-20': `${EQ}/category/dimmers-data/`,
-  '/product/jcb-g65qs-60kva-generator': `${EQ}/category/power/`,
 
   // Historical hire-duration taxonomy pages from the WordPress sitemap.
   '/hire-duration/day-hire': '/dry-hire/',

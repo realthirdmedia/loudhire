@@ -3582,5 +3582,355 @@
   "description": "NL8 Male to NL8 Male \n1.0m long \n 8 core 2.5mm",
   "image": "nl8-link-lead-1-0m.jpg",
   "oldUrl": "/product/nl8-link-lead-1-0m/"
+ },
+ {
+  "slug": "martin-audio-w8lm",
+  "name": "Martin Audio W8LM",
+  "section": "sound",
+  "category": "Speakers",
+  "categories": [
+   "Speakers"
+  ],
+  "categorySlug": "speakers",
+  "pricePerDay": null,
+  "description": "",
+  "image": "martin-audio-w8lm.png",
+  "oldUrl": "/product/martin-audio-w8lm/"
+ },
+ {
+  "slug": "martin-audio-w8lmd",
+  "name": "Martin Audio W8LMD",
+  "section": "sound",
+  "category": "Speakers",
+  "categories": [
+   "Speakers"
+  ],
+  "categorySlug": "speakers",
+  "pricePerDay": null,
+  "description": "",
+  "image": "martin-audio-w8lmd.png",
+  "oldUrl": "/product/martin-audio-w8lmd/"
+ },
+ {
+  "slug": "112m-loudspeaker",
+  "name": "112M loudspeaker",
+  "section": "sound",
+  "category": "Speakers",
+  "categories": [
+   "Speakers"
+  ],
+  "categorySlug": "speakers",
+  "pricePerDay": null,
+  "description": "",
+  "image": "112m-loudspeaker.jpg",
+  "oldUrl": "/product/112m-loudspeaker/"
+ },
+ {
+  "slug": "qsc-gxd8-amplifier",
+  "name": "QSC GXD8 Amplifier",
+  "section": "sound",
+  "category": "Amplifiers",
+  "categories": [
+   "Amplifiers"
+  ],
+  "categorySlug": "amplifiers",
+  "pricePerDay": null,
+  "description": "",
+  "image": "qsc-gxd8-amplifier.jpg",
+  "oldUrl": "/product/qsc-gxd8-amplifier/"
+ },
+ {
+  "slug": "chauvet-rogue-1l-beam",
+  "name": "Chauvet Rogue 1L Beam",
+  "section": "lighting",
+  "category": "Stage Lighting",
+  "categories": [
+   "Stage Lighting"
+  ],
+  "categorySlug": "stage-lighting",
+  "pricePerDay": null,
+  "description": "",
+  "image": "chauvet-rogue-1l-beam.jpg",
+  "oldUrl": "/product/chauvet-rogue-1l-beam/"
+ },
+ {
+  "slug": "ipg-wp60ss-60kva-3phase-generator",
+  "name": "IPG WP60SS – 60KVA 3phase generator",
+  "section": "power",
+  "category": "Power",
+  "categories": [
+   "Power"
+  ],
+  "categorySlug": "power",
+  "pricePerDay": null,
+  "description": "",
+  "image": "ipg-wp60ss-60kva-3phase-generator.jpg",
+  "oldUrl": "/product/ipg-wp60ss-60kva-3phase-generator/"
+ },
+ {
+  "slug": "instagrid-one",
+  "name": "Instagrid One",
+  "section": "power",
+  "category": "Power",
+  "categories": [
+   "Power"
+  ],
+  "categorySlug": "power",
+  "pricePerDay": null,
+  "description": "",
+  "image": "instagrid-one.jpg",
+  "oldUrl": "/product/instagrid-one/"
+ },
+ {
+  "slug": "db-audiotechnik-c7-top",
+  "name": "D&B audiotechnik C7-TOP",
+  "section": "sound",
+  "category": "Speakers",
+  "categories": [
+   "Speakers"
+  ],
+  "categorySlug": "speakers",
+  "pricePerDay": null,
+  "description": "",
+  "image": "db-audiotechnik-c7-top.jpg",
+  "oldUrl": "/product/db-audiotechnik-c7-top/"
+ },
+ {
+  "slug": "db-audiotechnik-c7-subwoofer",
+  "name": "D&B audiotechnik C7 subwoofer",
+  "section": "sound",
+  "category": "Speakers",
+  "categories": [
+   "Speakers"
+  ],
+  "categorySlug": "speakers",
+  "pricePerDay": null,
+  "description": "",
+  "image": "db-audiotechnik-c7-subwoofer.jpg",
+  "oldUrl": "/product/db-audiotechnik-c7-subwoofer/"
+ },
+ {
+  "slug": "db-audiotechnik-d12-amplifier",
+  "name": "D&B Audiotechnik D12 amplifier",
+  "section": "sound",
+  "category": "Amplifiers",
+  "categories": [
+   "Amplifiers"
+  ],
+  "categorySlug": "amplifiers",
+  "pricePerDay": null,
+  "description": "",
+  "image": "db-audiotechnik-d12-amplifier.jpg",
+  "oldUrl": "/product/db-audiotechnik-d12-amplifier/"
+ },
+ {
+  "slug": "db-audiotechnik-q-subwoofer-q-sub",
+  "name": "D&B Audiotechnik Q Subwoofer ( Q-sub )",
+  "section": "sound",
+  "category": "Speakers",
+  "categories": [
+   "Speakers"
+  ],
+  "categorySlug": "speakers",
+  "pricePerDay": null,
+  "description": "",
+  "image": "db-audiotechnik-q-subwoofer-q-sub.jpeg",
+  "oldUrl": "/product/db-audiotechnik-q-subwoofer-q-sub/"
+ },
+ {
+  "slug": "iiyama-pl7564u-75-4k-commercial-display",
+  "name": "iiyama PL7564U 75″ 4K commercial display",
+  "section": "video",
+  "category": "Video",
+  "categories": [
+   "Video"
+  ],
+  "categorySlug": "video",
+  "pricePerDay": null,
+  "description": "",
+  "image": "iiyama-pl7564u-75-4k-commercial-display.jpg",
+  "oldUrl": "/product/iiyama-pl7564u-75-4k-commercial-display/"
+ },
+ {
+  "slug": "db-audiotechnik-d20-amplifier",
+  "name": "D&B Audiotechnik D20 amplifier",
+  "section": "sound",
+  "category": "Amplifiers",
+  "categories": [
+   "Amplifiers"
+  ],
+  "categorySlug": "amplifiers",
+  "pricePerDay": null,
+  "description": "",
+  "image": "db-audiotechnik-d20-amplifier.jpg",
+  "oldUrl": "/product/db-audiotechnik-d20-amplifier/"
+ },
+ {
+  "slug": "drum-mic-set-audix-dp7",
+  "name": "Drum Mic Set – Audix DP7",
+  "section": "sound",
+  "category": "Microphones",
+  "categories": [
+   "Microphones"
+  ],
+  "categorySlug": "microphones",
+  "pricePerDay": null,
+  "description": "",
+  "image": "drum-mic-set-audix-dp7.jpg",
+  "oldUrl": "/product/drum-mic-set-audix-dp7/"
+ },
+ {
+  "slug": "elumen8-evora-850-zoom-spot",
+  "name": "Elumen8 Evora 850 Zoom Spot",
+  "section": "lighting",
+  "category": "Stage Lighting",
+  "categories": [
+   "Stage Lighting"
+  ],
+  "categorySlug": "stage-lighting",
+  "pricePerDay": null,
+  "description": "",
+  "image": "elumen8-evora-850-zoom-spot.jpg",
+  "oldUrl": "/product/elumen8-evora-850-zoom-spot/"
+ },
+ {
+  "slug": "elumen8-tour-batten-tw-ip-rated",
+  "name": "eLumen8 Tour Batten TW IP Rated",
+  "section": "lighting",
+  "category": "Stage Lighting",
+  "categories": [
+   "Stage Lighting"
+  ],
+  "categorySlug": "stage-lighting",
+  "pricePerDay": null,
+  "description": "",
+  "image": "elumen8-tour-batten-tw-ip-rated.jpg",
+  "oldUrl": "/product/elumen8-tour-batten-tw-ip-rated/"
+ },
+ {
+  "slug": "gtdeck-staging-2m-x-1m",
+  "name": "GTDeck Staging – 2m x 1m",
+  "section": "staging",
+  "category": "Staging",
+  "categories": [
+   "Staging"
+  ],
+  "categorySlug": "staging",
+  "pricePerDay": null,
+  "description": "",
+  "image": "gtdeck-staging-2m-x-1m.jpg",
+  "oldUrl": "/product/gtdeck-staging-2m-x-1m/"
+ },
+ {
+  "slug": "broughton-ffht32-3phase-28kw-heater",
+  "name": "Broughton FFHT32 3phase 28KW heater",
+  "section": "power",
+  "category": "Power",
+  "categories": [
+   "Power"
+  ],
+  "categorySlug": "power",
+  "pricePerDay": null,
+  "description": "",
+  "image": "broughton-ffht32-3phase-28kw-heater.jpeg",
+  "oldUrl": "/product/broughton-ffht32-3phase-28kw-heater/"
+ },
+ {
+  "slug": "500mm-x-1000mm-led-panel-3-9mm-pitch-ip-rated",
+  "name": "500mm x 1000mm LED Panel 3.9mm pitch – IP rated",
+  "section": "video",
+  "category": "Video",
+  "categories": [
+   "Video"
+  ],
+  "categorySlug": "video",
+  "pricePerDay": null,
+  "description": "",
+  "image": "500mm-x-1000mm-led-panel-3-9mm-pitch-ip-rated.png",
+  "oldUrl": "/product/500mm-x-1000mm-led-panel-3-9mm-pitch-ip-rated/"
+ },
+ {
+  "slug": "500mm-x-500mm-led-panel-3-9mm-pitch-ip-rated",
+  "name": "500mm x 500mm LED Panel 3.9mm pitch – IP rated",
+  "section": "video",
+  "category": "Video",
+  "categories": [
+   "Video"
+  ],
+  "categorySlug": "video",
+  "pricePerDay": null,
+  "description": "",
+  "image": "500mm-x-500mm-led-panel-3-9mm-pitch-ip-rated.png",
+  "oldUrl": "/product/500mm-x-500mm-led-panel-3-9mm-pitch-ip-rated/"
+ },
+ {
+  "slug": "allen-heath-sq5-plus",
+  "name": "Allen & Heath SQ5+ [PLUS]",
+  "section": "sound",
+  "category": "Mixers",
+  "categories": [
+   "Mixers"
+  ],
+  "categorySlug": "mixers",
+  "pricePerDay": null,
+  "description": "",
+  "image": "allen-heath-sq5-plus.jpg",
+  "oldUrl": "/product/allen-heath-sq5-plus/"
+ },
+ {
+  "slug": "rcf-nx-932-a-active-speaker",
+  "name": "RCF NX 932-A active speaker",
+  "section": "sound",
+  "category": "Speakers",
+  "categories": [
+   "Speakers"
+  ],
+  "categorySlug": "speakers",
+  "pricePerDay": null,
+  "description": "",
+  "image": "rcf-nx-932-a-active-speaker.jpg",
+  "oldUrl": "/product/rcf-nx-932-a-active-speaker/"
+ },
+ {
+  "slug": "rcf-sub-18-ax-active-subwoofer",
+  "name": "RCF SUB-18-AX active subwoofer",
+  "section": "sound",
+  "category": "Speakers",
+  "categories": [
+   "Speakers"
+  ],
+  "categorySlug": "speakers",
+  "pricePerDay": null,
+  "description": "",
+  "image": "rcf-sub-18-ax-active-subwoofer.jpg",
+  "oldUrl": "/product/rcf-sub-18-ax-active-subwoofer/"
+ },
+ {
+  "slug": "chamsys-quickq-20",
+  "name": "Chamsys QuickQ 20+",
+  "section": "lighting",
+  "category": "Dimmers and Data",
+  "categories": [
+   "Dimmers and Data"
+  ],
+  "categorySlug": "dimmers-data",
+  "pricePerDay": null,
+  "description": "",
+  "image": "chamsys-quickq-20.jpeg",
+  "oldUrl": "/product/chamsys-quickq-20/"
+ },
+ {
+  "slug": "jcb-g65qs-60kva-generator",
+  "name": "JCB G65QS – 60KVA Generator",
+  "section": "power",
+  "category": "Power",
+  "categories": [
+   "Power"
+  ],
+  "categorySlug": "power",
+  "pricePerDay": null,
+  "description": "",
+  "image": "jcb-g65qs-60kva-generator.jpg",
+  "oldUrl": "/product/jcb-g65qs-60kva-generator/"
  }
 ]
