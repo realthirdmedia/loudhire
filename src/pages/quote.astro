@@ -29,7 +29,8 @@ const packagePhoto = (id: string) => id.startsWith('festival-extra-large') ? fes
           <a id="quote-back" href="/quote/">← Choose again</a>
         </div>
         <div class="quote-panel quote-choice" id="quote-choice">
-          <h2>How would you like to start?</h2>
+          <h1>Build a quote</h1>
+          <h2>How would you like to begin?</h2>
           <div class="quote-choice__options">
             <button class="quote-route" type="button" data-quote-mode="packages" aria-pressed="false">
               <img class="quote-route__image" src="/images/quote-prebuilt-illustration.svg" alt="" /><strong>Pre-built package</strong>
@@ -266,9 +267,10 @@ const packagePhoto = (id: string) => id.startsWith('festival-extra-large') ? fes
   .product-info__body p{margin:0;line-height:1.55;white-space:pre-line}
   .product-info__body .btn{justify-self:start;margin-top:.4rem}
   .quote-app[data-screen=choice]{background:#fff;padding-top:clamp(2rem,7vh,5rem)}
-  .quote-app[data-screen=choice] .quote-app__intro{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+  .quote-app[data-screen=choice] .quote-app__intro{display:none}
   .quote-main[data-screen=choice]{display:block}
   #quote-choice{max-width:42rem;margin:0 auto;padding:0;background:transparent;border:0;box-shadow:none;text-align:center}
+  .quote-choice h1{margin:0 0 .5rem;color:var(--c-orange-deep);font-size:1.05rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
   .quote-choice h2{margin:0 0 2rem;font-size:clamp(1.7rem,3vw,2.25rem);line-height:1.2}
   .quote-choice__options{max-width:33rem;margin:auto;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem}
   .quote-route{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;min-height:16rem;padding:1rem;text-align:center;border:1.5px solid #dedbd5;border-radius:.75rem;box-shadow:none}
