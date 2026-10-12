@@ -28,7 +28,7 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
           <p>Start with a set production package or choose the equipment yourself. Both routes use the same basket and enquiry form.</p>
           <div class="quote-choice__options">
             <button class="quote-route" type="button" data-quote-mode="packages" aria-pressed="false">
-              <strong>Pre-built package</strong><span>Choose a festival or corporate AV setup with equipment and crew already bundled at a guide price.</span><em>Browse packages →</em>
+              <strong>Pre-built package</strong><span>Choose a hire package from Loud Hire’s live catalogue or a festival or corporate setup.</span><em>Browse packages →</em>
             </button>
             <button class="quote-route" type="button" data-quote-mode="equipment" aria-pressed="false">
               <strong>Bespoke package</strong><span>Pick the exact sound, lighting, staging and other hire items you need from the live catalogue.</span><em>Build your package →</em>
@@ -56,12 +56,16 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
             <p>Starting prices exclude VAT. We’ll tailor the final quote to the venue, schedule and any extras.</p>
           </div>
           <div class="package-tabs" role="tablist" aria-label="Package type">
-            <button type="button" class="package-tab" data-package-tab="Festival production" aria-selected="true">Festival production</button>
+            <button type="button" class="package-tab" data-package-tab="RMS hire" aria-selected="true">Equipment hire packages</button>
+            <button type="button" class="package-tab" data-package-tab="Festival production" aria-selected="false">Festival production</button>
             <button type="button" class="package-tab" data-package-tab="Corporate AV" aria-selected="false">Corporate AV</button>
           </div>
+          <label id="rms-package-search-wrap" class="catalog-controls"><span class="visually-hidden">Search hire packages</span><input id="rms-package-search" type="search" placeholder="Search hire packages, e.g. RCF or radio mic" /></label>
+          <p id="rms-package-status" class="muted" role="status">Loading hire packages from Current RMS…</p>
+          <div id="rms-package-list" class="catalog-grid"></div>
           <div class="package-grid">
             {quotePackages.map((pkg) => (
-              <article class="package-card" data-package-group={pkg.group} data-package-id={pkg.id} hidden={pkg.group !== 'Festival production'}>
+              <article class="package-card" data-package-group={pkg.group} data-package-id={pkg.id} hidden>
                 <span class="package-card__type">{pkg.duration}</span>
                 <h3>{pkg.name}</h3>
                 <p>{pkg.description}</p>
@@ -73,7 +77,7 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
               </article>
             ))}
           </div>
-          <p class="muted package-note">Festival headline prices are for DJ setups and a 4–5 hour show per day. Full band and other extras can be requested in the basket. Corporate package engineer hours will be confirmed in the final quote.</p>
+          <p class="muted package-note" hidden>Festival headline prices are for DJ setups and a 4–5 hour show per day. Full band and other extras can be requested in the basket. Corporate package engineer hours will be confirmed in the final quote.</p>
         </div>
 
         <form id="quote-form" class="quote-panel" novalidate hidden>
@@ -121,12 +125,25 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
       </aside>
     </div>
     <p id="basket-feedback" class="basket-feedback" role="status" aria-live="polite" hidden></p>
+    <dialog id="product-config" class="product-config" aria-labelledby="product-config-title">
+      <form method="dialog"><button class="product-config__close" type="submit" aria-label="Close package details">×</button></form>
+      <span class="eyebrow">Build your package</span>
+      <h2 id="product-config-title"></h2>
+      <p id="product-config-prices" class="muted"></p>
+      <p class="muted">Quantities below are per package. Fixed components are included automatically.</p>
+      <div id="product-config-components"></div>
+      <label class="product-config__quantity">Number of packages <input id="product-config-quantity" type="number" min="1" max="100" value="1" /></label>
+      <p id="product-config-total" class="product-config__total"></p>
+      <button id="product-config-add" class="btn btn--primary" type="button">Add to basket</button>
+    </dialog>
   </section>
 </Base>
 
 <style is:global>
   .quote-layout{display:grid;grid-template-columns:minmax(0,1fr) 20rem;gap:2rem;align-items:start}.quote-main{display:grid;gap:1.5rem}.quote-panel,.basket{border:1px solid var(--c-line);border-radius:var(--radius-lg);background:var(--c-paper);padding:clamp(1.2rem,3vw,2rem)}.quote-heading{display:flex;justify-content:space-between;gap:1.5rem;align-items:end;margin-bottom:1.4rem}.quote-heading h2{margin:.2rem 0 0}.quote-heading p{max-width:32rem;margin:0;color:var(--c-muted);font-size:var(--text-sm)}.catalog-controls{display:flex;gap:.75rem;margin-bottom:1.25rem}.catalog-controls label:first-child{flex:1}.catalog-controls input,.catalog-controls select,#quote-form input:not([type=checkbox]),#quote-form textarea{width:100%;font:inherit;padding:.75rem;border:1px solid #cbc8c1;border-radius:var(--radius);background:white}.catalog-controls select{min-width:12rem}.catalog-grid,.package-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(13rem,1fr));gap:1rem}.catalog-card,.package-card{border:1px solid var(--c-line);border-radius:var(--radius);background:#fff;overflow:hidden;display:flex;flex-direction:column}.catalog-card__image{height:9rem;display:flex;align-items:center;justify-content:center;background:#faf9f6}.catalog-card__image img{width:100%;height:100%;object-fit:contain}.catalog-card__body{padding:1rem;display:flex;flex-direction:column;gap:.5rem;flex:1}.catalog-card__group,.package-card__type{font-size:.72rem;text-transform:uppercase;letter-spacing:.07em;font-weight:800;color:var(--c-orange-deep)}.catalog-card h3,.package-card h3{font-size:1rem;line-height:1.35;margin:0}.catalog-card p,.package-card p{font-size:var(--text-xs);color:var(--c-muted);margin:0}.catalog-card__foot{margin-top:auto;padding-top:.5rem;display:grid;gap:.6rem}.catalog-card__foot strong{font-size:.82rem}.catalog-card__foot button{width:100%}#catalog-more{margin-top:1.2rem}.package-tabs{display:flex;gap:.5rem;margin-bottom:1.2rem;flex-wrap:wrap}.package-tab{font:inherit;font-weight:700;border:1px solid var(--c-line);background:#fff;border-radius:999px;padding:.6rem 1rem;cursor:pointer}.package-tab[aria-selected=true]{background:var(--c-black);color:white}.package-card{padding:1.1rem;gap:.7rem}.package-card[hidden]{display:none}.package-card ul{padding-left:1rem;margin:.1rem 0;color:var(--c-muted);font-size:var(--text-xs);line-height:1.5;flex:1}.package-card__foot{border-top:1px solid var(--c-line);padding-top:.8rem;display:grid;gap:.7rem}.package-card__foot small{font-size:.7rem}.package-note{font-size:var(--text-xs);margin:1rem 0 0}.basket{position:sticky;top:calc(var(--header-h) + 1rem)}.basket__heading{display:flex;justify-content:space-between;align-items:center;gap:.5rem}.basket__heading h2{font-size:1.3rem;margin:0}.basket__heading span{font-size:var(--text-xs);color:var(--c-muted)}.basket-line{padding:1rem 0;border-bottom:1px solid var(--c-line)}.basket-line strong{display:block;font-size:.9rem}.basket-line small{display:block;color:var(--c-muted);margin:.25rem 0}.basket-line__actions{display:flex;align-items:center;gap:.5rem;margin-top:.5rem}.basket-line__actions button{font:inherit;border:1px solid var(--c-line);background:#fff;border-radius:var(--radius);width:1.8rem;height:1.8rem;cursor:pointer}.basket-line__actions .remove{width:auto;border:0;color:var(--c-orange-deep);margin-left:auto}.basket__note,.form-fineprint{font-size:var(--text-xs);color:var(--c-muted);line-height:1.5}.basket__cta{width:100%;text-align:center}.period-card{border:1px solid var(--c-line);border-radius:var(--radius);padding:1rem;margin:0 0 1rem;display:grid;gap:1rem}.period-card legend{font-weight:800;padding:0 .3rem}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}#quote-form label{display:grid;gap:.35rem;font-size:var(--text-sm);font-weight:700}#quote-form>label{margin-top:1rem}.service-options{display:flex;flex-wrap:wrap;gap:.6rem 1rem}.service-options label{display:flex!important;align-items:center;gap:.4rem!important;font-weight:500!important}.service-options input{accent-color:var(--c-orange)}.period-remove{justify-self:start}.contact-heading{margin-top:2.2rem}#quote-message{font-size:var(--text-sm)}#quote-message:not(:empty){padding:.8rem;border-radius:var(--radius);background:#fff2df}#quote-message[data-success]{background:#e7f4e9;color:#145125}@media(max-width:66rem){.quote-layout{grid-template-columns:1fr}.basket{position:static;grid-row:1}}@media(max-width:42rem){.quote-heading{display:block}.quote-heading p{margin-top:.5rem}.catalog-controls,.form-grid{display:grid;grid-template-columns:1fr}.catalog-grid,.package-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:30rem){.catalog-grid,.package-grid{grid-template-columns:1fr}}
   .basket-feedback:not([hidden]){position:fixed;z-index:40;right:1rem;bottom:1rem;max-width:min(25rem,calc(100vw - 2rem));margin:0;padding:.8rem 1rem;border-radius:var(--radius);background:var(--c-black);color:white;box-shadow:0 8px 24px #0003;font-size:var(--text-sm)}
+  .product-config{width:min(42rem,calc(100vw - 2rem));max-height:min(88vh,60rem);overflow:auto;border:1px solid var(--c-line);border-radius:var(--radius-lg);padding:clamp(1.2rem,3vw,2rem);box-shadow:0 20px 70px #0005;background:var(--c-paper);color:var(--c-black)}.product-config::backdrop{background:#10151ac9}.product-config h2{margin:.3rem 2rem .4rem 0}.product-config p{font-size:var(--text-sm)}.product-config__close{float:right;border:0;background:transparent;font-size:2rem;line-height:1;cursor:pointer}.product-config__row{display:grid;grid-template-columns:minmax(0,1fr) 6rem;gap:.8rem;align-items:center;padding:.8rem 0;border-bottom:1px solid var(--c-line)}.product-config__row strong{display:block;font-size:var(--text-sm)}.product-config__row small{display:block;color:var(--c-muted);font-size:var(--text-xs);margin-top:.2rem}.product-config__row input,.product-config__quantity input{width:100%;padding:.55rem;border:1px solid #cbc8c1;border-radius:var(--radius);font:inherit}.product-config__row input:disabled{background:#eee;color:var(--c-muted)}.product-config__quantity{display:grid;grid-template-columns:1fr 6rem;align-items:center;gap:.8rem;margin:1rem 0;font-weight:700;font-size:var(--text-sm)}.product-config__total{font-weight:800}.basket-components{display:grid;gap:.25rem;padding:.6rem 0}.basket-components small{margin:0!important}.basket-components button{justify-self:start;border:0;padding:0;background:none;color:var(--c-orange-deep);font:inherit;font-size:var(--text-xs);font-weight:800;cursor:pointer}
+  #rms-package-list[hidden],#rms-package-status[hidden],#rms-package-search-wrap[hidden],.package-note[hidden]{display:none}
   .quote-choice h2{margin:.35rem 0}.quote-choice>p{margin:0 0 1.25rem;color:var(--c-muted);font-size:var(--text-sm)}.quote-choice__options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.quote-route{display:grid;align-content:start;gap:.55rem;text-align:left;padding:1.25rem;border:2px solid var(--c-line);border-radius:var(--radius-lg);background:white;cursor:pointer;font:inherit;color:inherit}.quote-route:hover,.quote-route[aria-pressed=true]{border-color:var(--c-orange)}.quote-route strong{font-size:1.15rem}.quote-route span{color:var(--c-muted);font-size:var(--text-sm)}.quote-route em{font-style:normal;font-weight:800;color:var(--c-orange-deep);margin-top:.25rem}.quote-route:focus-visible{outline:3px solid var(--c-orange-deep);outline-offset:3px}#equipment,#packages,#quote-basket{scroll-margin-top:calc(var(--header-h) + 1rem)}
   .quote-screen-nav:not([hidden]){display:flex;justify-content:space-between;align-items:center;gap:1rem;font-size:var(--text-sm);font-weight:800}.quote-screen-nav a,.quote-screen-nav button{color:var(--c-orange-deep);font:inherit;text-decoration:none}.quote-screen-nav button{padding:0;border:0;background:none;cursor:pointer}
   @media(max-width:42rem){.quote-choice__options{grid-template-columns:1fr}}
@@ -134,9 +151,9 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
 
 <script>
   import { quotePackages, type QuotePackage } from '../lib/quotePackages';
-  import type { RmsProduct } from '../lib/currentRms';
+  import type { RmsProduct, RmsProductDetail } from '../lib/currentRms';
 
-  type BasketLine = { type: 'product' | 'package'; id: number | string; quantity: number; fullBand?: boolean };
+  type BasketLine = { type: 'product' | 'package'; id: number | string; quantity: number; fullBand?: boolean; components?: Record<string, number> };
   const storeKey = 'loudhire-quote-basket-v1';
   const readBasket = (): BasketLine[] => {
     try { const value = JSON.parse(localStorage.getItem(storeKey) || '[]'); return Array.isArray(value) ? value : []; }
@@ -144,6 +161,9 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
   };
   let basket = readBasket();
   let products: RmsProduct[] = [];
+  const details = new Map<number, RmsProductDetail>();
+  let activeDetail: RmsProductDetail | null = null;
+  let editingIndex: number | null = null;
   let visibleCount = 24;
   const byId = (id: string) => document.getElementById(id)!;
   const list = byId('catalog-list');
@@ -154,6 +174,10 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
   const search = byId('catalog-search') as HTMLInputElement;
   const group = byId('catalog-group') as HTMLSelectElement;
   const pounds = (value: number) => `£${value.toLocaleString('en-GB', { maximumFractionDigits: 2 })}`;
+  const rateText = (product: RmsProduct) => {
+    if (product.weekPrice === null || product.weekPrice === 0) return 'Price to confirm';
+    return `${product.dayPrice === null ? 'Day rate on request' : `${pounds(product.dayPrice)} / day`} · ${pounds(product.weekPrice)} / week + VAT`;
+  };
   search.value = new URLSearchParams(location.search).get('search') || '';
   const routeButtons = document.querySelectorAll<HTMLButtonElement>('.quote-route');
   const showRoute = (mode: 'packages' | 'equipment', scroll = false) => {
@@ -203,9 +227,85 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
     feedbackTimeout = window.setTimeout(() => { basketFeedback.hidden = true; }, 2800);
   };
 
+  const configDialog = byId('product-config') as HTMLDialogElement;
+  const configComponents = byId('product-config-components');
+  const configQuantity = byId('product-config-quantity') as HTMLInputElement;
+  async function loadDetail(id: number): Promise<RmsProductDetail> {
+    if (details.has(id)) return details.get(id)!;
+    const response = await fetch(`/api/quote-product/${id}`);
+    if (!response.ok) throw new Error('Package details could not be loaded. Please try again.');
+    const result = await response.json() as { product: RmsProductDetail };
+    details.set(id, result.product);
+    return result.product;
+  }
+  function configValues() {
+    const values: Record<string, number> = {};
+    for (const input of configComponents.querySelectorAll<HTMLInputElement>('input[data-component-id]')) {
+      values[input.dataset.componentId!] = Math.max(0, Math.min(100, Math.floor(Number(input.value) || 0)));
+    }
+    return values;
+  }
+  function updateConfigTotal() {
+    if (!activeDetail) return;
+    const count = Math.max(1, Math.min(100, Math.floor(Number(configQuantity.value) || 1)));
+    const values = configValues();
+    let week = activeDetail.weekPrice ?? 0;
+    let day = activeDetail.dayPrice ?? 0;
+    let weekKnown = activeDetail.weekPrice !== null;
+    let dayKnown = activeDetail.dayPrice !== null;
+    for (const component of activeDetail.components) {
+      const quantity = component.inclusion === 'mandatory' ? component.quantity : values[String(component.id)] ?? 0;
+      if (!quantity || component.zeroPriced) continue;
+      if (component.weekPrice === null) weekKnown = false; else week += component.weekPrice * quantity;
+      if (component.dayPrice === null) dayKnown = false; else day += component.dayPrice * quantity;
+    }
+    byId('product-config-total').textContent = `Guide for ${count} package${count === 1 ? '' : 's'}: ${dayKnown && day > 0 ? `${pounds(day * count)} / day` : 'day rate to confirm'} · ${weekKnown && week > 0 ? `${pounds(week * count)} / week` : 'week rate to confirm'} + VAT`;
+  }
+  async function openConfig(id: number, index: number | null = null) {
+    const button = byId('product-config-add') as HTMLButtonElement;
+    button.disabled = true;
+    const detail = await loadDetail(id);
+    activeDetail = detail;
+    editingIndex = index;
+    byId('product-config-title').textContent = detail.name;
+    byId('product-config-prices').textContent = rateText(detail);
+    const saved = index === null ? undefined : basket[index];
+    configQuantity.value = String(saved?.quantity ?? 1);
+    configComponents.replaceChildren();
+    for (const component of detail.components) {
+      const row = el('label', 'product-config__row');
+      const copy = el('span');
+      copy.append(el('strong', '', component.name), el('small', '', `${component.inclusion === 'mandatory' ? 'Fixed component' : component.inclusion === 'default' ? 'Included by default · editable' : 'Optional · starts at zero'}${component.zeroPriced ? ' · no extra charge' : component.weekPrice === null ? ' · price to confirm' : ` · ${pounds(component.weekPrice)} / week each`}`));
+      const input = document.createElement('input'); input.type = 'number'; input.min = '0'; input.max = '100'; input.step = '1';
+      input.dataset.componentId = String(component.id);
+      input.value = String(component.inclusion === 'mandatory' ? component.quantity : saved?.components?.[String(component.id)] ?? (component.inclusion === 'default' ? component.quantity : 0));
+      input.disabled = component.inclusion === 'mandatory';
+      input.setAttribute('aria-label', `Quantity of ${component.name} per package`);
+      input.addEventListener('input', updateConfigTotal);
+      row.append(copy, input); configComponents.append(row);
+    }
+    button.textContent = index === null ? 'Add to basket' : 'Update basket';
+    button.disabled = false;
+    updateConfigTotal();
+    configDialog.showModal();
+  }
+  configQuantity.addEventListener('input', updateConfigTotal);
+  byId('product-config-add').addEventListener('click', () => {
+    if (!activeDetail) return;
+    const quantity = Math.floor(Number(configQuantity.value));
+    if (!Number.isInteger(quantity) || quantity < 1 || quantity > 100) { configQuantity.reportValidity(); return; }
+    const line: BasketLine = { type: 'product', id: activeDetail.id, quantity, components: configValues() };
+    if (editingIndex === null) basket.push(line); else basket[editingIndex] = line;
+    save(); configDialog.close();
+    basketFeedback.textContent = `${activeDetail.name} ${editingIndex === null ? 'added to' : 'updated in'} your basket`;
+    basketFeedback.hidden = false;
+    window.clearTimeout(feedbackTimeout);
+    feedbackTimeout = window.setTimeout(() => { basketFeedback.hidden = true; }, 2800);
+  });
+
   function renderCatalog() {
     const query = search.value.trim().toLowerCase();
-    const filtered = products.filter((p) => (!group.value || p.group === group.value) &&
+    const filtered = products.filter((p) => !p.isPackage && (!group.value || p.group === group.value) &&
       `${p.name} ${p.group} ${p.description}`.toLowerCase().includes(query));
     list.replaceChildren();
     for (const product of filtered.slice(0, visibleCount)) {
@@ -216,13 +316,39 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
       const body = el('div', 'catalog-card__body');
       body.append(el('span', 'catalog-card__group', product.group), el('h3', '', product.name));
       const foot = el('div', 'catalog-card__foot');
-      foot.append(el('strong', '', product.price === null ? 'Price on request' : `${pounds(product.price)}${product.rateName ? ` ${product.rateName}` : ' rate'} + VAT`));
-      const button = el('button', 'btn btn--primary btn--sm', 'Add to basket') as HTMLButtonElement;
-      button.type = 'button'; button.addEventListener('click', () => add('product', product.id));
+      foot.append(el('strong', '', rateText(product)));
+      const button = el('button', 'btn btn--primary btn--sm', product.hasAccessories ? 'Configure & add' : 'Add to basket') as HTMLButtonElement;
+      button.type = 'button'; button.addEventListener('click', () => {
+        if (product.hasAccessories) openConfig(product.id).catch(() => { status.textContent = 'Package details could not be loaded. Please try again.'; });
+        else add('product', product.id);
+      });
       foot.append(button); body.append(foot); card.append(media, body); list.append(card);
     }
     status.textContent = `${filtered.length} equipment item${filtered.length === 1 ? '' : 's'} found`;
     (byId('catalog-more') as HTMLButtonElement).hidden = filtered.length <= visibleCount;
+  }
+
+  function renderRmsPackages() {
+    const query = (byId('rms-package-search') as HTMLInputElement).value.trim().toLowerCase();
+    const packages = products.filter((p) => p.isPackage && `${p.name} ${p.group} ${p.description}`.toLowerCase().includes(query));
+    const container = byId('rms-package-list'); container.replaceChildren();
+    for (const product of packages) {
+      const card = el('article', 'catalog-card');
+      const media = el('div', 'catalog-card__image');
+      if (product.image) { const img = document.createElement('img'); img.src = product.image; img.alt = ''; img.loading = 'lazy'; media.append(img); }
+      else media.textContent = 'Image coming soon';
+      const body = el('div', 'catalog-card__body');
+      body.append(el('span', 'catalog-card__group', product.group), el('h3', '', product.name));
+      if (product.description) body.append(el('p', '', product.description.slice(0, 140)));
+      const foot = el('div', 'catalog-card__foot');
+      foot.append(el('strong', '', rateText(product)));
+      const button = el('button', 'btn btn--primary btn--sm', 'View & configure') as HTMLButtonElement;
+      button.type = 'button'; button.addEventListener('click', () => openConfig(product.id).catch(() => {
+        byId('rms-package-status').textContent = 'Package details could not be loaded. Please try again.';
+      }));
+      foot.append(button); body.append(foot); card.append(media, body); container.append(card);
+    }
+    byId('rms-package-status').textContent = `${packages.length} hire package${packages.length === 1 ? '' : 's'} from Current RMS`;
   }
 
   function renderBasket() {
@@ -245,7 +371,23 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
         }
       } else if (line.type === 'product' && item) {
         const product = item as RmsProduct;
-        row.append(el('small', '', product.price === null ? 'Price to confirm' : `${pounds(product.price)} ${product.rateName || 'rate'} + VAT`));
+        row.append(el('small', '', rateText(product)));
+        if (product.hasAccessories || line.components) {
+          const wrap = el('div', 'basket-components');
+          const detail = details.get(product.id);
+          if (detail) {
+            for (const component of detail.components) {
+              const perPackage = component.inclusion === 'mandatory' ? component.quantity : line.components?.[String(component.id)] ?? (component.inclusion === 'default' ? component.quantity : 0);
+              wrap.append(el('small', '', `${component.name}: ${perPackage * line.quantity}${component.inclusion === 'mandatory' ? ' fixed' : component.inclusion === 'optional' ? ' optional' : ''}`));
+            }
+          } else {
+            wrap.append(el('small', '', 'Loading package contents…'));
+            loadDetail(product.id).then(renderBasket).catch(() => { wrap.replaceChildren(el('small', '', 'Contents unavailable. Please retry later.')); });
+          }
+          const edit = el('button', '', 'Edit package contents') as HTMLButtonElement;
+          edit.type = 'button'; edit.addEventListener('click', () => openConfig(product.id, index).catch(() => { edit.textContent = 'Could not load contents'; }));
+          wrap.append(edit); row.append(wrap);
+        }
       }
       const actions = el('div', 'basket-line__actions');
       for (const [symbol, delta] of [['−', -1], ['+', 1]] as const) {
@@ -260,9 +402,15 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
 
   document.querySelectorAll<HTMLButtonElement>('.package-add').forEach((button) => button.addEventListener('click', () => add('package', button.dataset.packageId!)));
   document.querySelectorAll<HTMLButtonElement>('.package-tab').forEach((button) => button.addEventListener('click', () => {
+    const rms = button.dataset.packageTab === 'RMS hire';
     document.querySelectorAll<HTMLButtonElement>('.package-tab').forEach((tab) => tab.setAttribute('aria-selected', String(tab === button)));
-    document.querySelectorAll<HTMLElement>('.package-card').forEach((card) => { card.hidden = card.dataset.packageGroup !== button.dataset.packageTab; });
+    document.querySelectorAll<HTMLElement>('.package-card').forEach((card) => { card.hidden = rms || card.dataset.packageGroup !== button.dataset.packageTab; });
+    byId('rms-package-search-wrap').hidden = !rms;
+    byId('rms-package-status').hidden = !rms;
+    byId('rms-package-list').hidden = !rms;
+    document.querySelector<HTMLElement>('.package-note')!.hidden = rms;
   }));
+  (byId('rms-package-search') as HTMLInputElement).addEventListener('input', renderRmsPackages);
   search.addEventListener('input', () => { visibleCount = 24; renderCatalog(); });
   group.addEventListener('change', () => { visibleCount = 24; renderCatalog(); });
   byId('catalog-more').addEventListener('click', () => { visibleCount += 24; renderCatalog(); });
@@ -270,9 +418,9 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
   fetch('/api/quote-products').then(async (response) => {
     if (!response.ok) throw new Error('unavailable');
     const result = await response.json(); products = result.products; 
-    [...new Set(products.map((p) => p.group))].sort().forEach((name) => { const option = document.createElement('option'); option.value = name; option.textContent = name; group.append(option); });
-    renderCatalog(); renderBasket();
-  }).catch(() => { status.textContent = 'The live equipment list is temporarily unavailable. You can still request a package or contact us directly.'; });
+    [...new Set(products.filter((p) => !p.isPackage).map((p) => p.group))].sort().forEach((name) => { const option = document.createElement('option'); option.value = name; option.textContent = name; group.append(option); });
+    renderCatalog(); renderRmsPackages(); renderBasket();
+  }).catch(() => { status.textContent = 'The live equipment list is temporarily unavailable. You can still request a package or contact us directly.'; byId('rms-package-status').textContent = 'Live hire packages are temporarily unavailable.'; });
 
   const periods = byId('periods');
   byId('add-period').addEventListener('click', () => {
