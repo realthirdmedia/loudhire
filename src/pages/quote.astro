@@ -245,21 +245,24 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
     }
     return values;
   }
-  function updateConfigTotal() {
-    if (!activeDetail) return;
-    const count = Math.max(1, Math.min(100, Math.floor(Number(configQuantity.value) || 1)));
-    const values = configValues();
-    let week = activeDetail.weekPrice ?? 0;
-    let day = activeDetail.dayPrice ?? 0;
-    let weekKnown = activeDetail.weekPrice !== null;
-    let dayKnown = activeDetail.dayPrice !== null;
-    for (const component of activeDetail.components) {
-      const quantity = component.inclusion === 'mandatory' ? component.quantity : values[String(component.id)] ?? 0;
+  function packageGuide(detail: RmsProductDetail, values: Record<string, number>, count: number) {
+    let week = detail.weekPrice ?? 0;
+    let day = detail.dayPrice ?? 0;
+    let weekKnown = detail.weekPrice !== null;
+    let dayKnown = detail.dayPrice !== null;
+    for (const component of detail.components) {
+      const quantity = component.inclusion === 'mandatory' ? component.quantity :
+        values[String(component.id)] ?? (component.inclusion === 'default' ? component.quantity : 0);
       if (!quantity || component.zeroPriced) continue;
       if (component.weekPrice === null) weekKnown = false; else week += component.weekPrice * quantity;
       if (component.dayPrice === null) dayKnown = false; else day += component.dayPrice * quantity;
     }
-    byId('product-config-total').textContent = `Guide for ${count} package${count === 1 ? '' : 's'}: ${dayKnown && day > 0 ? `${pounds(day * count)} / day` : 'day rate to confirm'} · ${weekKnown && week > 0 ? `${pounds(week * count)} / week` : 'week rate to confirm'} + VAT`;
+    return `${dayKnown && day > 0 ? `${pounds(day * count)} / day` : 'Day rate to confirm'} · ${weekKnown && week > 0 ? `${pounds(week * count)} / week` : 'week rate to confirm'} + VAT`;
+  }
+  function updateConfigTotal() {
+    if (!activeDetail) return;
+    const count = Math.max(1, Math.min(100, Math.floor(Number(configQuantity.value) || 1)));
+    byId('product-config-total').textContent = `Guide for ${count} package${count === 1 ? '' : 's'}: ${packageGuide(activeDetail, configValues(), count)}`;
   }
   async function openConfig(id: number, index: number | null = null) {
     const button = byId('product-config-add') as HTMLButtonElement;
@@ -371,23 +374,24 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
         }
       } else if (line.type === 'product' && item) {
         const product = item as RmsProduct;
-        row.append(el('small', '', rateText(product)));
         if (product.hasAccessories || line.components) {
           const wrap = el('div', 'basket-components');
           const detail = details.get(product.id);
           if (detail) {
+            row.append(el('small', '', packageGuide(detail, line.components ?? {}, line.quantity)));
             for (const component of detail.components) {
               const perPackage = component.inclusion === 'mandatory' ? component.quantity : line.components?.[String(component.id)] ?? (component.inclusion === 'default' ? component.quantity : 0);
               wrap.append(el('small', '', `${component.name}: ${perPackage * line.quantity}${component.inclusion === 'mandatory' ? ' fixed' : component.inclusion === 'optional' ? ' optional' : ''}`));
             }
           } else {
+            row.append(el('small', '', 'Loading package price…'));
             wrap.append(el('small', '', 'Loading package contents…'));
             loadDetail(product.id).then(renderBasket).catch(() => { wrap.replaceChildren(el('small', '', 'Contents unavailable. Please retry later.')); });
           }
           const edit = el('button', '', 'Edit package contents') as HTMLButtonElement;
           edit.type = 'button'; edit.addEventListener('click', () => openConfig(product.id, index).catch(() => { edit.textContent = 'Could not load contents'; }));
           wrap.append(edit); row.append(wrap);
-        }
+        } else row.append(el('small', '', rateText(product)));
       }
       const actions = el('div', 'basket-line__actions');
       for (const [symbol, delta] of [['−', -1], ['+', 1]] as const) {
