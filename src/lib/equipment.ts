@@ -33,7 +33,7 @@ export const SECTIONS: { key: string; name: string; blurb: string }[] = [
 
 export const sectionName = (key: string) => SECTIONS.find((s) => s.key === key)?.name ?? key;
 
-const images = import.meta.glob<{ default: ImageMetadata }>('../assets/equipment/*.jpg', { eager: true });
+const images = import.meta.glob<{ default: ImageMetadata }>('../assets/equipment/*.{jpg,jpeg,png,webp}', { eager: true });
 
 export function equipmentImage(item: EquipmentItem): ImageMetadata | undefined {
   if (!item.image) return undefined;
