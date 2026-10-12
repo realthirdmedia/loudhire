@@ -26,3 +26,10 @@ The company offers managed event production and dry hire. Equipment and package 
 - [About Loud Hire](https://www.loudhire.co.uk/about/): Company background and approach.
 - [News and projects](https://www.loudhire.co.uk/news-and-projects/): Project stories, news and equipment guides.
 - [XML sitemap](https://www.loudhire.co.uk/sitemap-index.xml): Complete index of public pages.
+
+## Browse all pages
+
+- [Site map](https://www.loudhire.co.uk/site-map/): Services, categories, individual equipment pages, news and projects.
+- [Sound hire](https://www.loudhire.co.uk/dry-hire/sound/): PA and audio equipment rental.
+- [Lighting hire](https://www.loudhire.co.uk/dry-hire/lighting/): Fixtures, control and effects.
+- [Ex-hire equipment](https://www.loudhire.co.uk/ex-hire-equipment/): Enquire about current used equipment for sale.
