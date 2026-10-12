@@ -40,7 +40,7 @@ const packagePhoto = (id: string) => id.startsWith('festival-extra-large') ? fes
               <img class="quote-route__image" src="/images/quote-bespoke-illustration.svg" alt="" /><strong>Bespoke package</strong>
             </button>
           </div>
-          <p class="quote-choice__note">Build your quote by selecting the items you need and choosing your dates. We’ll be in touch within 24 hours to confirm the price.</p>
+          <p class="quote-choice__note">Build your quote by selecting the items you need and choosing your dates. We’ll be in touch within 24 hours to confirm the price and availability.</p>
         </div>
 
         <aside class="quote-route-sidebar" id="quote-route-sidebar" aria-label="Quote options" hidden>
@@ -487,7 +487,7 @@ const packagePhoto = (id: string) => id.startsWith('festival-extra-large') ? fes
   const configQuantity = byId('product-config-quantity') as HTMLInputElement;
   async function loadDetail(id: number): Promise<RmsProductDetail> {
     if (details.has(id)) return details.get(id)!;
-    const response = await fetch(`/api/quote-product/${id}`);
+    const response = await fetch(`/api/quote-product/${id}/`);
     if (!response.ok) throw new Error('Package details could not be loaded. Please try again.');
     const result = await response.json() as { product: RmsProductDetail };
     details.set(id, result.product);
@@ -771,7 +771,7 @@ const packagePhoto = (id: string) => id.startsWith('festival-extra-large') ? fes
   search.addEventListener('input', () => { visibleCount = 24; renderCatalog(); });
   byId('catalog-more').addEventListener('click', () => { visibleCount += 24; renderCatalog(); });
   renderBasket();
-  fetch('/api/quote-products').then(async (response) => {
+  fetch('/api/quote-products/').then(async (response) => {
     if (!response.ok) throw new Error('unavailable');
     const result = await response.json(); products = result.products; 
     renderCategoryNav(); renderCatalog(); renderRmsPackages(); renderBasket();
@@ -807,7 +807,7 @@ const packagePhoto = (id: string) => id.startsWith('festival-extra-large') ? fes
     if (periodValues.some((p) => p.end < p.start)) { message.textContent = 'An end date is before its start date.'; return; }
     const button = byId('quote-submit') as HTMLButtonElement; button.disabled = true; button.textContent = 'Sending…';
     try {
-      const response = await fetch('/api/quote-request', {
+      const response = await fetch('/api/quote-request/', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ lines: basket, periods: periodValues, organisation: data.get('organisation'), name: data.get('name'), email: data.get('email'), phone: data.get('phone'), address: data.get('address'), notes: data.get('notes'), website: data.get('website') }),
       });
