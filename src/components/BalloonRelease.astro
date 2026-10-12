@@ -1,0 +1,81 @@
+---
+// Deterministic positions keep the illustration consistent between renders.
+const colours = ['#e78b20', '#d6a554', '#77989a', '#a17b69', '#d4b276', '#7e8caa'];
+const balloons = Array.from({ length: 30 }, (_, i) => ({
+  left: (i * 37 + 3) % 100,
+  size: 38 + ((i * 19) % 62),
+  delay: (i % 10) * 0.27,
+  duration: 9 + (i % 6) * 0.8,
+  drift: ((i * 23) % 100) - 50,
+  colour: colours[i % colours.length],
+}));
+---
+
+<div class="balloon-release" aria-hidden="true" data-balloon-release>
+  {balloons.map((balloon) => (
+    <span class="balloon" style={`--left:${balloon.left}%;--size:${balloon.size}px;--delay:${balloon.delay}s;--duration:${balloon.duration}s;--drift:${balloon.drift}px;--balloon-colour:${balloon.colour}`}>
+      <svg viewBox="0 0 80 110" fill="none" focusable="false">
+        <path d="M40 4C19 4 7 18 7 36c0 21 18 37 25 49h16c7-12 25-28 25-49C73 18 61 4 40 4Z" fill="var(--balloon-colour)" />
+        <path d="M40 4C28 4 20 18 20 36c0 20 10 38 16 49h8c6-11 16-29 16-49C60 18 52 4 40 4Z" fill="#fff" fill-opacity=".48" />
+        <path d="M40 4c-5 0-9 14-9 32 0 20 5 38 7 49h4c2-11 7-29 7-49 0-18-4-32-9-32Z" fill="var(--balloon-colour)" />
+        <path d="m33 85 3 11m11-11-3 11" stroke="#6b5845" stroke-width="1.8" />
+        <path d="M32 94h16l-2 11H34l-2-11Z" fill="#927354" />
+        <path d="M33 96h14" stroke="#c2a27c" stroke-width="2" />
+      </svg>
+    </span>
+  ))}
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-balloon-release]').forEach((layer) => {
+    const section = layer.parentElement;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (!section || reducedMotion.matches) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      // Transform the full section height without animating layout properties.
+      layer.style.setProperty('--rise', `${section.offsetHeight + 180}px`);
+      layer.classList.add('is-released');
+      observer.disconnect();
+    }, { threshold: 0.12, rootMargin: '0px 0px -10% 0px' });
+    observer.observe(section);
+  });
+</script>
+
+<style>
+  .balloon-release {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .balloon {
+    position: absolute;
+    top: 100%;
+    left: var(--left);
+    width: var(--size);
+    opacity: 0;
+    transform: translate(-50%, 0);
+  }
+  .balloon svg { display: block; width: 100%; height: auto; }
+  .is-released .balloon {
+    animation: balloon-rise var(--duration) var(--delay) linear both;
+  }
+  @keyframes balloon-rise {
+    0% { opacity: 0; transform: translate(-50%, 0) rotate(-5deg); }
+    10% { opacity: .32; }
+    35% { transform: translate(calc(-50% + var(--drift)), calc(var(--rise) * -.35)) rotate(4deg); }
+    65% { opacity: .32; transform: translate(calc(-50% - var(--drift) * .4), calc(var(--rise) * -.65)) rotate(-3deg); }
+    90% { opacity: .2; }
+    100% { opacity: 0; transform: translate(calc(-50% + var(--drift) * .6), calc(var(--rise) * -1)) rotate(2deg); }
+  }
+  @media (max-width: 48rem) {
+    .balloon { width: calc(var(--size) * .75); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .balloon-release { display: none; }
+    .is-released .balloon { animation: none; }
+  }
+</style>
