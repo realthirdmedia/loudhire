@@ -51,7 +51,7 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
             <p>Products are pulled from Loud Hire’s Current RMS catalogue. Rates are indicative and availability is confirmed after your request.</p>
           </div>
           <div class="catalog-controls">
-            <label><span class="visually-hidden">Search equipment</span><input id="catalog-search" type="search" placeholder="Search equipment, e.g. microphone or stage" /></label>
+            <label><span class="visually-hidden">Search equipment</span><input id="catalog-search" type="search" placeholder="Search all equipment" /></label>
           </div>
           <h3 id="catalog-results-heading">Equipment</h3>
           <p id="catalog-status" class="muted" role="status">Loading the live equipment list…</p>
@@ -159,7 +159,7 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
   .quote-main{grid-template-columns:10.5rem minmax(0,1fr);align-items:start}
   #quote-choice,#quote-screen-nav{grid-column:1/-1}
   #equipment,#packages,#quote-form{grid-column:2;min-width:0}
-  .quote-route-sidebar{grid-column:1;grid-row:2/span 2;display:grid;gap:.35rem;position:sticky;top:calc(var(--header-h) + 1rem);max-height:calc(100vh - var(--header-h) - 2rem);overflow-y:auto;min-width:0}
+  .quote-route-sidebar{grid-column:1;grid-row:2/span 2;display:grid;gap:.35rem;position:sticky;top:calc(var(--header-h) + 1rem);max-height:calc(100vh - var(--header-h) - 2rem);overflow-y:auto;min-width:0;scroll-margin-top:calc(var(--header-h) + 1rem)}
   .quote-route-sidebar h3,#catalog-results-heading{font-size:1.15rem;margin:0 0 .75rem}
   .quote-sidebar-mode{width:100%;padding:.7rem .55rem;border:1px solid var(--c-line);border-radius:var(--radius);background:#fff;text-align:left;color:var(--c-black);font:inherit;font-size:.82rem;font-weight:800;cursor:pointer}
   .quote-sidebar-mode[aria-current=true]{border-color:var(--c-orange);background:var(--c-black);color:white}
@@ -225,7 +225,8 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
     document.querySelectorAll<HTMLButtonElement>('.quote-sidebar-mode').forEach((button) => {
       button.setAttribute('aria-current', String(button.dataset.sidebarMode === mode));
     });
-    if (scroll) byId(mode).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (scroll) (matchMedia('(max-width:42rem)').matches ? byId('quote-route-sidebar') : byId(mode))
+      .scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
   const selectRoute = (mode: 'packages' | 'equipment') => {
     showRoute(mode, true);
@@ -244,7 +245,11 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
     return null;
   };
   const initialRoute = routeFromUrl();
-  if (initialRoute) { showRoute(initialRoute); if (location.hash) requestAnimationFrame(() => byId(location.hash.slice(1)).scrollIntoView()); }
+  if (initialRoute) {
+    showRoute(initialRoute);
+    if (location.hash) requestAnimationFrame(() => (matchMedia('(max-width:42rem)').matches &&
+      (initialRoute === 'packages' || initialRoute === 'equipment') ? byId('quote-route-sidebar') : byId(location.hash.slice(1))).scrollIntoView());
+  }
   window.addEventListener('hashchange', () => { const mode = routeFromUrl(); if (mode) showRoute(mode); });
   window.addEventListener('popstate', () => { const mode = routeFromUrl(); if (mode) showRoute(mode); else location.reload(); });
   const el = (tag: string, className?: string, value?: string) => {
@@ -353,7 +358,12 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
       category.image ||= product.image;
       categories.set(product.group, category);
     }
-    const names = [...categories.keys()].sort((a, b) => a.localeCompare(b));
+    const featured = ['Speakers', 'Microphones', 'Mixers', 'Amplifiers', 'DJ decks/players', 'Lighting', 'Staging', 'Video', 'Power'];
+    const names = [...categories.keys()].sort((a, b) => {
+      const aRank = featured.indexOf(a); const bRank = featured.indexOf(b);
+      if (aRank !== -1 || bRank !== -1) return (aRank === -1 ? featured.length : aRank) - (bRank === -1 ? featured.length : bRank);
+      return a.localeCompare(b);
+    });
     selectedGroup ??= names[0] || null;
     const categoryList = byId('catalog-category-list');
     categoryList.replaceChildren();
