@@ -1,0 +1,37 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import EquipmentCard from '../../components/EquipmentCard.astro';
+import { itemsInSection, categories, categoryUrl } from '../../lib/equipment';
+
+export function getStaticPaths() {
+  return [
+    { section: 'sound', title: 'Sound & PA hire in Bristol', intro: 'Build your sound system from loudspeakers, subwoofers, amplifiers, mixers and microphones. Hire individual items or choose a party PA package, with collection from Thornbury or delivery by arrangement.', heading: 'Choose the sound equipment for your event', text: 'For a speech, start with a microphone and a PA suited to the room. For a DJ or live band, consider the mixer inputs, speakers, subwoofers and monitoring you need. Send us your equipment list and dates and we will confirm compatibility, availability and the full hire price.' },
+    { section: 'lighting', title: 'Lighting hire in Bristol', intro: 'Stage lights, moving lights, uplighting, effects and control equipment for parties, performances and events. Choose your fixtures and send us your dates for an equipment hire quote.', heading: 'Choose fixtures, control and cabling together', text: 'Plan your lighting around the venue, the areas you want to illuminate and the power available. Add control, stands or rigging and the correct cables to your fixtures. Tell us whether your event is indoors or outdoors so we can help you choose suitable equipment.' },
+  ].map((page) => ({ params: { section: page.section }, props: { page } }));
+}
+const { page } = Astro.props;
+const items = itemsInSection(page.section);
+const cats = categories.filter((c) => c.section === page.section);
+const service = { '@context': 'https://schema.org', '@type': 'Service', name: page.title, description: page.intro, serviceType: `${page.section} equipment rental`, url: new URL(Astro.url.pathname, Astro.site).href, provider: { '@id': 'https://www.loudhire.co.uk/#organisation' }, areaServed: ['Bristol', 'Thornbury', 'South West England'] };
+---
+<Base title={`${page.title} | Loud Hire`} description={page.intro} jsonLd={[service]}>
+  <PageHero variant="plain" eyebrow="Dry hire" title={page.title} intro={page.intro} ctaLabel="Build a quote" ctaHref="/quote/#equipment" breadcrumb={[{label:'Home',href:'/'},{label:'Dry hire',href:'/dry-hire/'},{label:page.title,href:Astro.url.pathname}]} />
+  <section class="section section--tight">
+    <div class="container">
+      <div class="section-head"><h2>{page.heading}</h2><p>{page.text}</p></div>
+      <nav class="categories" aria-label={`${page.section} equipment categories`}>
+        {cats.map((c) => <a class="tag tag--outline" href={categoryUrl(c)}>{c.name} ({c.count})</a>)}
+      </nav>
+      {page.section === 'sound' && <p>Prefer a ready-made setup? <a href="/dry-hire/party-packages/">Compare our party PA packages</a>.</p>}
+      <div class="equipment-grid">{items.map((item) => <EquipmentCard item={item} />)}</div>
+      <p class="support">Need setup and an operator? <a href={`/event-production/${page.section}/`}>Explore our {page.section} production service</a>.</p>
+    </div>
+  </section>
+</Base>
+<style>
+  .categories { display:flex; flex-wrap:wrap; gap:.6rem; margin-bottom:2rem; }
+  .equipment-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(14rem,1fr)); gap:1.25rem; }
+  .support { margin-top:2rem; }
+  @media(max-width:35rem) { .equipment-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:.75rem; } }
+</style>
