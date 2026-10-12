@@ -7,11 +7,11 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
 ---
 
 <Base title="Build a hire quote | Loud Hire" description="Choose equipment and event production packages, add your dates and venue, and ask Loud Hire for a tailored quote. No payment or account needed.">
-  <section class="section section--tight quote-app">
+  <section class="section section--tight quote-app" id="quote-app">
     <div class="container quote-app__intro">
       <span class="eyebrow">Loud Hire / quote builder</span>
       <h1>Build your hire request</h1>
-      <p>Explore the equipment, add what you need, then send Tom one enquiry. No payment or account needed.</p>
+      <p>Explore the equipment, add what you need, then send Loud Hire one enquiry. No payment or account needed.</p>
     </div>
     <div class="container quote-layout">
       <div class="quote-main" id="quote-main">
@@ -219,6 +219,8 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
   @media(max-width:35rem){.quote-app{padding-top:1rem}.quote-app__intro h1{font-size:1.65rem}.quote-section-heading{display:block}.quote-section-heading p{margin-top:.35rem}.catalog-tile{min-height:7rem}.catalog-tile img{height:7rem}.catalog-grid,.package-grid,#equipment .catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.catalog-card__image{height:8rem}.quote-bottom-bar__inner{min-height:4.6rem}.quote-bottom-bar__icon{display:none}.quote-bottom-bar .btn{font-size:.85rem;padding:.65rem .8rem}}
   @media(max-width:27rem){.catalog-category-tiles,.catalog-grid,.package-grid,#equipment .catalog-grid{grid-template-columns:1fr}.catalog-tile{min-height:6.5rem}.catalog-tile img{height:6.5rem}}
   .quote-feature h2{color:#fff}
+  .quote-app[data-screen=browse] .quote-app__intro{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+  .quote-app[data-screen=browse]{padding-top:1rem}
   #catalog-results-heading{scroll-margin-top:calc(var(--header-h) + 1rem)}
   .basket__cta[hidden]{display:none}
 </style>
@@ -256,6 +258,7 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
   const routeButtons = document.querySelectorAll<HTMLButtonElement>('.quote-route');
   const savedMode = (): 'packages' | 'equipment' => localStorage.getItem('loudhire-quote-mode') === 'packages' ? 'packages' : 'equipment';
   const showRoute = (mode: 'packages' | 'equipment', scroll = false) => {
+    byId('quote-app').dataset.screen = 'browse';
     byId('quote-main').dataset.screen = 'browse';
     byId('quote-choice').hidden = true;
     byId('quote-screen-nav').hidden = false;
@@ -288,6 +291,7 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
     selectRoute(button.dataset.sidebarMode as 'packages' | 'equipment');
   }));
   const showBasket = () => {
+    byId('quote-app').dataset.screen = 'basket';
     byId('quote-main').dataset.screen = 'basket';
     byId('quote-choice').hidden = true;
     byId('quote-screen-nav').hidden = false;
@@ -301,6 +305,7 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
     byId('quote-bottom-bar').hidden = true;
   };
   const showDetails = () => {
+    byId('quote-app').dataset.screen = 'details';
     byId('quote-main').dataset.screen = 'details';
     byId('quote-choice').hidden = true;
     byId('quote-screen-nav').hidden = false;
@@ -314,6 +319,7 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
     byId('quote-form').hidden = false;
   };
   const showChoice = () => {
+    byId('quote-app').dataset.screen = 'choice';
     byId('quote-main').dataset.screen = 'choice';
     byId('quote-choice').hidden = false;
     byId('quote-screen-nav').hidden = true;
@@ -333,7 +339,7 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
   };
   showLocation();
   if (location.hash) window.addEventListener('load', () => requestAnimationFrame(() => window.scrollTo(0, 0)), { once: true });
-  window.addEventListener('hashchange', showLocation);
+  window.addEventListener('hashchange', () => { showLocation(); requestAnimationFrame(() => window.scrollTo(0, 0)); });
   window.addEventListener('popstate', showLocation);
   byId('bottom-basket-open').addEventListener('click', () => { history.pushState(null, '', '#quote-basket'); showBasket(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
   document.querySelector<HTMLAnchorElement>('.header__basket')?.addEventListener('click', (event) => {
