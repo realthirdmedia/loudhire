@@ -1,0 +1,93 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import ContactSection from '../../components/ContactSection.astro';
+import { partyPackages } from '../../data/partyPackages';
+import heroImage from '../../assets/pages/danley-sm80.jpg';
+
+const service = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': 'https://www.loudhire.co.uk/dry-hire/party-packages/#service',
+  name: 'Party PA package hire',
+  serviceType: 'Bluetooth speaker and PA system rental',
+  description: 'Party speaker packages for hire from Loud Hire in Thornbury, near Bristol, for house parties, weddings and larger celebrations.',
+  provider: { '@id': 'https://www.loudhire.co.uk/#organisation' },
+  areaServed: ['Bristol', 'Bath', 'South West England'],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Party PA packages',
+    itemListElement: partyPackages.map((item) => ({
+      '@type': 'Offer',
+      name: item.name,
+      itemOffered: { '@type': 'Service', name: `${item.name} party PA hire`, description: item.spec },
+      url: 'https://www.loudhire.co.uk/dry-hire/party-packages/',
+    })),
+  },
+};
+---
+
+<Base
+  title="Party Packages - Loud Hire"
+  description="Bluetooth party PA packages from £35 + VAT per day. Compare Mini Rave, Rave, Ibiza and Ibiza XL systems for house parties, weddings and live music. Collect from Thornbury, near Bristol, or ask about delivery."
+  jsonLd={[service]}
+>
+  <PageHero
+    variant="split"
+    image={heroImage}
+    imageAlt="Loud Hire speaker ready for a party"
+    eyebrow="Dry hire"
+    title="Party PA packages"
+    intro="Choose a Bluetooth speaker package to suit your event, from a house party to a wedding or live band. Connect your phone, add a microphone if you need one, and let us know your dates."
+    ctaLabel="Ask about a package"
+    ctaHref="/contact/?subject=party-package#enquiry"
+    breadcrumb={[
+      { label: 'Home', href: '/' },
+      { label: 'Dry Hire', href: '/dry-hire/' },
+      { label: 'Party PA packages', href: '/dry-hire/party-packages/' },
+    ]}
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Choose your system</span>
+        <h2>Four sizes, one simple setup</h2>
+        <p>Prices are per day and exclude VAT. We will confirm availability and the full hire price for your dates before you commit.</p>
+      </div>
+      <div class="party-grid">
+        {partyPackages.map((item) => (
+          <article class="party-card">
+            <h3>{item.name}</h3>
+            <p class="party-card__price">£{item.price}<span> + VAT per day</span></p>
+            <p>{item.spec}</p>
+            <ul>{item.features.map((feature) => <li>{feature}</li>)}</ul>
+            <a class="text-link" href={`/contact/?subject=${encodeURIComponent(`${item.name} party package`)}#enquiry`}>Check availability</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--paper-2">
+    <div class="container container--narrow prose">
+      <h2>How to hire a party package</h2>
+      <p>Tell us which package you are interested in, the date, your venue and whether you would like collection or delivery. We will confirm the price and availability. Collection is from our Thornbury warehouse by appointment.</p>
+      <p>Unsure which size fits? Tell us how many guests you expect and whether you need sound for a playlist, speeches or a live act. We can recommend a system and add a microphone or other equipment to the quote.</p>
+      <p><a href="/dry-hire/equipment/">Browse the full equipment list</a> if you would rather build a package from individual items.</p>
+    </div>
+  </section>
+
+  <ContactSection heading="Check party package availability" text="Send us the date, location and package you are considering. We will confirm availability and a tailored hire quote." />
+</Base>
+
+<style>
+  .party-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+  .party-card { display: flex; flex-direction: column; gap: .75rem; padding: clamp(1.4rem, 3vw, 2rem); border: 1px solid var(--c-line); border-radius: var(--radius-lg); background: #fff; }
+  .party-card h3, .party-card p { margin: 0; }
+  .party-card__price { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 800; }
+  .party-card__price span { font-family: var(--font-body); font-size: var(--text-sm); font-weight: 400; color: var(--c-muted); }
+  .party-card ul { margin: .25rem 0 auto; padding-left: 1.25rem; line-height: 1.7; }
+  .party-card .text-link { align-self: flex-start; }
+  @media (max-width: 40rem) { .party-grid { grid-template-columns: 1fr; } }
+</style>
