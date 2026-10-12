@@ -271,7 +271,8 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
     activeDetail = detail;
     editingIndex = index;
     byId('product-config-title').textContent = detail.name;
-    byId('product-config-prices').textContent = rateText(detail);
+    byId('product-config-prices').textContent = detail.weekPrice === 0 && detail.components.length
+      ? 'Price based on selected equipment and extras' : rateText(detail);
     const saved = index === null ? undefined : basket[index];
     configQuantity.value = String(saved?.quantity ?? 1);
     configComponents.replaceChildren();
@@ -344,7 +345,8 @@ const pounds = (value: number) => `£${value.toLocaleString('en-GB')}`;
       body.append(el('span', 'catalog-card__group', product.group), el('h3', '', product.name));
       if (product.description) body.append(el('p', '', product.description.slice(0, 140)));
       const foot = el('div', 'catalog-card__foot');
-      foot.append(el('strong', '', rateText(product)));
+      foot.append(el('strong', '', product.weekPrice === 0 && product.hasAccessories
+        ? 'Configure for a guide price' : rateText(product)));
       const button = el('button', 'btn btn--primary btn--sm', 'View & configure') as HTMLButtonElement;
       button.type = 'button'; button.addEventListener('click', () => openConfig(product.id).catch(() => {
         byId('rms-package-status').textContent = 'Package details could not be loaded. Please try again.';
