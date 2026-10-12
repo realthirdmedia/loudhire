@@ -39,6 +39,7 @@ const packagePhoto = (id: string) => id.startsWith('festival-extra-large') ? fes
               <img class="quote-route__image" src="/images/quote-bespoke-illustration.svg" alt="" /><strong>Bespoke package</strong>
             </button>
           </div>
+          <p class="quote-choice__note">Build your quote by selecting the items you need and choosing your dates. We’ll be in touch within 24 hours to confirm the price.</p>
         </div>
 
         <aside class="quote-route-sidebar" id="quote-route-sidebar" aria-label="Quote options" hidden>
@@ -273,6 +274,7 @@ const packagePhoto = (id: string) => id.startsWith('festival-extra-large') ? fes
   .quote-choice h1{margin:0 0 .5rem;color:var(--c-orange-deep);font-size:1.05rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
   .quote-choice h2{margin:0 0 2rem;font-size:clamp(1.7rem,3vw,2.25rem);line-height:1.2}
   .quote-choice__options{max-width:33rem;margin:auto;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem}
+  .quote-choice__note{max-width:35rem;margin:1.5rem auto 0;color:var(--c-muted);font-size:.88rem;line-height:1.5}
   .quote-route{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;min-height:16rem;padding:1rem;text-align:center;border:1.5px solid #dedbd5;border-radius:.75rem;box-shadow:none}
   .quote-route:hover{box-shadow:0 5px 18px #00000010}
   .quote-route__image{height:10.5rem;max-width:12rem;margin:0;object-fit:contain}
