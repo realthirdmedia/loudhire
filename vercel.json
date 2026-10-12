@@ -1365,6 +1365,11 @@
       "permanent": true
     },
     {
+      "source": "/services",
+      "destination": "/event-production/",
+      "permanent": true
+    },
+    {
       "source": "/production-services/corporate-event-management",
       "destination": "/event-production/corporate-events/",
       "permanent": true
@@ -1391,6 +1396,11 @@
     },
     {
       "source": "/production-services/public-announcement-horn-speakers",
+      "destination": "/news-and-projects/public-announcement-horn-speakers/",
+      "permanent": true
+    },
+    {
+      "source": "/public-announcement-horn-speakers",
       "destination": "/news-and-projects/public-announcement-horn-speakers/",
       "permanent": true
     },
@@ -1475,6 +1485,11 @@
       "permanent": true
     },
     {
+      "source": "/news/author/admin",
+      "destination": "/news-and-projects/",
+      "permanent": true
+    },
+    {
       "source": "/contact-us",
       "destination": "/contact/",
       "permanent": true
@@ -1531,7 +1546,12 @@
     },
     {
       "source": "/equipment-rental/party-packages",
-      "destination": "/dry-hire/#packages",
+      "destination": "/dry-hire/party-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/party-packages",
+      "destination": "/dry-hire/party-packages/",
       "permanent": true
     },
     {
@@ -1702,6 +1722,146 @@
     {
       "source": "/product-category/staging-hardware/rigging",
       "destination": "/dry-hire/equipment/category/rigging/",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/hvac",
+      "destination": "/dry-hire/equipment/category/power/",
+      "permanent": true
+    },
+    {
+      "source": "/product/martin-audio-w8lm",
+      "destination": "/dry-hire/equipment/category/speakers/",
+      "permanent": true
+    },
+    {
+      "source": "/product/martin-audio-w8lmd",
+      "destination": "/dry-hire/equipment/category/speakers/",
+      "permanent": true
+    },
+    {
+      "source": "/product/112m-loudspeaker",
+      "destination": "/dry-hire/equipment/category/speakers/",
+      "permanent": true
+    },
+    {
+      "source": "/product/qsc-gxd8-amplifier",
+      "destination": "/dry-hire/equipment/category/amplifiers/",
+      "permanent": true
+    },
+    {
+      "source": "/product/chauvet-rogue-1l-beam",
+      "destination": "/dry-hire/equipment/category/stage-lighting/",
+      "permanent": true
+    },
+    {
+      "source": "/product/ipg-wp60ss-60kva-3phase-generator",
+      "destination": "/dry-hire/equipment/category/power/",
+      "permanent": true
+    },
+    {
+      "source": "/product/instagrid-one",
+      "destination": "/dry-hire/equipment/category/power/",
+      "permanent": true
+    },
+    {
+      "source": "/product/db-audiotechnik-c7-top",
+      "destination": "/dry-hire/equipment/category/speakers/",
+      "permanent": true
+    },
+    {
+      "source": "/product/db-audiotechnik-c7-subwoofer",
+      "destination": "/dry-hire/equipment/category/speakers/",
+      "permanent": true
+    },
+    {
+      "source": "/product/db-audiotechnik-d12-amplifier",
+      "destination": "/dry-hire/equipment/category/amplifiers/",
+      "permanent": true
+    },
+    {
+      "source": "/product/db-audiotechnik-q-subwoofer-q-sub",
+      "destination": "/dry-hire/equipment/category/speakers/",
+      "permanent": true
+    },
+    {
+      "source": "/product/iiyama-pl7564u-75-4k-commercial-display",
+      "destination": "/dry-hire/equipment/category/video/",
+      "permanent": true
+    },
+    {
+      "source": "/product/db-audiotechnik-d20-amplifier",
+      "destination": "/dry-hire/equipment/category/amplifiers/",
+      "permanent": true
+    },
+    {
+      "source": "/product/drum-mic-set-audix-dp7",
+      "destination": "/dry-hire/equipment/category/microphones/",
+      "permanent": true
+    },
+    {
+      "source": "/product/elumen8-evora-850-zoom-spot",
+      "destination": "/dry-hire/equipment/category/stage-lighting/",
+      "permanent": true
+    },
+    {
+      "source": "/product/elumen8-tour-batten-tw-ip-rated",
+      "destination": "/dry-hire/equipment/category/stage-lighting/",
+      "permanent": true
+    },
+    {
+      "source": "/product/gtdeck-staging-2m-x-1m",
+      "destination": "/dry-hire/equipment/category/staging/",
+      "permanent": true
+    },
+    {
+      "source": "/product/broughton-ffht32-3phase-28kw-heater",
+      "destination": "/dry-hire/equipment/category/power/",
+      "permanent": true
+    },
+    {
+      "source": "/product/500mm-x-1000mm-led-panel-3-9mm-pitch-ip-rated",
+      "destination": "/dry-hire/equipment/category/video/",
+      "permanent": true
+    },
+    {
+      "source": "/product/500mm-x-500mm-led-panel-3-9mm-pitch-ip-rated",
+      "destination": "/dry-hire/equipment/category/video/",
+      "permanent": true
+    },
+    {
+      "source": "/product/allen-heath-sq5-plus",
+      "destination": "/dry-hire/equipment/category/mixers/",
+      "permanent": true
+    },
+    {
+      "source": "/product/rcf-nx-932-a-active-speaker",
+      "destination": "/dry-hire/equipment/category/speakers/",
+      "permanent": true
+    },
+    {
+      "source": "/product/rcf-sub-18-ax-active-subwoofer",
+      "destination": "/dry-hire/equipment/category/speakers/",
+      "permanent": true
+    },
+    {
+      "source": "/product/chamsys-quickq-20",
+      "destination": "/dry-hire/equipment/category/dimmers-data/",
+      "permanent": true
+    },
+    {
+      "source": "/product/jcb-g65qs-60kva-generator",
+      "destination": "/dry-hire/equipment/category/power/",
+      "permanent": true
+    },
+    {
+      "source": "/hire-duration/day-hire",
+      "destination": "/dry-hire/",
+      "permanent": true
+    },
+    {
+      "source": "/hire-duration/week-hire",
+      "destination": "/dry-hire/",
       "permanent": true
     },
     {
@@ -2002,6 +2162,16 @@
     {
       "source": "/news/page/:rest*",
       "destination": "/news-and-projects/",
+      "permanent": true
+    },
+    {
+      "source": "/shop/page/:rest*",
+      "destination": "/dry-hire/equipment/",
+      "permanent": true
+    },
+    {
+      "source": "/hire-duration/:rest*",
+      "destination": "/dry-hire/",
       "permanent": true
     },
     {
