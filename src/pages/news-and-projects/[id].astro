@@ -66,7 +66,7 @@ if (data.eventType) details.push({ label: 'Event', value: data.eventType });
           <a href={project ? '/news-and-projects/projects/' : '/news-and-projects/news/'}>{project ? 'Projects' : 'News'}</a>
         </nav>
         <div class="entry-head__meta">
-          <span class:list={['tag', { 'tag--orange': project }]}>{typeLabel(entry)}</span>
+          <span class="tag">{typeLabel(entry)}</span>
           {!data.hideDate && <time datetime={data.date.toISOString()}>{formatDate(data.date)}</time>}
           {data.services.map((s) => <a class="tag tag--outline" href={`/news-and-projects/service/${s}/`}>{serviceLabel[s]}</a>)}
         </div>
