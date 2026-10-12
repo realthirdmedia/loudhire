@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 import { packageById } from '../../lib/quotePackages';
-import { checkoutOpportunity, createMember, createProject, findMemberByEmail, findOrganisation, getRmsProducts, hasRmsKey, rmsRequest } from '../../lib/currentRms';
+import { checkoutOpportunity, createMember, createProject, findMemberByEmail, findOrganisation, getRmsProductDetail, getRmsProducts, hasRmsKey, rmsRequest } from '../../lib/currentRms';
 
 export const prerender = false;
 
@@ -13,7 +13,7 @@ function tooManyRequests(ip: string) {
   return recent.length > 5;
 }
 
-type RequestedLine = { type: 'product' | 'package'; id: number | string; quantity: number; fullBand?: boolean };
+type RequestedLine = { type: 'product' | 'package'; id: number | string; quantity: number; fullBand?: boolean; components?: Record<string, number> };
 type RequestedPeriod = {
   start: string; end: string; venue: string;
   delivery: boolean; collection: boolean; setup: boolean; engineer: boolean;
@@ -97,7 +97,21 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     if (item.type === 'product') {
       const product = productMap.get(Number(item.id));
       if (!product) return json(400, { error: 'An equipment item has changed. Please refresh the list and try again.' });
-      lines.push({ type: 'product' as const, quantity: item.quantity, product });
+      const detail = product.hasAccessories || product.isPackage || item.components ? await getRmsProductDetail(product.id).catch(() => null) : null;
+      if ((product.hasAccessories || product.isPackage || item.components) && !detail) return json(503, { error: 'Package details could not be verified. Please try again shortly.' });
+      const supplied = item.components && typeof item.components === 'object' && !Array.isArray(item.components) ? item.components : {};
+      if (Object.keys(supplied).some((id) => !detail?.components.some((component) => String(component.id) === id))) {
+        return json(400, { error: 'A package component has changed. Please refresh and try again.' });
+      }
+      const components = detail?.components.map((component) => {
+        const selected = component.inclusion === 'mandatory' ? component.quantity :
+          supplied[String(component.id)] ?? (component.inclusion === 'default' ? component.quantity : 0);
+        return { ...component, selected };
+      }) ?? [];
+      if (components.some((component) => !Number.isInteger(component.selected) || component.selected < 0 || component.selected > 100)) {
+        return json(400, { error: 'Check the package component quantities.' });
+      }
+      lines.push({ type: 'product' as const, quantity: item.quantity, product: detail ?? product, components });
     } else if (item.type === 'package') {
       const pkg = packageById(String(item.id));
       if (!pkg) return json(400, { error: 'A package has changed. Please refresh and try again.' });
@@ -107,7 +121,8 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
   const reference = `WEB-${crypto.randomUUID().slice(0, 8).toUpperCase()}`;
   const lineDescriptions = lines.map((line) => line.type === 'product'
-    ? `${line.quantity} × ${line.product.name} (RMS product ${line.product.id})${line.product.price === null ? ' — price to confirm' : ` — RMS rate £${line.product.price.toFixed(2)}${line.product.rateName ? ` ${line.product.rateName}` : ''}`}`
+    ? [`${line.quantity} × ${line.product.name} (RMS product ${line.product.id})${line.product.weekPrice === null ? ' — price to confirm' : ` — RMS weekly base £${line.product.weekPrice.toFixed(2)}${line.product.rateName ? ` (${line.product.rateName})` : ''}`}`,
+      ...line.components.map((component) => `  ${component.selected * line.quantity} × ${component.name} (${component.inclusion}${component.zeroPriced ? ', no extra charge' : ''})`)].join('\n')
     : `${line.quantity} × ${line.pkg.group}: ${line.pkg.name} (${line.pkg.duration}) — from £${line.pkg.price.toFixed(2)} + VAT${line.fullBand ? `, full band option +£${line.pkg.extras?.[0]?.price ?? 0} + VAT` : ''}`);
   const periodDescriptions = periods.map((p, i) => [
     `Date ${i + 1}: ${p.start} to ${p.end}`,
@@ -163,8 +178,16 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
           item_id: line.product.id, item_type: 'Product', name: line.product.name,
           opportunity_item_type: 1, transaction_type: 1, quantity: line.quantity,
           ...(line.product.rateDefinitionId ? { rate_definition_id: line.product.rateDefinitionId } : {}),
-          price: String(line.product.price ?? 0), starts_at: start, ends_at: end,
-          description: line.product.price === null ? 'Rate to confirm' : '',
+          price: String(line.product.weekPrice ?? 0), starts_at: start, ends_at: end,
+          description: line.product.weekPrice === null ? 'Rate to confirm' : '',
+          ...(line.components.length ? { accessory_items: Object.fromEntries(line.components.filter((component) => component.selected > 0).map((component, accessoryIndex) => [String(accessoryIndex), {
+            item_id: component.productId, transaction_type: 1,
+            accessory_quantity: component.selected, quantity: component.selected * line.quantity,
+            accessory_inclusion_type: component.inclusion === 'mandatory' ? 1 : component.inclusion === 'optional' ? 2 : 0,
+            accessory_mode: component.mode,
+            ...(component.rateDefinitionId ? { rate_definition_id: component.rateDefinitionId } : {}),
+            price: String(component.zeroPriced ? 0 : component.weekPrice ?? 0),
+          }])) } : {}),
         }));
         const created = rmsItems.length
           ? await checkoutOpportunity(opportunity, rmsItems)
