@@ -76,7 +76,7 @@ const description =
       <img src="/images/boots.png" alt="Boots" width="400" height="150" loading="lazy" />
       <img src="/images/aerospace-bristol.png" alt="Aerospace Bristol" width="400" height="150" loading="lazy" />
       <img class="client-ribbon__wurzels" src="/images/wurzels-logo.png" alt="The Wurzels" width="2170" height="725" loading="lazy" />
-      <img src="/images/wood.png" alt="Wood" width="400" height="150" loading="lazy" />
+      <img class="client-ribbon__wood" src="/images/wood.png" alt="Wood" width="400" height="150" loading="lazy" />
       <img src="/images/university-of-bristol.png" alt="University of Bristol" width="400" height="150" loading="lazy" />
     </div>
   </section>
@@ -334,6 +334,9 @@ const description =
   }
   .client-ribbon__wurzels {
     filter: brightness(0);
+  }
+  .client-ribbon__wood {
+    transform: translateX(clamp(0.35rem, 1vw, 1.25rem));
   }
   /* Trust strip */
   .trust {
