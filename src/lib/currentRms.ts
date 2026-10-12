@@ -142,7 +142,8 @@ export async function getRmsProducts(): Promise<RmsProduct[]> {
 export async function getRmsProductDetail(id: number): Promise<RmsProductDetail> {
   const cached = detailCache.get(id);
   if (cached && cached.expires > Date.now()) return cached.detail;
-  const listed = (await getRmsProducts()).find((product) => product.id === id);
+  const catalogue = await getRmsProducts();
+  const listed = catalogue.find((product) => product.id === id);
   if (!listed) throw new Error('Product is not in the current catalogue');
   const definitions = await getRateDefinitions();
   const result = await rmsRequest<{ product?: RawProduct }>(`/products/${id}?include%5B%5D=accessories`);
@@ -155,9 +156,12 @@ export async function getRmsProductDetail(id: number): Promise<RmsProductDetail>
   for (const accessory of accessories) {
     const productId = Number(accessory.related_id);
     try {
-      const childResult = await rmsRequest<{ product?: RawProduct }>(`/products/${productId}`);
-      if (!childResult.product || childResult.product.active === false) continue;
-      const child = normalizeProduct(childResult.product, definitions);
+      let child = catalogue.find((product) => product.id === productId);
+      if (!child) {
+        const childResult = await rmsRequest<{ product?: RawProduct }>(`/products/${productId}`);
+        if (!childResult.product || childResult.product.active === false) continue;
+        child = normalizeProduct(childResult.product, definitions);
+      }
       const type = Number(accessory.inclusion_type);
       components.push({
         id: Number(accessory.id), productId, name: child.name || String(accessory.related_name ?? `Product ${productId}`),
@@ -171,7 +175,8 @@ export async function getRmsProductDetail(id: number): Promise<RmsProductDetail>
       console.warn(`[rms-product] accessory ${Number(accessory.id)} could not be loaded`, error);
     }
   }
-  const detail = { ...normalizeProduct(raw, definitions), components };
+  const detail = { ...normalizeProduct(raw, definitions), dayPrice: listed.dayPrice, weekPrice: listed.weekPrice,
+    rateDefinitionId: listed.rateDefinitionId, rateName: listed.rateName, components };
   detailCache.set(id, { expires: Date.now() + 5 * 60_000, detail });
   if (detailCache.size > 100) detailCache.delete(detailCache.keys().next().value!);
   return detail;
