@@ -92,7 +92,7 @@ function normalizeProduct(raw: RawProduct, definitions: Map<number, RawProduct>)
   const rateName = String(definition?.name ?? rate.rate_definition_name ?? '').trim() || null;
   const weekPrice = money(rate.price ?? rate.amount ?? rate.value ?? null);
   const percent = ratePercent(definition);
-  const dayPrice = weekPrice !== null && percent !== null ? Math.round(weekPrice * percent) / 100 : null;
+  const dayPrice = weekPrice === 0 ? 0 : weekPrice !== null && percent !== null ? Math.round(weekPrice * percent) / 100 : null;
   const icon = raw.icon && typeof raw.icon === 'object' ? raw.icon : {};
   const image = typeof icon.url === 'string' && /^https:\/\//.test(icon.url) ? icon.url : null;
   return {
