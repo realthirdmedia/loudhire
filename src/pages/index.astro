@@ -75,7 +75,7 @@ const description =
       <img src="/images/bbc.png" alt="BBC" width="400" height="150" loading="lazy" />
       <img src="/images/boots.png" alt="Boots" width="400" height="150" loading="lazy" />
       <img src="/images/aerospace-bristol.png" alt="Aerospace Bristol" width="400" height="150" loading="lazy" />
-      <img src="/images/greenpeace.png" alt="Greenpeace" width="400" height="150" loading="lazy" />
+      <img src="/images/wurzels-logo.png" alt="The Wurzels" width="2170" height="725" loading="lazy" />
       <img src="/images/wood.png" alt="Wood" width="400" height="150" loading="lazy" />
       <img src="/images/university-of-bristol.png" alt="University of Bristol" width="400" height="150" loading="lazy" />
     </div>
@@ -207,6 +207,13 @@ const description =
           ))
         }
       </div>
+      <p class="reviews-note">
+        <a href="https://maps.google.com/?cid=5436811372523858860" rel="noopener" aria-label="Read Loud Hire's five-star Google reviews">
+          <span class="reviews-note__stars" aria-hidden="true">★★★★★</span>
+          <strong>5.0 on Google</strong>
+          <span class="reviews-note__link">Read our reviews →</span>
+        </a>
+      </p>
     </div>
   </section>
 
@@ -325,7 +332,6 @@ const description =
     max-height: 6.5rem;
     object-fit: contain;
   }
-
   /* Trust strip */
   .trust {
     background: var(--c-paper);
@@ -487,6 +493,32 @@ const description =
   }
   .quote figcaption strong {
     color: var(--c-ink);
+  }
+  .reviews-note {
+    margin: clamp(2rem, 4vw, 3rem) 0 0;
+    text-align: center;
+  }
+  .reviews-note a {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem 0.65rem;
+    color: var(--c-ink);
+    text-decoration: none;
+    font-size: var(--text-sm);
+  }
+  .reviews-note a:hover .reviews-note__link {
+    text-decoration: underline;
+  }
+  .reviews-note__stars {
+    color: var(--c-orange-deep);
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+  .reviews-note__link {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
   }
 
   .latest__more {
