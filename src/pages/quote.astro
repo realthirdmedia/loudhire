@@ -304,6 +304,7 @@ const packagePhoto = (id: string) => id.startsWith('festival-extra-large') ? fes
 <script>
   import { quotePackages, type QuotePackage } from '../lib/quotePackages';
   import type { RmsProduct, RmsProductDetail } from '../lib/currentRms';
+  import { searchCatalog } from '../lib/catalogSearch';
 
   type BasketLine = { type: 'product' | 'package'; id: number | string; quantity: number; fullBand?: boolean; components?: Record<string, number> };
   const storeKey = 'loudhire-quote-basket-v1';
@@ -651,7 +652,7 @@ const packagePhoto = (id: string) => id.startsWith('festival-extra-large') ? fes
     const equipment = products.filter((p) => !p.isPackage);
     const featured = ['Speakers', 'Microphones', 'Mixers', 'Lighting', 'Staging', 'Video'];
     const picks = featured.flatMap((group) => equipment.filter((product) => product.group === group && product.image).slice(0, 2));
-    const filtered = query ? equipment.filter((p) => `${p.name} ${p.group} ${p.description}`.toLowerCase().includes(query)) :
+    const filtered = query ? searchCatalog(equipment, query) :
       selectedGroup === 'home' ? picks : selectedGroup === null ? equipment : equipment.filter((p) => p.group === selectedGroup);
     byId('catalog-home').hidden = !!query || selectedGroup !== 'home';
     byId('catalog-results-heading').textContent = query ? 'Search results' : selectedGroup === 'home' ? 'Equipment to explore' : selectedGroup || 'All equipment';
@@ -679,7 +680,7 @@ const packagePhoto = (id: string) => id.startsWith('festival-extra-large') ? fes
 
   function renderRmsPackages() {
     const query = (byId('rms-package-search') as HTMLInputElement).value.trim().toLowerCase();
-    const packages = products.filter((p) => p.isPackage && `${p.name} ${p.group} ${p.description}`.toLowerCase().includes(query));
+    const packages = searchCatalog(products.filter((p) => p.isPackage), query);
     const container = byId('rms-package-list'); container.replaceChildren();
     for (const product of packages) {
       const card = el('article', 'catalog-card');
