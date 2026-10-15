@@ -41,9 +41,10 @@ const description =
         quality={70}
       />
       <iframe
+        id="hero-video"
         class="hero__video"
         title="Loud Hire event production video"
-        data-src="https://www.youtube-nocookie.com/embed/aDiawmgLrug?autoplay=1&mute=1&controls=0&loop=1&playlist=aDiawmgLrug&playsinline=1&rel=0&iv_load_policy=3"
+        data-src="https://www.youtube-nocookie.com/embed/aDiawmgLrug?enablejsapi=1&autoplay=1&mute=1&controls=0&loop=1&playlist=aDiawmgLrug&playsinline=1&rel=0&iv_load_policy=3&disablekb=1"
         allow="autoplay; encrypted-media"
         referrerpolicy="strict-origin-when-cross-origin"
         tabindex="-1"
@@ -64,9 +65,55 @@ const description =
   </section>
 
   <script>
+    type BackgroundPlayer = { mute(): void; playVideo(): void; pauseVideo(): void; getPlayerState(): number };
+    type PlayerEvent = { target: BackgroundPlayer; data?: number };
+    const youtubeWindow = window as typeof window & {
+      YT?: { Player: new (element: HTMLIFrameElement, options: {
+        events: Record<string, (event: PlayerEvent) => void>;
+      }) => BackgroundPlayer };
+      onYouTubeIframeAPIReady?: () => void;
+    };
     const heroVideo = document.querySelector<HTMLIFrameElement>('.hero__video');
-    if (heroVideo && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      heroVideo.src = heroVideo.dataset.src || '';
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (heroVideo && !reducedMotion.matches) {
+      let revealTimer: ReturnType<typeof setTimeout> | undefined;
+      const hidePlayer = () => {
+        clearTimeout(revealTimer);
+        heroVideo.classList.remove('is-playing');
+      };
+      const initialisePlayer = () => {
+        if (!youtubeWindow.YT || reducedMotion.matches) return;
+        const source = new URL(heroVideo.dataset.src!);
+        source.searchParams.set('origin', window.location.origin);
+        heroVideo.src = source.toString();
+        const player = new youtubeWindow.YT.Player(heroVideo, {
+          events: {
+            onReady: ({ target }) => { target.mute(); target.playVideo(); },
+            onStateChange: ({ target, data }) => {
+              hidePlayer();
+              // Keep the poster visible until playback and the startup overlay have settled.
+              if (data === 1) revealTimer = setTimeout(() => {
+                if (target.getPlayerState() === 1 && !reducedMotion.matches) heroVideo.classList.add('is-playing');
+              }, 3000);
+            },
+            onError: hidePlayer,
+            onAutoplayBlocked: hidePlayer,
+          },
+        });
+        reducedMotion.addEventListener('change', () => {
+          if (reducedMotion.matches) { hidePlayer(); player.pauseVideo(); }
+          else player.playVideo();
+        });
+      };
+      if (youtubeWindow.YT?.Player) initialisePlayer();
+      else {
+        const previousReady = youtubeWindow.onYouTubeIframeAPIReady;
+        youtubeWindow.onYouTubeIframeAPIReady = () => { previousReady?.(); initialisePlayer(); };
+        const script = document.createElement('script');
+        script.src = 'https://www.youtube.com/iframe_api';
+        script.async = true;
+        document.head.append(script);
+      }
     }
   </script>
 
@@ -278,11 +325,17 @@ const description =
     position: absolute;
     top: 50%;
     left: 50%;
-    width: max(100cqw, 177.78cqh);
-    height: max(56.25cqw, 100cqh);
+    /* Overscan the player so its title and edge controls stay outside the hero. */
+    width: max(calc(100cqw + 341.34px), calc(177.78cqh + 341.34px));
+    height: max(calc(56.25cqw + 192px), calc(100cqh + 192px));
     border: 0;
     transform: translate(-50%, -50%);
     pointer-events: none;
+    opacity: 0;
+  }
+  .hero__video.is-playing {
+    opacity: 1;
+    transition: opacity 0.35s ease;
   }
   .hero__media::after {
     content: '';
@@ -567,7 +620,7 @@ const description =
       min-height: 0;
     }
     .hero__content {
-      padding-top: 2.5rem;
+      padding-top: calc(2.5rem + 6px);
     }
     .hero__strap {
       display: none;
