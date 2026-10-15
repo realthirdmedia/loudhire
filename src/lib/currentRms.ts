@@ -58,8 +58,11 @@ export async function rmsRequest<T>(path: string, init: RequestInit = {}): Promi
     signal: init.signal ?? AbortSignal.timeout(15_000),
   });
   if (!response.ok) {
-    // Avoid logging the request body or any customer data.
-    throw new Error(`Current RMS ${init.method ?? 'GET'} ${path.split('?')[0]} returned ${response.status}`);
+    // Log validation field names, never submitted values or customer data.
+    const body = await response.json().catch(() => null);
+    const fields = body?.errors && typeof body.errors === 'object' && !Array.isArray(body.errors)
+      ? Object.keys(body.errors).filter((field) => /^[a-z_][a-z0-9_.]{0,80}$/i.test(field)) : [];
+    throw new Error(`Current RMS ${init.method ?? 'GET'} ${path.split('?')[0]} returned ${response.status}${fields.length ? ` (validation fields: ${fields.join(', ')})` : ''}`);
   }
   return response.json() as Promise<T>;
 }
@@ -195,8 +198,13 @@ export async function findOrganisation(name: string): Promise<any | null> {
 }
 
 export async function createMember(member: Record<string, unknown>) {
+  // Loud Hire requires an owner on the Organisation membership, not on the outer Member.
+  const membership = {
+    ...(member.membership_type === 'Organisation' ? { owned_by: Number(import.meta.env.CURRENT_RMS_OWNER_ID || 1) } : {}),
+    ...(member.membership && typeof member.membership === 'object' ? member.membership : {}),
+  };
   const result = await rmsRequest<{ member: { id: number; addresses?: { id: number }[] } }>('/members', {
-    method: 'POST', body: JSON.stringify({ member }),
+    method: 'POST', body: JSON.stringify({ member: { ...member, membership } }),
   });
   return result.member;
 }
