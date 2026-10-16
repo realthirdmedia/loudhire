@@ -32,7 +32,7 @@ const json = (status: number, body: Record<string, unknown>) => new Response(JSO
 });
 
 async function sendEmail(subject: string, body: string, replyTo: string) {
-  const to = import.meta.env.ENQUIRY_TO || 'tom@loudhire.co.uk';
+  const to = import.meta.env.ENQUIRY_TO || 'tomgrey@loudhire.co.uk';
   const resendKey = import.meta.env.RESEND_API_KEY;
   if (resendKey) {
     const from = import.meta.env.ENQUIRY_FROM || 'website@loudhire.co.uk';

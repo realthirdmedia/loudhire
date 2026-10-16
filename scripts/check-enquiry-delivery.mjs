@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import ts from 'typescript';
 
-const env = { RESEND_API_KEY: 'test-only', ENQUIRY_TO: 'tom@loudhire.co.uk', ENQUIRY_FROM: 'website@notifications.loudhire.co.uk' };
+const env = { RESEND_API_KEY: 'test-only', ENQUIRY_TO: 'tomgrey@loudhire.co.uk', ENQUIRY_FROM: 'website@notifications.loudhire.co.uk' };
 const source = (await readFile(new URL('../src/pages/api/enquiry.ts', import.meta.url), 'utf8')).replaceAll('import.meta.env', JSON.stringify(env));
 const code = ts.transpileModule(source, { compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext } }).outputText;
 const { POST } = await import(`data:text/javascript;base64,${Buffer.from(code).toString('base64')}`);
@@ -14,7 +14,7 @@ let providerBody = { id: 'test-message-reference' };
 globalThis.fetch = async (url, options) => {
   assert.equal(url, 'https://api.resend.com/emails');
   const email = JSON.parse(options.body);
-  assert.deepEqual(email.to, ['tom@loudhire.co.uk']);
+  assert.deepEqual(email.to, ['tomgrey@loudhire.co.uk']);
   assert.equal(email.from, 'Loud Hire website <website@notifications.loudhire.co.uk>');
   assert.equal(email.reply_to, 'customer@example.com');
   sends++;

@@ -3,7 +3,7 @@ import { readFile } from 'node:fs/promises';
 import ts from 'typescript';
 
 // Exercise the real handlers with provider responses matching the live failures.
-const env = { CURRENT_RMS_API_KEY: 'test-only', CURRENT_RMS_OWNER_ID: '1', ENQUIRY_TO: 'tom@loudhire.co.uk' };
+const env = { CURRENT_RMS_API_KEY: 'test-only', CURRENT_RMS_OWNER_ID: '1', ENQUIRY_TO: 'tomgrey@loudhire.co.uk' };
 const compile = async (file, imports = {}) => {
   let source = await readFile(new URL(file, import.meta.url), 'utf8');
   source = source.replaceAll('import.meta.env', JSON.stringify(env));
@@ -33,7 +33,7 @@ globalThis.fetch = async (input, init = {}) => {
   const body = init.body ? JSON.parse(init.body) : null;
   if (url.hostname === 'formsubmit.co') {
     notifications++;
-    assert.equal(url.pathname, '/ajax/tom@loudhire.co.uk');
+    assert.equal(url.pathname, '/ajax/tomgrey@loudhire.co.uk');
     return response({ success: !emailFails }, emailFails ? 403 : 200);
   }
   assert.equal(url.hostname, 'api.current-rms.com');

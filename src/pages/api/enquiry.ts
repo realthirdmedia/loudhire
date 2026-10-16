@@ -15,7 +15,7 @@ export const prerender = false;
  * Responds with JSON when the client asks for it (fetch), otherwise redirects.
  */
 
-const TO = import.meta.env.ENQUIRY_TO || 'tom@loudhire.co.uk';
+const TO = import.meta.env.ENQUIRY_TO || 'tomgrey@loudhire.co.uk';
 const FROM = import.meta.env.ENQUIRY_FROM || 'website@loudhire.co.uk';
 const RESEND_API_KEY = import.meta.env.RESEND_API_KEY;
 
