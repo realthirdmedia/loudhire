@@ -23,7 +23,7 @@ const service = { '@context': 'https://schema.org', '@type': 'Service', name: pa
       <nav class="categories" aria-label={`${page.section} equipment categories`}>
         {cats.map((c) => <a class="tag tag--outline" href={categoryUrl(c)}>{c.name} ({c.count})</a>)}
       </nav>
-      {page.section === 'sound' && <p>Prefer a ready-made setup? <a href="/dry-hire/party-packages/">Compare our party PA packages</a>.</p>}
+      {page.section === 'sound' && <p>Prefer a ready-made setup? <a href="/dry-hire/party-packages/">Compare our FOH PA packages</a>.</p>}
       <div class="equipment-grid">{items.map((item) => <EquipmentCard item={item} />)}</div>
       <p class="support">Need setup and an operator? <a href={`/event-production/${page.section}/`}>Explore our {page.section} production service</a>.</p>
     </div>

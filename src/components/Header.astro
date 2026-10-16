@@ -69,6 +69,10 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
     height: 2.55rem;
     width: auto;
   }
+  @media (min-width: 64.01rem) {
+    .header__logo { flex-shrink: 0; }
+    .header__logo img { height: 3.2rem; }
+  }
   .header__nav ul {
     list-style: none;
     margin: 0;
@@ -154,7 +158,7 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
       display: none;
     }
   }
-  @media (max-width: 64rem) {
+  @media (max-width: 74rem) {
     .header__basket{display:flex}
     .header__toggle {
       display: flex;

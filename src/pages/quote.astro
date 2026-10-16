@@ -50,7 +50,7 @@ const packagePhoto = (id: string) => id.startsWith('festival-extra-large') ? fes
           <nav id="package-types-nav" aria-label="Package categories" hidden>
             <h3>Packages</h3>
             <div class="package-tabs" role="group" aria-label="Package type">
-              <button type="button" class="package-tab" data-package-tab="RMS hire" aria-selected="true">Equipment hire</button>
+              <button type="button" class="package-tab" data-package-tab="RMS hire" aria-selected="true">All hire packages</button>
               <button type="button" class="package-tab" data-package-tab="Festival production" aria-selected="false">Festival production</button>
               <button type="button" class="package-tab" data-package-tab="Corporate AV" aria-selected="false">Corporate AV</button>
             </div>
@@ -90,7 +90,7 @@ const packagePhoto = (id: string) => id.startsWith('festival-extra-large') ? fes
           </div>
           <div class="package-type-tiles" role="group" aria-label="Choose a package type">
             <button class="catalog-tile package-type-tile" type="button" data-package-tile="RMS hire" aria-pressed="true">
-              <span><strong>Equipment hire</strong></span><img src={equipmentHireImage.src} alt="" loading="lazy" />
+              <span><strong>All hire packages</strong></span><img src={equipmentHireImage.src} alt="" loading="lazy" />
             </button>
             <button class="catalog-tile package-type-tile" type="button" data-package-tile="Festival production" aria-pressed="false">
               <span><strong>Festival production</strong></span><img src={festivalImage.src} alt="" loading="lazy" />
@@ -319,6 +319,7 @@ const packagePhoto = (id: string) => id.startsWith('festival-extra-large') ? fes
   let editingIndex: number | null = null;
   let visibleCount = 24;
   let selectedGroup: string | null = 'home';
+  let selectedPackageType = 'RMS hire';
   const byId = (id: string) => document.getElementById(id)!;
   const list = byId('catalog-list');
   const status = byId('catalog-status');
@@ -680,7 +681,8 @@ const packagePhoto = (id: string) => id.startsWith('festival-extra-large') ? fes
 
   function renderRmsPackages() {
     const query = (byId('rms-package-search') as HTMLInputElement).value.trim().toLowerCase();
-    const packages = searchCatalog(products.filter((p) => p.isPackage), query);
+    const category = selectedPackageType.startsWith('rms:') ? selectedPackageType.slice(4) : null;
+    const packages = searchCatalog(products.filter((p) => p.isPackage && (!category || p.group === category)), query);
     const container = byId('rms-package-list'); container.replaceChildren();
     for (const product of packages) {
       const card = el('article', 'catalog-card');
@@ -697,7 +699,9 @@ const packagePhoto = (id: string) => id.startsWith('festival-extra-large') ? fes
       }));
       foot.append(button); body.append(foot); card.append(media, body); container.append(card);
     }
-    byId('rms-package-status').textContent = `${packages.length} hire package${packages.length === 1 ? '' : 's'} from Current RMS`;
+    byId('rms-package-status').textContent = packages.length
+      ? `${packages.length} ${category || 'hire package' + (packages.length === 1 ? '' : 's')} from Current RMS`
+      : 'No packages match this search. Try another name or choose a different package category.';
   }
 
   function renderBasket() {
@@ -754,7 +758,8 @@ const packagePhoto = (id: string) => id.startsWith('festival-extra-large') ? fes
 
   document.querySelectorAll<HTMLButtonElement>('.package-add').forEach((button) => button.addEventListener('click', () => add('package', button.dataset.packageId!)));
   function selectPackageType(group: string) {
-    const rms = group === 'RMS hire';
+    selectedPackageType = group;
+    const rms = group === 'RMS hire' || group.startsWith('rms:');
     document.querySelectorAll<HTMLButtonElement>('.package-tab').forEach((tab) => tab.setAttribute('aria-selected', String(tab.dataset.packageTab === group)));
     document.querySelectorAll<HTMLButtonElement>('.package-type-tile').forEach((tile) => tile.setAttribute('aria-pressed', String(tile.dataset.packageTile === group)));
     document.querySelectorAll<HTMLElement>('.package-card').forEach((card) => { card.hidden = rms || card.dataset.packageGroup !== group; });
@@ -762,6 +767,31 @@ const packagePhoto = (id: string) => id.startsWith('festival-extra-large') ? fes
     byId('rms-package-status').hidden = !rms;
     byId('rms-package-list').hidden = !rms;
     document.querySelector<HTMLElement>('.package-note')!.hidden = rms;
+    if (rms) renderRmsPackages();
+  }
+  function renderPackageCategories() {
+    const groups = [...new Set(products.filter((p) => p.isPackage).map((p) => p.group))].sort((a, b) => a.localeCompare(b));
+    const tabs = document.querySelector('.package-tabs')!;
+    const tiles = document.querySelector('.package-type-tiles')!;
+    const firstStaticTab = tabs.querySelector('[data-package-tab="Festival production"]');
+    const firstStaticTile = tiles.querySelector('[data-package-tile="Festival production"]');
+    for (const group of groups) {
+      const key = `rms:${group}`;
+      const tab = el('button', 'package-tab', group) as HTMLButtonElement;
+      tab.type = 'button'; tab.dataset.packageTab = key; tab.setAttribute('aria-selected', 'false');
+      tab.addEventListener('click', () => selectPackageType(key));
+      tabs.insertBefore(tab, firstStaticTab);
+      const tile = el('button', 'catalog-tile package-type-tile') as HTMLButtonElement;
+      tile.type = 'button'; tile.dataset.packageTile = key; tile.setAttribute('aria-pressed', 'false');
+      const label = el('span'); label.append(el('strong', '', group)); tile.append(label);
+      const photo = products.find((p) => p.isPackage && p.group === group && p.image)?.image;
+      if (photo) { const img = document.createElement('img'); img.src = photo; img.alt = ''; img.loading = 'lazy'; tile.append(img); }
+      tile.addEventListener('click', () => { selectPackageType(key); byId('package-results').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+      tiles.insertBefore(tile, firstStaticTile);
+    }
+    const requestedGroup = new URLSearchParams(location.search).get('packageGroup');
+    const matched = groups.find((group) => group.toLowerCase() === requestedGroup?.toLowerCase());
+    selectPackageType(matched ? `rms:${matched}` : selectedPackageType);
   }
   document.querySelectorAll<HTMLButtonElement>('.package-tab').forEach((button) => button.addEventListener('click', () => selectPackageType(button.dataset.packageTab!)));
   document.querySelectorAll<HTMLButtonElement>('.package-type-tile').forEach((button) => button.addEventListener('click', () => {
@@ -775,7 +805,12 @@ const packagePhoto = (id: string) => id.startsWith('festival-extra-large') ? fes
   fetch('/api/quote-products/').then(async (response) => {
     if (!response.ok) throw new Error('unavailable');
     const result = await response.json(); products = result.products; 
-    renderCategoryNav(); renderCatalog(); renderRmsPackages(); renderBasket();
+    renderCategoryNav(); renderCatalog(); renderPackageCategories(); renderBasket();
+    const requestedProduct = Number(new URLSearchParams(location.search).get('product'));
+    if (products.some((p) => p.id === requestedProduct && p.isPackage)) {
+      showRoute('packages');
+      openConfig(requestedProduct).catch(() => { byId('rms-package-status').textContent = 'Package details could not be loaded. Please try again.'; });
+    }
   }).catch(() => { status.textContent = 'The live equipment list is temporarily unavailable. You can still request a package or contact us directly.'; byId('rms-package-status').textContent = 'Live hire packages are temporarily unavailable.'; });
 
   const periods = byId('periods');

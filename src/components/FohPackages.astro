@@ -1,0 +1,72 @@
+---
+import { getRmsProducts, hasRmsKey, type RmsProduct } from '../lib/currentRms';
+
+let packages: RmsProduct[] = [];
+if (hasRmsKey()) {
+  try { packages = (await getRmsProducts()).filter((item) => item.isPackage && /^foh\s+packages?$/i.test(item.group)); }
+  catch { console.warn('[foh-packages] Build catalogue unavailable; the page will load the live catalogue in the browser.'); }
+}
+const quoteUrl = (id: number) => `/quote/?packageGroup=FOH%20Packages&product=${id}#packages`;
+---
+
+<div class="foh-packages">
+  <p class="foh-status muted" role="status">{packages.length ? `${packages.length} FOH packages` : 'Loading FOH packages…'}</p>
+  <div class="foh-grid">
+    {packages.map((item) => (
+      <article class="foh-card">
+        {item.image && <img src={item.image} alt="" loading="lazy" />}
+        <div class="foh-card__body">
+          <h3>{item.name}</h3>
+          {item.description && <p>{item.description.slice(0, 240)}</p>}
+          <a class="text-link" href={quoteUrl(item.id)}>View package &amp; check availability</a>
+        </div>
+      </article>
+    ))}
+  </div>
+  <noscript><p><a href="/quote/?packageGroup=FOH%20Packages#packages">Browse FOH packages in the quote builder</a>. Enable JavaScript to see the latest catalogue and configure a package.</p></noscript>
+</div>
+
+<script>
+  import type { RmsProduct } from '../lib/currentRms';
+  async function refreshFohPackages() {
+    const sections = document.querySelectorAll<HTMLElement>('.foh-packages');
+    if (!sections.length) return;
+    try {
+      const response = await fetch('/api/quote-products/');
+      if (!response.ok) throw new Error('unavailable');
+      const { products } = await response.json() as { products: RmsProduct[] };
+      const packages = products.filter((item) => item.isPackage && /^foh\s+packages?$/i.test(item.group));
+      for (const section of sections) {
+        const grid = section.querySelector('.foh-grid')!;
+        grid.replaceChildren();
+        for (const item of packages) {
+          const card = document.createElement('article'); card.className = 'foh-card';
+          if (item.image) { const img = document.createElement('img'); img.src = item.image; img.alt = ''; img.loading = 'lazy'; card.append(img); }
+          const body = document.createElement('div'); body.className = 'foh-card__body';
+          const title = document.createElement('h3'); title.textContent = item.name; body.append(title);
+          if (item.description) { const text = document.createElement('p'); text.textContent = item.description.slice(0, 240); body.append(text); }
+          const link = document.createElement('a'); link.className = 'text-link'; link.textContent = 'View package & check availability';
+          link.href = `/quote/?packageGroup=${encodeURIComponent(item.group)}&product=${item.id}#packages`;
+          body.append(link); card.append(body); grid.append(card);
+        }
+        section.querySelector('.foh-status')!.textContent = packages.length ? `${packages.length} FOH packages` : 'No FOH packages are currently listed. Contact us to discuss a system for your event.';
+      }
+    } catch {
+      for (const section of sections) section.querySelector('.foh-status')!.textContent = section.querySelector('.foh-card')
+        ? 'Live updates are temporarily unavailable. Check the quote builder for current availability.'
+        : 'The live packages are temporarily unavailable. Please contact us to discuss your requirements.';
+    }
+  }
+  refreshFohPackages();
+</script>
+
+<style is:global>
+  .foh-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: 1.25rem; }
+  .foh-card { display: flex; flex-direction: column; border: 1px solid var(--c-line); border-radius: var(--radius-lg); overflow: hidden; background: #fff; }
+  .foh-card > img { width: 100%; height: 13rem; object-fit: contain; background: #faf9f6; }
+  .foh-card__body { display: flex; flex: 1; flex-direction: column; gap: .9rem; padding: 1.5rem; }
+  .foh-card h3, .foh-card p { margin: 0; }
+  .foh-card h3 { font-size: var(--text-lg); }
+  .foh-card p { color: var(--c-muted); font-size: var(--text-sm); }
+  .foh-card .text-link { margin-top: auto; padding-top: .5rem; }
+</style>
