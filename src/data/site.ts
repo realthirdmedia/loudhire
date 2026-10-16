@@ -11,7 +11,7 @@ export const site = {
   phone: '0117 214 1470',
   phoneHref: 'tel:+441172141470',
   email: 'info@loudhire.co.uk',
-  whatsapp: 'https://wa.link/ualu2x',
+  whatsapp: 'https://wa.me/447964307459',
   address: {
     street: 'Hacket Lane',
     town: 'Thornbury',
