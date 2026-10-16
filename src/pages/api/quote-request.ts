@@ -16,7 +16,7 @@ function tooManyRequests(ip: string) {
 
 type RequestedLine = { type: 'product' | 'package'; id: number | string; quantity: number; fullBand?: boolean; components?: Record<string, number> };
 type RequestedPeriod = {
-  start: string; end: string; venue: string;
+  start: string; end: string; venue: string; warehouseCollection?: boolean;
   delivery: boolean; collection: boolean; setup: boolean; engineer: boolean;
 };
 type RequestBody = {
@@ -77,12 +77,13 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   }
 
   const periods = input.periods.map((p) => ({
-    start: text(p.start, 10), end: text(p.end, 10), venue: text(p.venue, 300),
-    delivery: p.delivery === true, collection: p.collection === true,
+    start: text(p.start, 10), end: text(p.end, 10), venue: p.warehouseCollection === true ? '' : text(p.venue, 300),
+    warehouseCollection: p.warehouseCollection === true,
+    delivery: p.warehouseCollection !== true && p.delivery === true, collection: p.warehouseCollection !== true && p.collection === true,
     setup: p.setup === true, engineer: p.engineer === true,
   })).sort((a, b) => a.start.localeCompare(b.start));
-  if (periods.some((p) => !validDate(p.start) || !validDate(p.end) || p.end < p.start || !p.venue)) {
-    return json(400, { error: 'Add valid dates and a venue address for every date range.' });
+  if (periods.some((p) => !validDate(p.start) || !validDate(p.end) || p.end < p.start || (!p.warehouseCollection && !p.venue))) {
+    return json(400, { error: 'Add valid dates for every date range, and a venue address unless collecting from our warehouse.' });
   }
 
   let products;
@@ -127,7 +128,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     : `${line.quantity} × ${line.pkg.group}: ${line.pkg.name} (${line.pkg.duration}) — from £${line.pkg.price.toFixed(2)} + VAT${line.fullBand ? `, full band option +£${line.pkg.extras?.[0]?.price ?? 0} + VAT` : ''}`);
   const periodDescriptions = periods.map((p, i) => [
     `Date ${i + 1}: ${formatBritishDate(p.start)} to ${formatBritishDate(p.end)}`,
-    `Venue: ${p.venue}`,
+    p.warehouseCollection ? 'Collection from our warehouse: Hacket Lane, Thornbury, Bristol BS35 3TY' : `Venue: ${p.venue}`,
     `Services: ${[p.delivery && 'delivery', p.collection && 'collection', p.setup && 'setup', p.engineer && 'engineer'].filter(Boolean).join(', ') || 'none selected'}`,
   ].join('\n'));
   const summary = [
@@ -168,12 +169,12 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
           store_id: storeId, member_id: org.id, owned_by: ownerId,
           ...(project ? { project_id: project.id } : {}),
           subject: `Website quote ${reference}${periods.length > 1 ? ` — date ${index + 1}` : ''}`,
-          description: `${summary}\n\nRMS contact ID: ${contact.id}\nThis date: ${formatBritishDate(period.start)} to ${formatBritishDate(period.end)}\nVenue: ${period.venue}`,
+          description: `${summary}\n\nRMS contact ID: ${contact.id}\nThis date: ${formatBritishDate(period.start)} to ${formatBritishDate(period.end)}\n${period.warehouseCollection ? 'Collection from our warehouse' : `Venue: ${period.venue}`}`,
           reference, state: 1, starts_at: start, ends_at: end,
           charge_starts_at: start, charge_ends_at: end,
           customer_collecting: !period.delivery,
           customer_returning: !period.collection,
-          delivery_instructions: period.venue,
+          delivery_instructions: period.warehouseCollection ? 'Customer collecting from Loud Hire warehouse, Hacket Lane, Thornbury, Bristol BS35 3TY' : period.venue,
         };
         const rmsItems = lines.filter((l) => l.type === 'product').map((line) => ({
           item_id: line.product.id, item_type: 'Product', name: line.product.name,

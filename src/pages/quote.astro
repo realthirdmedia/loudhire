@@ -133,10 +133,12 @@ const packagePhoto = (id: string) => id.startsWith('festival-extra-large') ? fes
                 <BritishDateInput name="start" label="From" />
                 <BritishDateInput name="end" label="To" />
               </div>
-              <label>Venue name and address <textarea name="venue" rows="2" required placeholder="Venue, street, town and postcode"></textarea></label>
+              <div class="service-options"><label><input type="checkbox" name="warehouseCollection" /> Collection from our warehouse</label></div>
+              <p class="warehouse-collection-note" hidden>Collect from Hacket Lane, Thornbury, Bristol BS35 3TY. We’ll confirm collection arrangements with your quote.</p>
+              <label class="venue-field">Venue name and address <textarea name="venue" rows="2" required placeholder="Venue, street, town and postcode"></textarea></label>
               <div class="service-options" aria-label="Services needed">
-                <label><input type="checkbox" name="delivery" /> Delivery</label>
-                <label><input type="checkbox" name="collection" /> Collection</label>
+                <label><input type="checkbox" name="delivery" /> Delivery to venue</label>
+                <label><input type="checkbox" name="collection" /> Collection from venue</label>
                 <label><input type="checkbox" name="setup" /> Setup</label>
                 <label><input type="checkbox" name="engineer" /> Engineer</label>
               </div>
@@ -826,7 +828,24 @@ const packagePhoto = (id: string) => id.startsWith('festival-extra-large') ? fes
     const copy = periods.firstElementChild!.cloneNode(true) as HTMLElement;
     copy.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input, textarea').forEach((input) => { if (input.type === 'checkbox') (input as HTMLInputElement).checked = false; else input.value = ''; });
     copy.querySelector<HTMLButtonElement>('.period-remove')!.hidden = false;
-    periods.append(copy); renumberPeriods();
+    periods.append(copy); syncCollectionOption(copy); renumberPeriods();
+  });
+  function syncCollectionOption(card: HTMLElement) {
+    const collecting = card.querySelector<HTMLInputElement>('[name=warehouseCollection]')!.checked;
+    const venue = card.querySelector<HTMLTextAreaElement>('[name=venue]')!;
+    venue.required = !collecting;
+    venue.disabled = collecting;
+    card.querySelector<HTMLElement>('.venue-field')!.hidden = collecting;
+    card.querySelector<HTMLElement>('.warehouse-collection-note')!.hidden = !collecting;
+    for (const name of ['delivery', 'collection']) {
+      const input = card.querySelector<HTMLInputElement>(`[name=${name}]`)!;
+      input.disabled = collecting;
+      if (collecting) input.checked = false;
+    }
+  }
+  periods.addEventListener('change', (event) => {
+    const input = event.target as HTMLInputElement;
+    if (input.name === 'warehouseCollection') syncCollectionOption(input.closest<HTMLElement>('.period-card')!);
   });
   function renumberPeriods() { periods.querySelectorAll<HTMLElement>('.period-card').forEach((card, index) => { card.querySelector('legend')!.textContent = `Date range ${index + 1}`; }); }
   periods.addEventListener('click', (event) => { const button = (event.target as HTMLElement).closest('.period-remove'); if (button) { button.closest('.period-card')?.remove(); renumberPeriods(); } });
@@ -844,7 +863,8 @@ const packagePhoto = (id: string) => id.startsWith('festival-extra-large') ? fes
     const periodValues = [...periods.querySelectorAll<HTMLElement>('.period-card')].map((card) => ({
       start: parseBritishDate((card.querySelector('[name=start]') as HTMLInputElement).value)!,
       end: parseBritishDate((card.querySelector('[name=end]') as HTMLInputElement).value)!,
-      venue: (card.querySelector('[name=venue]') as HTMLTextAreaElement).value,
+      warehouseCollection: (card.querySelector('[name=warehouseCollection]') as HTMLInputElement).checked,
+      venue: (card.querySelector('[name=venue]') as HTMLTextAreaElement).disabled ? '' : (card.querySelector('[name=venue]') as HTMLTextAreaElement).value,
       delivery: (card.querySelector('[name=delivery]') as HTMLInputElement).checked,
       collection: (card.querySelector('[name=collection]') as HTMLInputElement).checked,
       setup: (card.querySelector('[name=setup]') as HTMLInputElement).checked,
@@ -859,7 +879,7 @@ const packagePhoto = (id: string) => id.startsWith('festival-extra-large') ? fes
       });
       const result = await response.json();
       if (!response.ok || !result.ok) throw new Error(result.error || 'We could not send your request.');
-      basket = []; save(); form.reset(); while (periods.children.length > 1) periods.lastElementChild?.remove(); renumberPeriods();
+      basket = []; save(); form.reset(); while (periods.children.length > 1) periods.lastElementChild?.remove(); renumberPeriods(); syncCollectionOption(periods.firstElementChild as HTMLElement);
       message.setAttribute('data-success', ''); message.textContent = `Thanks — your request ${result.reference} has been sent. Loud Hire will be in touch with a tailored quote.`;
       message.scrollIntoView({ behavior: 'smooth', block: 'center' });
     } catch (error) { message.textContent = error instanceof Error ? error.message : 'We could not send your request. Please try again.'; }
