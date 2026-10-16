@@ -168,7 +168,7 @@ if (data.eventType) details.push({ label: 'Event', value: data.eventType });
           <div class="gallery">
             {data.gallery.map((g) => (
               <figure class="gallery__item">
-                <Image src={g.src} alt={g.alt} widths={[480, 800, 1200]} sizes="(max-width: 48rem) 92vw, 600px" loading="lazy" decoding="async" format="webp" quality={72} />
+                <Image class:list={{ 'gallery__portrait': g.src.height > g.src.width }} src={g.src} alt={g.alt} widths={[480, 800, 1200]} sizes="(max-width: 48rem) 92vw, 600px" loading="lazy" decoding="async" format="webp" quality={72} />
                 {g.caption && <figcaption>{g.caption}</figcaption>}
               </figure>
             ))}
@@ -364,6 +364,9 @@ if (data.eventType) details.push({ label: 'Event', value: data.eventType });
     font-size: var(--text-xs);
     color: var(--c-muted);
     margin-top: 0.5rem;
+  }
+  .gallery__item :global(img.gallery__portrait) {
+    object-fit: contain;
   }
   @media (max-width: 64rem) {
     .entry-body {
