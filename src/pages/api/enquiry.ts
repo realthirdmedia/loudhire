@@ -60,7 +60,8 @@ export const POST: APIRoute = async ({ request, clientAddress, redirect }) => {
 
   // Honeypot
   if (clean(form.get('website'), 200)) {
-    return respond(200, { ok: true });
+    console.warn('[enquiry] submission blocked by spam check');
+    return respond(422, { ok: false, error: 'We could not validate this submission. Please reload the page and enter your details manually, or call 0117 214 1470.' });
   }
 
   const ip = clientAddress || request.headers.get('x-forwarded-for') || 'unknown';
@@ -115,6 +116,10 @@ export const POST: APIRoute = async ({ request, clientAddress, redirect }) => {
         }),
       });
       if (!res.ok) throw new Error(`Resend responded ${res.status}`);
+      const receipt = await res.json();
+      if (typeof receipt.id !== 'string' || !receipt.id) throw new Error('Resend returned no message ID');
+      // Provider reference only: never log the sender's details or message.
+      console.info('[enquiry] accepted by Resend', { messageId: receipt.id, to: TO, from: FROM });
     } else {
       const res = await fetch(`https://formsubmit.co/ajax/${TO}`, {
         method: 'POST',
@@ -134,6 +139,7 @@ export const POST: APIRoute = async ({ request, clientAddress, redirect }) => {
       });
       const body = await res.json().catch(() => ({}));
       if (!res.ok || String(body.success) !== 'true') throw new Error(`FormSubmit responded ${res.status}: ${JSON.stringify(body)}`);
+      console.info('[enquiry] accepted by FormSubmit');
     }
   } catch (err) {
     console.error('[enquiry] delivery failed', err);
