@@ -1,5 +1,5 @@
 ---
-title: "Groove Armada & the Hawkstone Farmers Choir"
+title: "Groove Armada, the Hawkstone Farmers Choir & Jeremy Clarkson"
 date: 2026-09-04
 type: project
 summary: "Sound, lighting, video and staging for Hawkstone's Wildthing launch at The Farmer's Dog, featuring Groove Armada's Andy Cato, the Hawkstone Farmers Choir and host Jeremy Clarkson."
