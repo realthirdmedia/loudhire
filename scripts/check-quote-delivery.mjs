@@ -13,8 +13,9 @@ const compile = async (file, imports = {}) => {
 };
 const rmsUrl = await compile('../src/lib/currentRms.ts');
 const packagesUrl = await compile('../src/lib/quotePackages.ts');
+const datesUrl = await compile('../src/lib/dates.ts');
 const { POST } = await import(await compile('../src/pages/api/quote-request.ts', {
-  '../../lib/currentRms': rmsUrl, '../../lib/quotePackages': packagesUrl,
+  '../../lib/currentRms': rmsUrl, '../../lib/quotePackages': packagesUrl, '../../lib/dates': datesUrl,
 }));
 const { createMember } = await import(rmsUrl);
 const realFetch = globalThis.fetch;

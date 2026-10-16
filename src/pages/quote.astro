@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import BritishDateInput from '../components/BritishDateInput.astro';
 import { quotePackages } from '../lib/quotePackages';
 import quoteBanner from '../assets/pages/hero-konligo.jpg';
 import equipmentHireImage from '../assets/pages/danley-sm80.jpg';
@@ -129,8 +130,8 @@ const packagePhoto = (id: string) => id.startsWith('festival-extra-large') ? fes
             <fieldset class="period-card">
               <legend>Date range 1</legend>
               <div class="form-grid">
-                <label>From <input type="date" name="start" required /></label>
-                <label>To <input type="date" name="end" required /></label>
+                <BritishDateInput name="start" label="From" />
+                <BritishDateInput name="end" label="To" />
               </div>
               <label>Venue name and address <textarea name="venue" rows="2" required placeholder="Venue, street, town and postcode"></textarea></label>
               <div class="service-options" aria-label="Services needed">
@@ -305,6 +306,7 @@ const packagePhoto = (id: string) => id.startsWith('festival-extra-large') ? fes
   import { quotePackages, type QuotePackage } from '../lib/quotePackages';
   import type { RmsProduct, RmsProductDetail } from '../lib/currentRms';
   import { searchCatalog } from '../lib/catalogSearch';
+  import { parseBritishDate } from '../lib/dates';
 
   type BasketLine = { type: 'product' | 'package'; id: number | string; quantity: number; fullBand?: boolean; components?: Record<string, number> };
   const storeKey = 'loudhire-quote-basket-v1';
@@ -829,11 +831,14 @@ const packagePhoto = (id: string) => id.startsWith('festival-extra-large') ? fes
   form.addEventListener('submit', async (event) => {
     event.preventDefault(); message.removeAttribute('data-success'); message.textContent = '';
     if (!basket.length) { message.textContent = 'Add at least one item to your basket.'; return; }
+    form.querySelectorAll<HTMLInputElement>('.uk-date__text').forEach((input) => {
+      input.setCustomValidity(!input.value || parseBritishDate(input.value) ? '' : 'Enter a valid date as DD/MM/YYYY.');
+    });
     if (!form.reportValidity()) return;
     const data = new FormData(form);
     const periodValues = [...periods.querySelectorAll<HTMLElement>('.period-card')].map((card) => ({
-      start: (card.querySelector('[name=start]') as HTMLInputElement).value,
-      end: (card.querySelector('[name=end]') as HTMLInputElement).value,
+      start: parseBritishDate((card.querySelector('[name=start]') as HTMLInputElement).value)!,
+      end: parseBritishDate((card.querySelector('[name=end]') as HTMLInputElement).value)!,
       venue: (card.querySelector('[name=venue]') as HTMLTextAreaElement).value,
       delivery: (card.querySelector('[name=delivery]') as HTMLInputElement).checked,
       collection: (card.querySelector('[name=collection]') as HTMLInputElement).checked,

@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { packageById } from '../../lib/quotePackages';
+import { formatBritishDate } from '../../lib/dates';
 import { checkoutOpportunity, createMember, createProject, findMemberByEmail, findOrganisation, getRmsProductDetail, getRmsProducts, hasRmsKey, rmsRequest } from '../../lib/currentRms';
 
 export const prerender = false;
@@ -125,7 +126,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       ...line.components.map((component) => `  ${component.selected * line.quantity} × ${component.name} (${component.inclusion}${component.zeroPriced ? ', no extra charge' : ''})`)].join('\n')
     : `${line.quantity} × ${line.pkg.group}: ${line.pkg.name} (${line.pkg.duration}) — from £${line.pkg.price.toFixed(2)} + VAT${line.fullBand ? `, full band option +£${line.pkg.extras?.[0]?.price ?? 0} + VAT` : ''}`);
   const periodDescriptions = periods.map((p, i) => [
-    `Date ${i + 1}: ${p.start} to ${p.end}`,
+    `Date ${i + 1}: ${formatBritishDate(p.start)} to ${formatBritishDate(p.end)}`,
     `Venue: ${p.venue}`,
     `Services: ${[p.delivery && 'delivery', p.collection && 'collection', p.setup && 'setup', p.engineer && 'engineer'].filter(Boolean).join(', ') || 'none selected'}`,
   ].join('\n'));
@@ -167,7 +168,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
           store_id: storeId, member_id: org.id, owned_by: ownerId,
           ...(project ? { project_id: project.id } : {}),
           subject: `Website quote ${reference}${periods.length > 1 ? ` — date ${index + 1}` : ''}`,
-          description: `${summary}\n\nRMS contact ID: ${contact.id}\nThis date: ${period.start} to ${period.end}\nVenue: ${period.venue}`,
+          description: `${summary}\n\nRMS contact ID: ${contact.id}\nThis date: ${formatBritishDate(period.start)} to ${formatBritishDate(period.end)}\nVenue: ${period.venue}`,
           reference, state: 1, starts_at: start, ends_at: end,
           charge_starts_at: start, charge_ends_at: end,
           customer_collecting: !period.delivery,
