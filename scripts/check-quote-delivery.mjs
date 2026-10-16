@@ -37,8 +37,8 @@ globalThis.fetch = async (input, init = {}) => {
     return response({ success: !emailFails }, emailFails ? 403 : 200);
   }
   assert.equal(url.hostname, 'api.current-rms.com');
-  if (url.pathname.endsWith('/rate_definitions')) return response({ rate_definitions: [] });
-  if (url.pathname.endsWith('/products')) return response({ products: [{ id: 269, name: 'Test plug', active: true }] });
+  if (url.pathname.endsWith('/rate_definitions')) return response({ rate_definitions: [{ id: 12, name: 'Daily multiplier test', config: { options: { days_in_week: '7' }, multipliers: ['1', '1.5', '1.7'], factors: [{ from: '1', to: '', factor: '1' }] }, rate_engine: { rate_engine: { config: { charging_engine_class: 'DayChargingEngine2' } } } }] });
+  if (url.pathname.endsWith('/products')) return response({ products: [{ id: 269, name: 'Test item', active: true, rental_rates: [{ store_id: 1, price: '100', rate_definition_id: 12 }] }] });
   if (url.pathname.endsWith('/members') && !body) return response({ members: [] });
   if (url.pathname.endsWith('/members')) {
     if (rmsFails) return response({ errors: { 'membership.owned_by': ["can't be blank"], name: ['Private customer value must not be logged'] } }, 422);
@@ -53,6 +53,8 @@ globalThis.fetch = async (input, init = {}) => {
     assert.equal(body.items.length, 1);
     assert.equal(body.items[0].item_id, 269);
     assert.equal(body.items[0].quantity, 1);
+    assert.equal(body.items[0].price, '100', 'RMS must receive its original base, never the calculated £170 weekly display price');
+    assert.equal(body.items[0].rate_definition_id, 12);
     return response({ opportunity: { id: 1953 } });
   }
   throw new Error(`Unexpected provider request ${url.pathname}`);

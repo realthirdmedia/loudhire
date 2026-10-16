@@ -25,6 +25,7 @@ export interface RmsPackageComponent {
   mode: number;
   quantity: number;
   zeroPriced: boolean;
+  price: number | null;
   dayPrice: number | null;
   weekPrice: number | null;
   rateDefinitionId: number | null;
@@ -79,13 +80,49 @@ function rentalRate(raw: RawProduct): RawProduct {
     (raw.rental_rate && typeof raw.rental_rate === 'object' ? raw.rental_rate : rates[0] ?? {});
 }
 
-function ratePercent(definition: RawProduct | undefined): number | null {
-  if (!definition || /obsol(?:ete|ite)/i.test(String(definition.name ?? ''))) return null;
-  const config = definition.config && typeof definition.config === 'object' ? definition.config : {};
-  const periods = config.charging_periods ?? config.periods ?? {};
-  const value = periods.day ?? periods.days ?? config.day_percent ?? config.day;
-  const percent = money(value);
-  return percent !== null && percent >= 0 && percent <= 1000 ? percent : null;
+/** Display guides only. RMS checkout always receives the original base price. */
+export function rentalPriceGuides(basePrice: number | null, definition: RawProduct | undefined): { dayPrice: number | null; weekPrice: number | null } {
+  const unknown = { dayPrice: null, weekPrice: null };
+  if (basePrice === null || !Number.isFinite(basePrice) || basePrice < 0) return unknown;
+  if (basePrice === 0) return { dayPrice: 0, weekPrice: 0 };
+  if (!definition || /obsol(?:ete|ite)/i.test(String(definition.name ?? ''))) return unknown;
+  const config = definition.config ?? {};
+  const engine = definition.rate_engine?.rate_engine ?? definition.rate_engine ?? {};
+  const engineClass = engine.config?.charging_engine_class;
+  const nonnegative = (value: unknown) => {
+    const result = money(value);
+    return result !== null && result >= 0 ? result : null;
+  };
+  const amount = (multiplier: number | null) => multiplier === null ? null : Math.round((basePrice * multiplier + Number.EPSILON) * 100) / 100;
+  const daysInWeek = nonnegative(config.options?.days_in_week ?? engine.config?.options?.days_in_week?.default_value);
+  if (engineClass === 'DayChargingEngine2') {
+    const multipliers = config.multipliers;
+    const factors = config.factors;
+    const forDays = (days: number): number | null => {
+      if (!Array.isArray(multipliers) || !multipliers.length || !Array.isArray(factors)) return null;
+      const multiplier = nonnegative(multipliers[Math.min(days, multipliers.length) - 1]);
+      const band = factors.find((row: RawProduct) => {
+        const from = nonnegative(row.from);
+        const to = row.to === '' || row.to == null ? Infinity : nonnegative(row.to);
+        return from !== null && to !== null && days >= from && days <= to;
+      });
+      const factor = nonnegative(band?.factor);
+      return multiplier === null || factor === null ? null : amount(multiplier * factor);
+    };
+    return { dayPrice: forDays(1), weekPrice: daysInWeek && Number.isInteger(daysInWeek) ? forDays(daysInWeek) : null };
+  }
+  if (engineClass === 'DayChargingEngine1') {
+    const minimum = nonnegative(config.options?.minimum_days ?? 0);
+    return { dayPrice: minimum === null ? null : amount(Math.max(1, minimum)), weekPrice: daysInWeek && minimum !== null ? amount(Math.max(daysInWeek, minimum)) : null };
+  }
+  // Weekly-only definitions provide no daily conversion. Never assume week / 7.
+  if (engine.lead_charge_period === 'week') {
+    const periods = config.charging_periods ?? config.periods ?? {};
+    const percent = nonnegative(periods['1_day'] ?? periods.day ?? periods.days ?? config.day_percent ?? config.day);
+    const weekPercent = nonnegative(periods.week ?? 100);
+    return { dayPrice: percent === null ? null : amount(percent / 100), weekPrice: weekPercent === null ? null : amount(weekPercent / 100) };
+  }
+  return unknown;
 }
 
 function normalizeProduct(raw: RawProduct, definitions: Map<number, RawProduct>): RmsProduct {
@@ -93,9 +130,8 @@ function normalizeProduct(raw: RawProduct, definitions: Map<number, RawProduct>)
   const definitionId = money(rate.rate_definition_id ?? raw.rate_definition_id);
   const definition = definitionId === null ? undefined : definitions.get(definitionId);
   const rateName = String(definition?.name ?? rate.rate_definition_name ?? '').trim() || null;
-  const weekPrice = money(rate.price ?? rate.amount ?? rate.value ?? null);
-  const percent = ratePercent(definition);
-  const dayPrice = weekPrice === 0 ? 0 : weekPrice !== null && percent !== null ? Math.round(weekPrice * percent) / 100 : null;
+  const price = money(rate.price ?? rate.amount ?? rate.value ?? null);
+  const { dayPrice, weekPrice } = rentalPriceGuides(price, definition);
   const icon = raw.icon && typeof raw.icon === 'object' ? raw.icon : {};
   const image = typeof icon.url === 'string' && /^https:\/\//.test(icon.url) ? icon.url : null;
   return {
@@ -104,7 +140,7 @@ function normalizeProduct(raw: RawProduct, definitions: Map<number, RawProduct>)
     description: String(raw.description ?? '').replace(/<[^>]*>/g, ' ').trim().slice(0, 1200),
     group: String(raw.product_group?.name ?? 'Equipment').trim(),
     image,
-    price: weekPrice,
+    price,
     dayPrice,
     weekPrice,
     rateName,
@@ -172,7 +208,7 @@ export async function getRmsProductDetail(id: number): Promise<RmsProductDetail>
         mode: Number(accessory.mode) || 0,
         quantity: Math.max(0, Math.round(Number(accessory.quantity) || 0)),
         zeroPriced: accessory.zero_priced === true,
-        dayPrice: child.dayPrice, weekPrice: child.weekPrice, rateDefinitionId: child.rateDefinitionId,
+        price: child.price, dayPrice: child.dayPrice, weekPrice: child.weekPrice, rateDefinitionId: child.rateDefinitionId,
       });
     } catch (error) {
       console.warn(`[rms-product] accessory ${Number(accessory.id)} could not be loaded`, error);

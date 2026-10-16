@@ -122,7 +122,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
   const reference = `WEB-${crypto.randomUUID().slice(0, 8).toUpperCase()}`;
   const lineDescriptions = lines.map((line) => line.type === 'product'
-    ? [`${line.quantity} × ${line.product.name} (RMS product ${line.product.id})${line.product.weekPrice === null ? ' — price to confirm' : ` — RMS weekly base £${line.product.weekPrice.toFixed(2)}${line.product.rateName ? ` (${line.product.rateName})` : ''}`}`,
+    ? [`${line.quantity} × ${line.product.name} (RMS product ${line.product.id})${line.product.price === null ? ' — price to confirm' : ` — RMS base rate £${line.product.price.toFixed(2)}${line.product.rateName ? ` (${line.product.rateName})` : ''}`}`,
       ...line.components.map((component) => `  ${component.selected * line.quantity} × ${component.name} (${component.inclusion}${component.zeroPriced ? ', no extra charge' : ''})`)].join('\n')
     : `${line.quantity} × ${line.pkg.group}: ${line.pkg.name} (${line.pkg.duration}) — from £${line.pkg.price.toFixed(2)} + VAT${line.fullBand ? `, full band option +£${line.pkg.extras?.[0]?.price ?? 0} + VAT` : ''}`);
   const periodDescriptions = periods.map((p, i) => [
@@ -179,15 +179,15 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
           item_id: line.product.id, item_type: 'Product', name: line.product.name,
           opportunity_item_type: 1, transaction_type: 1, quantity: line.quantity,
           ...(line.product.rateDefinitionId ? { rate_definition_id: line.product.rateDefinitionId } : {}),
-          price: String(line.product.weekPrice ?? 0), starts_at: start, ends_at: end,
-          description: line.product.weekPrice === null ? 'Rate to confirm' : '',
+          price: String(line.product.price ?? 0), starts_at: start, ends_at: end,
+          description: line.product.price === null ? 'Rate to confirm' : '',
           ...(line.components.length ? { accessory_items: Object.fromEntries(line.components.filter((component) => component.selected > 0).map((component, accessoryIndex) => [String(accessoryIndex), {
             item_id: component.productId, transaction_type: 1,
             accessory_quantity: component.selected, quantity: component.selected * line.quantity,
             accessory_inclusion_type: component.inclusion === 'mandatory' ? 1 : component.inclusion === 'optional' ? 2 : 0,
             accessory_mode: component.mode,
             ...(component.rateDefinitionId ? { rate_definition_id: component.rateDefinitionId } : {}),
-            price: String(component.zeroPriced ? 0 : component.weekPrice ?? 0),
+            price: String(component.zeroPriced ? 0 : component.price ?? 0),
           }])) } : {}),
         }));
         const created = rmsItems.length

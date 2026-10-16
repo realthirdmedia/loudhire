@@ -331,8 +331,11 @@ const packagePhoto = (id: string) => id.startsWith('festival-extra-large') ? fes
   const search = byId('catalog-search') as HTMLInputElement;
   const pounds = (value: number) => `£${value.toLocaleString('en-GB', { maximumFractionDigits: 2 })}`;
   const rateText = (product: RmsProduct) => {
-    if (product.weekPrice === null || product.weekPrice === 0) return 'Price to confirm';
-    return `${product.dayPrice === null ? 'Day rate on request' : `${pounds(product.dayPrice)} / day`} · ${pounds(product.weekPrice)} / week + VAT`;
+    const rates = [
+      product.dayPrice !== null && product.dayPrice > 0 ? `${pounds(product.dayPrice)} / day` : null,
+      product.weekPrice !== null && product.weekPrice > 0 ? `${pounds(product.weekPrice)} / week` : null,
+    ].filter(Boolean);
+    return rates.length ? `${rates.join(' · ')} + VAT` : 'Price to confirm';
   };
   search.value = new URLSearchParams(location.search).get('search') || '';
   const routeButtons = document.querySelectorAll<HTMLButtonElement>('.quote-route');
@@ -516,7 +519,9 @@ const packagePhoto = (id: string) => id.startsWith('festival-extra-large') ? fes
       if (component.weekPrice === null) weekKnown = false; else week += component.weekPrice * quantity;
       if (component.dayPrice === null) dayKnown = false; else day += component.dayPrice * quantity;
     }
-    return `${dayKnown && day > 0 ? `${pounds(day * count)} / day` : 'Day rate to confirm'} · ${weekKnown && week > 0 ? `${pounds(week * count)} / week` : 'week rate to confirm'} + VAT`;
+    const rates = [dayKnown && day > 0 ? `${pounds(day * count)} / day` : null,
+      weekKnown && week > 0 ? `${pounds(week * count)} / week` : null].filter(Boolean);
+    return rates.length ? `${rates.join(' · ')} + VAT` : 'Price to confirm';
   }
   function updateConfigTotal() {
     if (!activeDetail) return;
