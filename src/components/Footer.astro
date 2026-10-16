@@ -28,6 +28,11 @@ const year = new Date().getFullYear();
           <a href={`mailto:${site.email}`}>{site.email}</a>
         </p>
         <p class="footer__small">{site.hours}</p>
+        <a class="footer__reviews" href="https://maps.google.com/?cid=5436811372523858860" rel="noopener" aria-label="Read Loud Hire's five-star Google reviews">
+          <span class="footer__reviews-stars" aria-hidden="true">★★★★★</span>
+          <strong>5.0 on Google</strong>
+          <span class="footer__reviews-link">Read reviews →</span>
+        </a>
       </div>
 
       <div class="footer__col">
@@ -35,6 +40,7 @@ const year = new Date().getFullYear();
         <ul>
           {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
           <li><a href="/privacy-policy/">Privacy policy</a></li>
+          <li><a href="/site-map/">Site map</a></li>
         </ul>
       </div>
 
@@ -50,15 +56,18 @@ const year = new Date().getFullYear();
         <h4>Dry hire</h4>
         <ul>
           <li><a href="/dry-hire/">Equipment-only hire</a></li>
+          <li><a href="/dry-hire/sound/">Sound &amp; PA hire</a></li>
+          <li><a href="/dry-hire/lighting/">Lighting hire</a></li>
           <li><a href="/dry-hire/equipment/">Full equipment list</a></li>
-          <li><a href="/dry-hire/#packages">Party PA packages</a></li>
+          <li><a href="/ex-hire-equipment/">Ex-hire equipment for sale</a></li>
+          <li><a href="/dry-hire/party-packages/">Party PA packages</a></li>
           <li><a href="/dry-hire/#lease">Long-term lease for venues</a></li>
         </ul>
         <h4>Follow</h4>
-        <ul>
-          <li><a href={site.social.instagram} rel="noopener">Instagram</a></li>
-          <li><a href={site.social.facebook} rel="noopener">Facebook</a></li>
-          <li><a href={site.whatsapp} rel="noopener">WhatsApp</a></li>
+        <ul class="footer__social">
+          <li><a href={site.social.instagram} rel="noopener" aria-label="Instagram"><img src="/images/social/instagram.svg" alt="" width="24" height="24" loading="lazy" /></a></li>
+          <li><a href={site.social.facebook} rel="noopener" aria-label="Facebook"><img src="/images/social/facebook.svg" alt="" width="24" height="24" loading="lazy" /></a></li>
+          <li><a href={site.whatsapp} rel="noopener" aria-label="WhatsApp"><img src="/images/social/whatsapp.svg" alt="" width="24" height="24" loading="lazy" /></a></li>
         </ul>
       </div>
     </div>
@@ -110,6 +119,26 @@ const year = new Date().getFullYear();
   .footer__cta-text {
     margin: 0;
   }
+  .footer__reviews {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem 0.65rem;
+    margin-top: 0.6rem;
+    font-size: var(--text-sm);
+  }
+  .footer__reviews-stars {
+    color: var(--c-orange);
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+  .footer__reviews strong {
+    color: #fff;
+  }
+  .footer__reviews-link {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
   .footer__grid {
     display: grid;
     grid-template-columns: 1.4fr 1fr 1fr 1fr;
@@ -133,6 +162,30 @@ const year = new Date().getFullYear();
   }
   .footer__col li + li {
     margin-top: 0.45rem;
+  }
+  .footer__social {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  .footer__social li + li {
+    margin-top: 0;
+  }
+  .footer__social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+  .footer__social img {
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    filter: invert(1);
+  }
+  .footer__social a:hover img {
+    opacity: 0.75;
   }
   .footer__col--brand img {
     height: 2.4rem;

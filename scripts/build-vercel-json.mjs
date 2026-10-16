@@ -9,10 +9,10 @@ import { exactRedirects, patternRedirects } from '../src/data/redirects.mjs';
 
 const redirects = [];
 for (const [source, destination] of Object.entries(exactRedirects())) {
-  redirects.push({ source, destination, permanent: true });
+  redirects.push({ source, destination, statusCode: 301 });
 }
 for (const [pattern, destination] of Object.entries(patternRedirects)) {
-  redirects.push({ source: pattern.replace('[...rest]', ':rest*'), destination, permanent: true });
+  redirects.push({ source: pattern.replace('[...rest]', ':rest*'), destination, statusCode: 301 });
 }
 
 const config = {

@@ -1,0 +1,992 @@
+{
+  "/": {
+    "title": "Loud Hire | Cotswolds & Bristol | PA, Sound System, Lighting Hire",
+    "description": "Loud Hire provide PA Hire, Sound System Hire & Lighting Hire across Bristol and the South West region for small and large events."
+  },
+  "/dry-hire/equipment/1-5kw-followspot-dimmer/": {
+    "title": "1.5kW Followspot Dimmer - Loud Hire"
+  },
+  "/dry-hire/equipment/120w-100v-line-slave-amp/": {
+    "title": "120w 100v line Slave amp - Loud Hire"
+  },
+  "/dry-hire/equipment/120w-4ch-100v-line-amp/": {
+    "title": "120w 4ch 100v line amp - Loud Hire"
+  },
+  "/dry-hire/equipment/120w-6ch-100v-line-amp/": {
+    "title": "120w 6ch 100v line amp - Loud Hire"
+  },
+  "/dry-hire/equipment/13a-4-way-10m-black-green-marker/": {
+    "title": "13A 4 way 10M - black (Green Marker) - Loud Hire"
+  },
+  "/dry-hire/equipment/13a-4-way-3m-black-brown-marker/": {
+    "title": "13A 4 way 3M - black (Brown Marker) - Loud Hire"
+  },
+  "/dry-hire/equipment/13a-4-way-5m-black-blue-marker/": {
+    "title": "13A 4 way 5M - black (Blue Marker) - Loud Hire"
+  },
+  "/dry-hire/equipment/13a-double-30m-reel/": {
+    "title": "13A Double 30m Reel - Loud Hire"
+  },
+  "/dry-hire/equipment/13a-powercon/": {
+    "title": "13A > Powercon - Loud Hire"
+  },
+  "/dry-hire/equipment/13a-quad-10m-enclosed-reel/": {
+    "title": "13A Quad 10m Enclosed Reel - Loud Hire"
+  },
+  "/dry-hire/equipment/13a-to-15a-adaptor-lead/": {
+    "title": "13A to 15A Adaptor Lead - Loud Hire"
+  },
+  "/dry-hire/equipment/13a-to-16a-adaptor-lead/": {
+    "title": "13A to 16A Adaptor Lead - Standard - Loud Hire"
+  },
+  "/dry-hire/equipment/13a-to-iec-lead/": {
+    "title": "13A to IEC Lead - Loud Hire"
+  },
+  "/dry-hire/equipment/13a-truecon-standard/": {
+    "title": "13A > Truecon Light Duty - Loud Hire"
+  },
+  "/dry-hire/equipment/15a-3-way-grelco-splitter-15a-plug/": {
+    "title": "15A 3 Way Grelco Splitter - 15A Plug - Loud Hire"
+  },
+  "/dry-hire/equipment/15a-3-way-grelco-splitter-16a-plug/": {
+    "title": "15A 3 Way Grelco Splitter - 16A Plug - Loud Hire"
+  },
+  "/dry-hire/equipment/15a-grelco-splitter/": {
+    "title": "15A Grelco Splitter - Loud Hire"
+  },
+  "/dry-hire/equipment/15a-powercon/": {
+    "title": "15A > Powercon - Loud Hire"
+  },
+  "/dry-hire/equipment/15a-to-13a-adaptor-lead/": {
+    "title": "15A to 13A Adaptor Lead - Loud Hire"
+  },
+  "/dry-hire/equipment/15a-to-13a-twin-adaptor-lead/": {
+    "title": "15A to 13A Twin Adaptor Lead - Loud Hire"
+  },
+  "/dry-hire/equipment/15a-to-15a-x-10m-green/": {
+    "title": "15A to 15A x 10m (Green) - Loud Hire"
+  },
+  "/dry-hire/equipment/15a-to-15a-x-15m-green-blue/": {
+    "title": "15A to 15A x 15m (Green/Blue) - Loud Hire"
+  },
+  "/dry-hire/equipment/15a-to-15a-x-20m-red/": {
+    "title": "15A to 15A x 20m (Red) - Loud Hire"
+  },
+  "/dry-hire/equipment/15a-to-15a-x-2m-yellow/": {
+    "title": "15A to 15A x 2m (Yellow) - Loud Hire"
+  },
+  "/dry-hire/equipment/15a-to-15a-x-3m-brown/": {
+    "title": "15A to 15A x 3m (Brown) - Loud Hire"
+  },
+  "/dry-hire/equipment/15a-to-15a-x-5m-blue/": {
+    "title": "15A to 15A x 5m (Blue) - Loud Hire"
+  },
+  "/dry-hire/equipment/15a-to-16a-adaptor-lead/": {
+    "title": "15A to 16A Adaptor lead - Loud Hire"
+  },
+  "/dry-hire/equipment/15a-to-iec-hot-for-theatre-lanterns/": {
+    "title": "15A to IEC [Hot for Theatre Lanterns] - Loud Hire"
+  },
+  "/dry-hire/equipment/15a-y-splitter/": {
+    "title": "15A Y Splitter - Loud Hire"
+  },
+  "/dry-hire/equipment/16a-2-way-splitter/": {
+    "title": "16A 2 way splitter - IP67 - Loud Hire"
+  },
+  "/dry-hire/equipment/16a-3-way-splits/": {
+    "title": "16A 3 way splits - IP44 - Loud Hire"
+  },
+  "/dry-hire/equipment/16a-ceeform-32a-powercon/": {
+    "title": "16A CEEFORM > 32A PowerCon - Loud Hire"
+  },
+  "/dry-hire/equipment/16a-to-13a-4-way-black/": {
+    "title": "16A to 13A 4 way - black - Loud Hire"
+  },
+  "/dry-hire/equipment/16a-to-15a-adaptor-lead/": {
+    "title": "16A to 15A Adaptor lead - Loud Hire"
+  },
+  "/dry-hire/equipment/16a-to-16a-h07-1-5mm-sq-2m-yellow/": {
+    "title": "16A to 16A H07 1.5mm² 2M (Yellow) - Loud Hire"
+  },
+  "/dry-hire/equipment/16a-to-16a-h07-1-5mm-sq-5m-blue/": {
+    "title": "16A to 16A H07 1.5mm² 5M (Blue) - Loud Hire"
+  },
+  "/dry-hire/equipment/16a-to-16a-h07-2-5mm-sq-10m-green/": {
+    "title": "16A to 16A H07 2.5mm² 10M (Green) - Loud Hire"
+  },
+  "/dry-hire/equipment/16a-to-16a-h07-2-5mm-sq-20m-red/": {
+    "title": "16A to 16A H07 2.5mm² 20M (Red) - Loud Hire"
+  },
+  "/dry-hire/equipment/16a-to-16a-h07-2-5mm-sq-50m-white/": {
+    "title": "16A to 16A H07 2.5mm² 50M (White) - Loud Hire"
+  },
+  "/dry-hire/equipment/16a-to-16a-h07-2-5mm-sq-5m-blue/": {
+    "title": "16A to 16A H07 2.5mm² 5M (Blue) - Loud Hire"
+  },
+  "/dry-hire/equipment/16a-to-iec-hot-for-theatre-lanterns/": {
+    "title": "16A to IEC [Hot for Theatre Lanterns] - Loud Hire"
+  },
+  "/dry-hire/equipment/16a-to-iec-lead/": {
+    "title": "16A to IEC Lead - Loud Hire"
+  },
+  "/dry-hire/equipment/16a-to-powercon/": {
+    "title": "16A > PowerCon x 1m - Loud Hire"
+  },
+  "/dry-hire/equipment/32a-3-phase-lead-10m/": {
+    "title": "32A 3 Phase Lead - 10m - Loud Hire"
+  },
+  "/dry-hire/equipment/32a-3-phase-lead-2-5m/": {
+    "title": "32A 3 Phase Lead - 2.5m - Loud Hire"
+  },
+  "/dry-hire/equipment/32a-3-phase-lead-25m/": {
+    "title": "32A 3 Phase Lead - 25m - Loud Hire"
+  },
+  "/dry-hire/equipment/32a-3-phase-lead-50m/": {
+    "title": "32A 3 Phase Lead - 50m - Loud Hire"
+  },
+  "/dry-hire/equipment/32a-3-phase-lead-5m/": {
+    "title": "32A 3 Phase Lead - 5m - Loud Hire"
+  },
+  "/dry-hire/equipment/32a-3ph-distro-to-x3-32a-1ph/": {
+    "title": "32A 3ph distro 1 [323D3-321] - Loud Hire"
+  },
+  "/dry-hire/equipment/32a-63a-3-phase-lead-2m/": {
+    "title": "32A - 63A 3 Phase Lead - 2m - Loud Hire"
+  },
+  "/dry-hire/equipment/32a-ceeform-32a-powercon/": {
+    "title": "32A CEEFORM > 32A PowerCon - Loud Hire"
+  },
+  "/dry-hire/equipment/32a-plug-to-63a-socket-adaptor/": {
+    "title": "32A Plug to 63A Socket Adaptor - Loud Hire"
+  },
+  "/dry-hire/equipment/32a-split-to-2-x-16a/": {
+    "title": "32A Split to 2 x 16A - Loud Hire"
+  },
+  "/dry-hire/equipment/32a-to-32a-10m/": {
+    "title": "32A to 32A 10m - Loud Hire"
+  },
+  "/dry-hire/equipment/32a-to-32a-15m/": {
+    "title": "32A to 32A 15m - Loud Hire"
+  },
+  "/dry-hire/equipment/32a-to-32a-20m/": {
+    "title": "32A to 32A 20m - Loud Hire"
+  },
+  "/dry-hire/equipment/32a-to-32a-3m/": {
+    "title": "32A to 32A 3m - Loud Hire"
+  },
+  "/dry-hire/equipment/32a-to-32a-50m/": {
+    "title": "32A to 32A 50m - Loud Hire"
+  },
+  "/dry-hire/equipment/4-way-led-par-bar-iwb4-rgbw/": {
+    "title": "4 way LED Par bar - IWB4 - RGBW - Loud Hire"
+  },
+  "/dry-hire/equipment/5a-to-15a-adaptor-lead/": {
+    "title": "5A to 15A Adaptor Lead - Loud Hire"
+  },
+  "/dry-hire/equipment/63a-3ph-cable-x-10m/": {
+    "title": "63A 3ph Cable x 10m - Loud Hire"
+  },
+  "/dry-hire/equipment/63a-3ph-cable-x-50m/": {
+    "title": "63A 3ph Cable x 50m - Loud Hire"
+  },
+  "/dry-hire/equipment/63a-3ph-cable-x-5m/": {
+    "title": "63A 3ph Cable x 5m - Loud Hire"
+  },
+  "/dry-hire/equipment/63a-3ph-distro-1-633d15-161/": {
+    "title": "63A 3ph distro Type 1 [633D15-161] - Loud Hire"
+  },
+  "/dry-hire/equipment/63a-3ph-distro-1-633d323332316/": {
+    "title": "63A 3ph distro 1 [633D2323+3321+3161] - Loud Hire"
+  },
+  "/dry-hire/equipment/63a-3ph-distro-2-633d363/": {
+    "title": "63A 3ph distro 2 [633D363] - Loud Hire"
+  },
+  "/dry-hire/equipment/63a-3ph-to-x2-32a-3ph/": {
+    "title": "63A 3ph to x2 32A 3ph - Loud Hire"
+  },
+  "/dry-hire/equipment/63a-to-63a-cable-10m/": {
+    "title": "63A to 63A Cable - 10m - Loud Hire"
+  },
+  "/dry-hire/equipment/63a-to-63a-cable-15m/": {
+    "title": "63A to 63A Cable - 15m - Loud Hire"
+  },
+  "/dry-hire/equipment/63a-to-63a-cable-5m/": {
+    "title": "63A to 63A Cable - 5m - Loud Hire"
+  },
+  "/dry-hire/equipment/akg-c747-lectern-microphone/": {
+    "title": "AKG C747 Lectern Microphone - Loud Hire"
+  },
+  "/dry-hire/equipment/akg-d5-microphone/": {
+    "title": "AKG D5 Microphone - Loud Hire"
+  },
+  "/dry-hire/equipment/akg-drum-mic-set-session-1/": {
+    "title": "Drum Mic Set - AKG Session 1 - Loud Hire"
+  },
+  "/dry-hire/equipment/allen-and-heath-avantis/": {
+    "title": "Allen and Heath AVANTIS - Loud Hire"
+  },
+  "/dry-hire/equipment/allen-heath-cq18t/": {
+    "title": "Allen & Heath CQ18T - Loud Hire"
+  },
+  "/dry-hire/equipment/allen-heath-sq5/": {
+    "title": "Allen & Heath SQ5 - Loud Hire"
+  },
+  "/dry-hire/equipment/allen-heath-sq6/": {
+    "title": "Allen & Heath SQ6 - Loud Hire"
+  },
+  "/dry-hire/equipment/allen-heath-stage-box-gx4816/": {
+    "title": "Custom GX4816 Stage Box - Loud Hire"
+  },
+  "/dry-hire/equipment/antenna-distribution-unit-with-psu/": {
+    "title": "Antenna Distribution Unit with PSU - Loud Hire"
+  },
+  "/dry-hire/equipment/artnet-dmx-from-ethernet-converter/": {
+    "title": "ArtNet DMX from Ethernet Converter - Loud Hire"
+  },
+  "/dry-hire/equipment/audix-adx20ip-microphone/": {
+    "title": "Audix ADX20iP Microphone - Loud Hire"
+  },
+  "/dry-hire/equipment/audix-d6-microphone/": {
+    "title": "Audix D6 Microphone - Loud Hire"
+  },
+  "/dry-hire/equipment/battery-pack-12v-76ah/": {
+    "title": "Battery Pack 12v - 76Ah - Loud Hire"
+  },
+  "/dry-hire/equipment/category/amplifiers/": {
+    "title": "D&B Audiotechnik D20 amplifier - Loud Hire"
+  },
+  "/dry-hire/equipment/category/dimmers-data/": {
+    "title": "Chamsys QuickQ 20+ - Loud Hire"
+  },
+  "/dry-hire/equipment/category/microphones/": {
+    "title": "Drum Mic Set - Audix DP7 - Loud Hire"
+  },
+  "/dry-hire/equipment/category/mixers/": {
+    "title": "Allen & Heath SQ5+ [PLUS] - Loud Hire"
+  },
+  "/dry-hire/equipment/category/power/": {
+    "title": "Broughton FFHT32 3phase 28KW heater - Loud Hire"
+  },
+  "/dry-hire/equipment/category/speakers/": {
+    "title": "RCF SUB-18-AX active subwoofer - Loud Hire"
+  },
+  "/dry-hire/equipment/category/stage-lighting/": {
+    "title": "eLumen8 Tour Batten TW IP Rated - Loud Hire"
+  },
+  "/dry-hire/equipment/category/staging/": {
+    "title": "GTDeck Staging - 2m x 1m - Loud Hire"
+  },
+  "/dry-hire/equipment/category/video/": {
+    "title": "500mm x 500mm LED Panel 3.9mm pitch - IP rated - Loud Hire"
+  },
+  "/dry-hire/equipment/chain-hoist-controller-4-way/": {
+    "title": "Chain Hoist Controller (4 Way) - Loud Hire"
+  },
+  "/dry-hire/equipment/chamsys-mq70-desk/": {
+    "title": "Chamsys MQ70 desk - Loud Hire"
+  },
+  "/dry-hire/equipment/chauvet-amhaze-stadium/": {
+    "title": "Chauvet AmHaze Stadium - Loud Hire"
+  },
+  "/dry-hire/equipment/chauvet-maverick-mk2-wash/": {
+    "title": "Chauvet Maverick Mk2 Wash - Loud Hire"
+  },
+  "/dry-hire/equipment/chauvet-ovation-led-fresnel/": {
+    "title": "Chauvet Ovation LED Fresnel - Loud Hire"
+  },
+  "/dry-hire/equipment/classic-pro-dim-2-5-master/": {
+    "title": "Classic Pro-Dim 2.5 Master - Loud Hire"
+  },
+  "/dry-hire/equipment/cm-lodestar-0-5-tonne-chain-hoist/": {
+    "title": "CM Lodestar 0.5 tonne Chain Hoist - Loud Hire"
+  },
+  "/dry-hire/equipment/crank-stand-3m-alto/": {
+    "title": "Crank Stand - 3m - Alto - Loud Hire"
+  },
+  "/dry-hire/equipment/crank-stand-4m-adam-hall/": {
+    "title": "Crank Stand - 4m - Adam hall - Loud Hire"
+  },
+  "/dry-hire/equipment/danley-bc415-sub/": {
+    "title": "Danley BC415 Sub - Loud Hire"
+  },
+  "/dry-hire/equipment/danley-dna-20k4-pro-amplifier/": {
+    "title": "Danley DNA 20K4 PRO amplifier - Loud Hire"
+  },
+  "/dry-hire/equipment/danley-j7-95-jericho-speakers/": {
+    "title": "Danley J7-95 Jericho Speakers - Loud Hire"
+  },
+  "/dry-hire/equipment/danley-sh95ho-fills/": {
+    "title": "Danley SH95HO Fills - Loud Hire"
+  },
+  "/dry-hire/equipment/danley-sm80-speakers/": {
+    "title": "Danley SM80 Speakers - Loud Hire"
+  },
+  "/dry-hire/equipment/danley-thmini15-sub/": {
+    "title": "Danley THMINI15 Sub - Loud Hire"
+  },
+  "/dry-hire/equipment/db-audiotechnik-q7-loudspeaker/": {
+    "title": "D&B audiotechnik Q7 Loudspeaker - Loud Hire"
+  },
+  "/dry-hire/equipment/di-box-bss-ar-133/": {
+    "title": "DI Box - BSS AR-133 - Loud Hire"
+  },
+  "/dry-hire/equipment/di-box-radial-pro48/": {
+    "title": "DI Box - Radial Pro48 - Loud Hire"
+  },
+  "/dry-hire/equipment/distro-32a-single-phase/": {
+    "title": "Distro - 32A 1ph [321D6-161] - Loud Hire"
+  },
+  "/dry-hire/equipment/distro-63a-single-phase-rcbo/": {
+    "title": "Distro - 63A 1ph [631D6-161] - Loud Hire"
+  },
+  "/dry-hire/equipment/distro-63a-single-phase/": {
+    "title": "Distro - 63A Single Phase - Loud Hire"
+  },
+  "/dry-hire/equipment/dmx-cable-5-pin-x-0-75m/": {
+    "title": "DMX Cable 5 Pin x 0.75m - Loud Hire"
+  },
+  "/dry-hire/equipment/dmx-cable-5-pin-x-1-5m/": {
+    "title": "DMX Cable 5 Pin x 0.5m - Loud Hire"
+  },
+  "/dry-hire/equipment/dmx-cable-5-pin-x-10m/": {
+    "title": "DMX Cable 5 Pin x 10m - Loud Hire"
+  },
+  "/dry-hire/equipment/dmx-cable-5-pin-x-1m/": {
+    "title": "DMX Cable 5 Pin x 1m - Loud Hire"
+  },
+  "/dry-hire/equipment/dmx-cable-5-pin-x-20m/": {
+    "title": "DMX Cable 5 Pin x 20m - Loud Hire"
+  },
+  "/dry-hire/equipment/dmx-cable-5-pin-x-30m/": {
+    "title": "DMX Cable 5 Pin x 30m - Loud Hire"
+  },
+  "/dry-hire/equipment/dmx-cable-5-pin-x-5m/": {
+    "title": "DMX Cable 5 Pin x 5m - Loud Hire"
+  },
+  "/dry-hire/equipment/dmx-jumper-3-pin-to-5-pin-yellow-tape/": {
+    "title": "DMX Jumper 3 Pin to 5 Pin (Yellow Tape) - Loud Hire"
+  },
+  "/dry-hire/equipment/dmx-jumper-5-pin-to-3-pin-purple-tape/": {
+    "title": "DMX Jumper 5 Pin to 3 Pin (Purple Tape) - Loud Hire"
+  },
+  "/dry-hire/equipment/dmx-splitter-booster/": {
+    "title": "DMX Splitter/Booster - Loud Hire"
+  },
+  "/dry-hire/equipment/doughty-12-5kg-stage-weight/": {
+    "title": "Doughty or Elumen8 12.5kg Stage Weight - Loud Hire"
+  },
+  "/dry-hire/equipment/electro-voice-etx-12p/": {
+    "title": "Electro Voice ETX-12P - Loud Hire"
+  },
+  "/dry-hire/equipment/electro-voice-etx-18sp/": {
+    "title": "Electro Voice ETX-18SP - Loud Hire"
+  },
+  "/dry-hire/equipment/electro-voice-everse-8/": {
+    "title": "Electro Voice Everse8 - Loud Hire"
+  },
+  "/dry-hire/equipment/electro-voice-zlx-12bt/": {
+    "title": "Electro Voice ZLX-12BT - Loud Hire"
+  },
+  "/dry-hire/equipment/eller-0-25-tonne-manual-chain-hoist-9m/": {
+    "title": "Eller 0.25 tonne Manual Chain Hoist 9m - Loud Hire"
+  },
+  "/dry-hire/equipment/elumen8-cable-ramp-heavy-duty-5-channel-0-9m-sections/": {
+    "title": "Elumen8 Cable ramp Heavy Duty 5 Channel - 0.9m Sections - Loud Hire"
+  },
+  "/dry-hire/equipment/elumen8-tour-batten-tw/": {
+    "title": "eLumen8 Tour Batten TW - Loud Hire"
+  },
+  "/dry-hire/equipment/enttec-open-dmx-ethernet/": {
+    "title": "Enttec Open DMX Ethernet - Loud Hire"
+  },
+  "/dry-hire/equipment/etc-source-four/": {
+    "title": "Chauvet Reve E3 IP - Loud Hire"
+  },
+  "/dry-hire/equipment/f34-lectern-top/": {
+    "title": "F34 Lectern Top - Loud Hire"
+  },
+  "/dry-hire/equipment/f34-truss-base-heavy-duty/": {
+    "title": "F34 Truss Base - Heavy Duty - Loud Hire"
+  },
+  "/dry-hire/equipment/f34-truss-section-1m/": {
+    "title": "M29S Truss Section 1.0m - Loud Hire"
+  },
+  "/dry-hire/equipment/fast-fold-rear-projection-screen/": {
+    "title": "Fast Fold Rear Projection Screen - Loud Hire"
+  },
+  "/dry-hire/equipment/festoon-100m-100-lamp/": {
+    "title": "Festoon - 100m - 100 Lamp - Loud Hire"
+  },
+  "/dry-hire/equipment/festoon-100m-33-lamp/": {
+    "title": "Festoon - 100m - 34 Lamp BC - Loud Hire"
+  },
+  "/dry-hire/equipment/festoon-12m-40-lamp/": {
+    "title": "Festoon - 12m - 40 Lamp - Loud Hire"
+  },
+  "/dry-hire/equipment/festoon-20m-20-lamp/": {
+    "title": "Festoon - 20m - 20 Lamp - Loud Hire"
+  },
+  "/dry-hire/equipment/festoon-50m-50-lamp/": {
+    "title": "Festoon - 50m - 50 Lamp - Loud Hire"
+  },
+  "/dry-hire/equipment/festoon-7-halfm-10-lamp-16a-plug/": {
+    "title": "Festoon - 7½m - 10 Lamp - 16A Plug - Loud Hire"
+  },
+  "/dry-hire/equipment/fg-wilson-20kva-32a-3phase-gen-set/": {
+    "title": "FG Wilson 20KVA 32A 3phase gen set - Loud Hire"
+  },
+  "/dry-hire/equipment/flicker-flame-lantern-basic-up-lighter/": {
+    "title": "Flicker Flame Lantern - Basic Up-lighter - Loud Hire"
+  },
+  "/dry-hire/equipment/flicker-flame-lantern-half-round-wall-mount/": {
+    "title": "Flicker Flame Lantern - ½ Round - Wall Mount - Loud Hire"
+  },
+  "/dry-hire/equipment/flicker-flame-lantern-short-on-plinth/": {
+    "title": "Flicker Flame Lantern - Short on plinth - Loud Hire"
+  },
+  "/dry-hire/equipment/flicker-flame-lantern-tall-on-base/": {
+    "title": "Flicker Flame Lantern - Tall on base - Loud Hire"
+  },
+  "/dry-hire/equipment/fury-200-blinder/": {
+    "title": "Fury 200 Blinder - Loud Hire"
+  },
+  "/dry-hire/equipment/generac-vb9-tower-light/": {
+    "title": "Generac VB9 Tower Light - Loud Hire"
+  },
+  "/dry-hire/equipment/heavy-duty-nl4-lead-x-3m/": {
+    "title": "Heavy Duty NL4 Lead x 3m - Loud Hire"
+  },
+  "/dry-hire/equipment/iec-to-15a/": {
+    "title": "IEC to 15A - Loud Hire"
+  },
+  "/dry-hire/equipment/iec-to-powercon-3-pin-dmx-combination-cable-1-5m/": {
+    "title": "IEC to PowerCon & 3 Pin DMX Combination Cable - 1.5m - Loud Hire"
+  },
+  "/dry-hire/equipment/iec-to-powercon/": {
+    "title": "IEC to PowerCon - Loud Hire"
+  },
+  "/dry-hire/equipment/innox-speaker-stand-pair/": {
+    "title": "Innox Speaker Stand [Pair] - Loud Hire"
+  },
+  "/dry-hire/equipment/inverter-unit-1000w/": {
+    "title": "Inverter Unit 1000w - Loud Hire"
+  },
+  "/dry-hire/equipment/jcb-115kva-generator/": {
+    "title": "JCB 115KVA Generator - Loud Hire"
+  },
+  "/dry-hire/equipment/kam-energy-sd1-multi-function-laser/": {
+    "title": "KAM Energy SD1 Multi-function Laser - Loud Hire"
+  },
+  "/dry-hire/equipment/km-speaker-stand-single/": {
+    "title": "K&M Speaker Stand - Single - Loud Hire"
+  },
+  "/dry-hire/equipment/ldr-alba-18-36-200w-led-followspot/": {
+    "title": "LDR Alba 18/36 200w LED Followspot. - Loud Hire"
+  },
+  "/dry-hire/equipment/ldr-canto-1200-msr-followspot/": {
+    "title": "LDR Canto 1200 MSR Followspot - Loud Hire"
+  },
+  "/dry-hire/equipment/ldr-canto-250hr-followspot/": {
+    "title": "LDR Canto 250hR Followspot - Loud Hire"
+  },
+  "/dry-hire/equipment/led-rgb-outdoor-flood-50w-black/": {
+    "title": "LED RGB Outdoor Flood - 50w Black - Loud Hire"
+  },
+  "/dry-hire/equipment/led-rgb-outdoor-flood-50w-grey/": {
+    "title": "LED RGB Outdoor Flood - 50w Grey - Loud Hire"
+  },
+  "/dry-hire/equipment/led-white-outdoor-flood-50w/": {
+    "title": "LED White Outdoor Flood - 50w - Loud Hire"
+  },
+  "/dry-hire/equipment/lemaitre-2-way-pyro-controller/": {
+    "title": "LeMaitre 2 way Pyro Controller - Loud Hire"
+  },
+  "/dry-hire/equipment/lemaitre-6-way-pyro-controller/": {
+    "title": "LeMaitre 6 way Pyro Controller - Loud Hire"
+  },
+  "/dry-hire/equipment/linea-research-44m20-amp/": {
+    "title": "Linea Research 44M20 amp - Loud Hire"
+  },
+  "/dry-hire/equipment/linea-research-48m10-amp/": {
+    "title": "Linea Research 48M10 amp - Loud Hire"
+  },
+  "/dry-hire/equipment/linea-research-xib4-amp/": {
+    "title": "Linea Research XiB4 amp - Loud Hire"
+  },
+  "/dry-hire/equipment/litedeck-staging-4-x-2/": {
+    "title": "LiteDeck Staging - 4' x 2' - Loud Hire"
+  },
+  "/dry-hire/equipment/litedeck-staging-4-x-4/": {
+    "title": "LiteDeck Staging - 4' x 4' - Loud Hire"
+  },
+  "/dry-hire/equipment/litedeck-staging-8-x-2/": {
+    "title": "LiteDeck Staging - 8' x 2' - Loud Hire"
+  },
+  "/dry-hire/equipment/litedeck-staging-8-x-4/": {
+    "title": "LiteDeck Staging - 8' x 4' - Loud Hire"
+  },
+  "/dry-hire/equipment/litetec-pit-rail-cable-access-section/": {
+    "title": "Litetec Pit Rail Cable Access Section - Loud Hire"
+  },
+  "/dry-hire/equipment/litetec-pit-rail-standard-section/": {
+    "title": "Litetec Pit Rail Standard Section - Loud Hire"
+  },
+  "/dry-hire/equipment/marquee-clamp/": {
+    "title": "Marquee Clamp - Loud Hire"
+  },
+  "/dry-hire/equipment/martin-audio-blackline-x8/": {
+    "title": "Martin Audio Blackline X8 - Loud Hire"
+  },
+  "/dry-hire/equipment/martin-audio-le12j-monitors/": {
+    "title": "Martin Audio LE12J Monitors - Loud Hire"
+  },
+  "/dry-hire/equipment/martin-audio-sx-series-sx112/": {
+    "title": "Martin Audio SX Series - SX112 - Loud Hire"
+  },
+  "/dry-hire/equipment/metal-halide-floodlight-400w/": {
+    "title": "Metal Halide Floodlight - 400w - Loud Hire"
+  },
+  "/dry-hire/equipment/mic-lead-quarter-mono-jack-to-xlrf/": {
+    "title": "Mic Lead ¼\" Mono Jack to XLRF - Loud Hire"
+  },
+  "/dry-hire/equipment/mic-lead-quarter-mono-jack-to-xlrm/": {
+    "title": "Mic Lead ¼\" TRS Jack to XLRM - Loud Hire"
+  },
+  "/dry-hire/equipment/mirrorball-400mm/": {
+    "title": "Mirrorball - 400mm - Loud Hire"
+  },
+  "/dry-hire/equipment/mirrorball-500mm/": {
+    "title": "Mirrorball - 500mm - Loud Hire"
+  },
+  "/dry-hire/equipment/mirrorball-rotator-heavy-duty/": {
+    "title": "Mirrorball Rotator - Heavy Duty [10kg/500mm] - Loud Hire"
+  },
+  "/dry-hire/equipment/nl2-lead-x-10m/": {
+    "title": "NL2 Lead x 10m - Loud Hire"
+  },
+  "/dry-hire/equipment/nl2-lead-x-20m/": {
+    "title": "NL2 Lead x 20m - Loud Hire"
+  },
+  "/dry-hire/equipment/nl2-lead-x-3m/": {
+    "title": "NL2 Lead x 3m - Loud Hire"
+  },
+  "/dry-hire/equipment/nl2-lead-x-5m/": {
+    "title": "NL2 Lead x 5m - Loud Hire"
+  },
+  "/dry-hire/equipment/nl4-coupler/": {
+    "title": "NL4 Coupler - Loud Hire"
+  },
+  "/dry-hire/equipment/nl4-lead-x-10m/": {
+    "title": "NL4 Lead x 10m - Loud Hire"
+  },
+  "/dry-hire/equipment/nl4-lead-x-20m/": {
+    "title": "NL4 Lead x 20m - Loud Hire"
+  },
+  "/dry-hire/equipment/nl4-lead-x-5m/": {
+    "title": "NL4 Lead x 5m - Loud Hire"
+  },
+  "/dry-hire/equipment/nl4-link-lead-0-65m/": {
+    "title": "NL4 Link Lead 0.65m to 0.85m - Loud Hire"
+  },
+  "/dry-hire/equipment/nl4-link-lead-0-80m/": {
+    "title": "NL4 Crossover Lead x 3m - Loud Hire"
+  },
+  "/dry-hire/equipment/nl4-to-nl8-fm/": {
+    "title": "NL4 to NL8, F>M - Loud Hire"
+  },
+  "/dry-hire/equipment/nl4-y-splitter-lead/": {
+    "title": "NL4 'Y' Splitter Lead - Loud Hire"
+  },
+  "/dry-hire/equipment/nl8-lead-x-20m/": {
+    "title": "NL8 Lead x 20m - Loud Hire"
+  },
+  "/dry-hire/equipment/nl8-link-lead-1-0m/": {
+    "title": "NL8 link Lead - 1.0m - Loud Hire"
+  },
+  "/dry-hire/equipment/par64-lblk-cp62-medium-flood/": {
+    "title": "PAR64 - LBLK - CP62 Medium Flood - Loud Hire"
+  },
+  "/dry-hire/equipment/party-light-bar-small/": {
+    "title": "Party Light Bar - Small - Loud Hire"
+  },
+  "/dry-hire/equipment/powercon-3-pin-dmx-combination-cable-1-5m-grey-tape-yellow-tape-dmx/": {
+    "title": "PowerCon & 3 Pin DMX Combination Cable - 1.5m (Grey Tape - Yellow Tape DMX) - Loud Hire"
+  },
+  "/dry-hire/equipment/powercon-3-pin-dmx-combination-cable-3m-brown-tape-yellow-tape-dmx/": {
+    "title": "PowerCon & 3 Pin DMX Combination Cable - 3m (Brown Tape - Yellow Tape DMX) - Loud Hire"
+  },
+  "/dry-hire/equipment/powercon-5-pin-dmx-combination-cable-2m-purple-tape-dmx/": {
+    "title": "PowerCon & 5 Pin DMX Combination Cable - 2m (Purple Tape - DMX) - Loud Hire"
+  },
+  "/dry-hire/equipment/powercon-to-13a-1-way-cable-1-0m/": {
+    "title": "PowerCon to 13A 1 way Cable - 1.0m - Loud Hire"
+  },
+  "/dry-hire/equipment/powercon-to-13a-4-way-cable-1-0m/": {
+    "title": "PowerCon to 13A 4 way Cable - 1.0m - Loud Hire"
+  },
+  "/dry-hire/equipment/powercon-to-iec-3-pin-dmx-combination-cable-1-5m/": {
+    "title": "PowerCon to IEC & 3 Pin DMX Combination Cable - 1.5m - Loud Hire"
+  },
+  "/dry-hire/equipment/powercon-to-powercon-0-5m-grey-tape/": {
+    "title": "PowerCon to PowerCon - 0.5m (Grey Tape) - Loud Hire"
+  },
+  "/dry-hire/equipment/powercon-to-powercon-3m-brown-tape/": {
+    "title": "PowerCon to PowerCon - 3m (Brown Tape) - Loud Hire"
+  },
+  "/dry-hire/equipment/powercon-to-powercon-5m-blue-tape/": {
+    "title": "PowerCon to PowerCon - 5m (Blue Tape) - Loud Hire"
+  },
+  "/dry-hire/equipment/rapid-qb1/": {
+    "title": "Rapid QB1 - Loud Hire"
+  },
+  "/dry-hire/equipment/rh40v-rectangular-horn-100v/": {
+    "title": "RH40V rectangular horn 100V - Loud Hire"
+  },
+  "/dry-hire/equipment/rode-m5-microphone-matched-pair/": {
+    "title": "Rode M5 Microphone - Matched Pair - Loud Hire"
+  },
+  "/dry-hire/equipment/scaffolding-putlog-5/": {
+    "title": "Scaffolding Putlog 5' - Loud Hire"
+  },
+  "/dry-hire/equipment/se-v7-black-dynamic-mic/": {
+    "title": "SE V7 Black Dynamic Mic - Loud Hire"
+  },
+  "/dry-hire/equipment/selecon-acclaim-axial-spot/": {
+    "title": "Selecon Acclaim Axial Spot - Loud Hire"
+  },
+  "/dry-hire/equipment/selecon-acclaim-fresnel/": {
+    "title": "Selecon Acclaim Fresnel - Loud Hire"
+  },
+  "/dry-hire/equipment/sennheiser-antenna-adp-uhf/": {
+    "title": "Sennheiser Antenna ADP-UHF - Loud Hire"
+  },
+  "/dry-hire/equipment/sennheiser-e604-microphone/": {
+    "title": "Sennheiser e604 microphone - Loud Hire"
+  },
+  "/dry-hire/equipment/sennheiser-ew-d-radio-mic-system/": {
+    "title": "Sennheiser EW-D Radio Mic System - Loud Hire"
+  },
+  "/dry-hire/equipment/shure-beta-57a-microphone/": {
+    "title": "Shure Beta 57a Microphone - Loud Hire"
+  },
+  "/dry-hire/equipment/shure-beta-91a-microphone/": {
+    "title": "Shure Beta 91a Microphone - Loud Hire"
+  },
+  "/dry-hire/equipment/shure-sm57/": {
+    "title": "Shure SM57 Microphone - Loud Hire"
+  },
+  "/dry-hire/equipment/shure-sm58/": {
+    "title": "Shure SM58 Microphone - Loud Hire"
+  },
+  "/dry-hire/equipment/socapex-cable-10m-m-to-f/": {
+    "title": "Socapex Cable - 10m (M) to (F) - Loud Hire"
+  },
+  "/dry-hire/equipment/socapex-cable-20m-m-to-f/": {
+    "title": "Socapex Cable - 20m (M) to (F) - Loud Hire"
+  },
+  "/dry-hire/equipment/socapex-cable-3m-m-to-f/": {
+    "title": "Socapex Cable - 3m (M) to (F) - Loud Hire"
+  },
+  "/dry-hire/equipment/socapex-cable-5m-m-to-f/": {
+    "title": "Socapex Cable - 5m (M) to (F) - Loud Hire"
+  },
+  "/dry-hire/equipment/socapex-cable-8m-m-to-f/": {
+    "title": "Socapex Cable - 8m (M) to (F) - Loud Hire"
+  },
+  "/dry-hire/equipment/socapex-spider-15a-plug-to-socapex/": {
+    "title": "Socapex Spider - 15A Plug to Socapex - Loud Hire"
+  },
+  "/dry-hire/equipment/socapex-spider-16a-plug-to-socapex/": {
+    "title": "Socapex Spider - 16A Plug to Socapex - Loud Hire"
+  },
+  "/dry-hire/equipment/socapex-spider-socapex-to-15a-socket/": {
+    "title": "Socapex Spider - Socapex to 15A Socket - Loud Hire"
+  },
+  "/dry-hire/equipment/socapex-spider-socapex-to-16a-socket/": {
+    "title": "Socapex Spider - Socapex to 16A Socket - Loud Hire"
+  },
+  "/dry-hire/equipment/socapex-through-box-15a/": {
+    "title": "Socapex Through Box - 15A - Loud Hire"
+  },
+  "/dry-hire/equipment/sony-projector-vpl-fhz66/": {
+    "title": "Sony Projector - VPL-fhz66 - Loud Hire"
+  },
+  "/dry-hire/equipment/soundcraft-ui-12/": {
+    "title": "Soundcraft UI 16 - Loud Hire"
+  },
+  "/dry-hire/equipment/spectra-batten-q16hex/": {
+    "title": "Spectra Batten Q16HEX - Loud Hire"
+  },
+  "/dry-hire/equipment/spectra-flood-mkii-q40/": {
+    "title": "Spectra Flood MkII Q40 - Loud Hire"
+  },
+  "/dry-hire/equipment/spectra-par-15q8/": {
+    "title": "Spectra Par 15Q8 - Loud Hire"
+  },
+  "/dry-hire/equipment/stage-box-8-0-10m/": {
+    "title": "Stage Box 8/0 - 10m - Loud Hire"
+  },
+  "/dry-hire/equipment/stage-brace-doughty-2m-4m/": {
+    "title": "Stage Brace - Doughty 2m-4m - Loud Hire"
+  },
+  "/dry-hire/equipment/stagemobil-l-stage/": {
+    "title": "Stagemobil L stage - Loud Hire"
+  },
+  "/dry-hire/equipment/stagemobil-xxl/": {
+    "title": "Stagemobil XXL - Loud Hire"
+  },
+  "/dry-hire/equipment/stand-bar-tube-adaptor/": {
+    "title": "Stand Bar/Tube Adaptor - Loud Hire"
+  },
+  "/dry-hire/equipment/stand-truss-adaptor/": {
+    "title": "Stand truss Adaptor - Loud Hire"
+  },
+  "/dry-hire/equipment/strobe-unit-dmx-1500w/": {
+    "title": "Strobe Unit - DMX - 1500w - Loud Hire"
+  },
+  "/dry-hire/equipment/swisson-dmx-splitter-booster/": {
+    "title": "Swisson DMX Splitter/Booster - Loud Hire"
+  },
+  "/dry-hire/equipment/swissonic-professional-router-rack-mount/": {
+    "title": "Swissonic Professional Router - Rack Mount - Loud Hire"
+  },
+  "/dry-hire/equipment/t-bar-1-3m-4-way-adam-hall/": {
+    "title": "T Bar - 1.3m 4 way - Adam hall - Loud Hire"
+  },
+  "/dry-hire/equipment/transcension-powercon-splitter/": {
+    "title": "Transcension PowerCon Splitter - Loud Hire"
+  },
+  "/dry-hire/equipment/transcension-up2-pro-dimmer/": {
+    "title": "Transcension UP2 Pro-Dimmer - Loud Hire"
+  },
+  "/dry-hire/equipment/tubular-wave-ripple-machine/": {
+    "title": "Tubular Wave Ripple Machine - Loud Hire"
+  },
+  "/dry-hire/equipment/uv-cannon-400w-discharge/": {
+    "title": "UV Cannon 400w Discharge - Loud Hire"
+  },
+  "/dry-hire/equipment/uv-fitting-with-4-tube/": {
+    "title": "UV Fitting with 4' Tube - Loud Hire"
+  },
+  "/dry-hire/equipment/w-dmx-micro-f-1-lite-g5-transceiver/": {
+    "title": "W DMX Micro F-1 Lite G5 Transceiver - Loud Hire"
+  },
+  "/dry-hire/equipment/xlr-cable-3-pin-10m-green-ring/": {
+    "title": "XLR Cable 3 pin - 10m (Green Ring) - Loud Hire"
+  },
+  "/dry-hire/equipment/xlr-cable-3-pin-5m-blue-ring/": {
+    "title": "XLR Cable 3 pin - 5m (Blue Ring) - Loud Hire"
+  },
+  "/dry-hire/equipment/xlr-twin-1-5m-amp-link-lead/": {
+    "title": "XLR Twin 1.5m Amp Link Lead - Loud Hire"
+  },
+  "/dry-hire/equipment/yamaha-dm3/": {
+    "title": "Yamaha DM3 - Loud Hire"
+  },
+  "/dry-hire/equipment/yamaha-hs5-monitor-speaker-pair/": {
+    "title": "Yamaha HS5 Monitor Speaker (Pair) - Loud Hire"
+  },
+  "/dry-hire/equipment/zero88-betapack-3/": {
+    "title": "Zero88 BetaPack 3 - Loud Hire"
+  },
+  "/dry-hire/equipment/zero88-demux48/": {
+    "title": "Zero88 - Demux48 - Loud Hire"
+  },
+  "/dry-hire/equipment/zero88-flx-s24/": {
+    "title": "Zero88 FLX s24 - Loud Hire"
+  },
+  "/dry-hire/equipment/zero88-spice-1210i-dimmer-rack/": {
+    "title": "Zero88 Spice 1210i Dimmer Rack - Loud Hire"
+  },
+  "/dry-hire/party-packages/": {
+    "title": "Party PA Packages Bristol & Cotswolds | Loud Hire"
+  },
+  "/news-and-projects/": {
+    "title": "Loud Hire get new website - Loud Hire"
+  },
+  "/news-and-projects/2018-event-hire/": {
+    "title": "2018 EVENT HIRE - Loud Hire"
+  },
+  "/news-and-projects/2022-review/": {
+    "title": "2022 Review - Loud Hire Bristol - Loud Hire"
+  },
+  "/news-and-projects/2023-in-review/": {
+    "title": "PA system hire 2024 - Loud Hire"
+  },
+  "/news-and-projects/aerospace-bristol-5th-anniversary/": {
+    "title": "Aerospace Bristol's 5th Anniversary - Loud Hire"
+  },
+  "/news-and-projects/allen-and-heath-sq-mixers/": {
+    "title": "Allen and Heath SQ digital mixers added to Hire - Loud Hire"
+  },
+  "/news-and-projects/british-airways-summer-fly-in/": {
+    "title": "British Airways summer fly-in event - Loud Hire"
+  },
+  "/news-and-projects/christmas-concert-ilford/": {
+    "title": "Christmas Concert Ilford London - Loud Hire"
+  },
+  "/news-and-projects/danley-sound-labs-pa/": {
+    "title": "Danley Sound Labs PA Investments for 2023 - Loud Hire"
+  },
+  "/news-and-projects/digital-amplifier-technology/": {
+    "title": "DIGITAL AMPLIFIER TECHNOLOGY - Loud Hire"
+  },
+  "/news-and-projects/downend-fireworks-lighting/": {
+    "title": "Downend Firework display light show - Loud Hire"
+  },
+  "/news-and-projects/eats-everything-hot-air-balloon/": {
+    "title": "Eats Everything - Loud Hire"
+  },
+  "/news-and-projects/elumen8-alu-hex-par-64/": {
+    "title": "NEW ELUMEN8 ALU HEX PAR 64 LED STAGE LIGHTING - Loud Hire"
+  },
+  "/news-and-projects/festival-birthday-party-herefordshire/": {
+    "title": "Festival Birthday Party - Loud Hire"
+  },
+  "/news-and-projects/festival-style-tipi-wedding/": {
+    "title": "Tipi Wedding - Loud Hire"
+  },
+  "/news-and-projects/gloucester-tall-ships-festival/": {
+    "title": "Gloucester docks Tall Ships Festival - Loud Hire"
+  },
+  "/news-and-projects/gorgon-city-private-party/": {
+    "title": "Gorgon City - Loud Hire"
+  },
+  "/news-and-projects/great-sound-without-feedback/": {
+    "title": "GREAT SOUND WITHOUT FEEDBACK - Loud Hire"
+  },
+  "/news-and-projects/hawkstone-advert-launch/": {
+    "title": "Hawkstone BANNED TV advert launch - Loud Hire"
+  },
+  "/news-and-projects/ilford-queens-jubilee/": {
+    "title": "llford London – The Queen’s Jubilee - Loud Hire"
+  },
+  "/news-and-projects/konligo-fastival-stage-roof/": {
+    "title": "Konligo 'fastival' stage roof hire! - Loud Hire"
+  },
+  "/news-and-projects/led-video-wall-hire/": {
+    "title": "LED Video Wall Hire - Loud Hire",
+    "description": "We provide both indoor and outdoor video wall systems. We can provide this stand alone or with technical services such as cameras or sound."
+  },
+  "/news-and-projects/martin-audio-line-array/": {
+    "title": "MARTIN AUDIO HIRE BRISTOL - Loud Hire"
+  },
+  "/news-and-projects/proms-in-the-park-speech-house/": {
+    "title": "Proms in the Park - Speech House - Loud Hire"
+  },
+  "/news-and-projects/public-announcement-horn-speakers/": {
+    "title": "PUBLIC ANNOUNCEMENT HORN SPEAKERS - Loud Hire"
+  },
+  "/news-and-projects/santas-float-bristol/": {
+    "title": "Santa's Float - The North Pole - Loud Hire"
+  },
+  "/news-and-projects/sennheiser-ew-d-radio-microphones/": {
+    "title": "Sennheiser EW-D radio microphones added to Hire - Loud Hire"
+  },
+  "/news-and-projects/shakespeare-at-the-mount-without/": {
+    "title": "Mount Without Bristol - Loud Hire"
+  },
+  "/news-and-projects/shield-group-corporate-festival/": {
+    "title": "Shield Group Corporate Festival - Loud Hire"
+  },
+  "/news-and-projects/stage-lighting-investments-2019/": {
+    "title": "STAGE LIGHTING INVESTMENTS FOR 2019 - Loud Hire"
+  },
+  "/news-and-projects/the-wurzels-bath-racecourse/": {
+    "title": "The Wurzels - Loud Hire"
+  },
+  "/news-and-projects/theatre-lighting-and-sound-hire/": {
+    "title": "THEATRE LIGHTING HIRE - Loud Hire"
+  },
+  "/news-and-projects/video-wall-for-stretch-tent/": {
+    "title": "Video wall for stretch tent - Loud Hire"
+  },
+  "/news-and-projects/wireless-microphone-hire/": {
+    "title": "Bristol Wireless Microphone Hire - Loud Hire"
+  },
+  "/dry-hire/equipment/martin-audio-w8lm/": {
+    "title": "Martin Audio W8LM - Loud Hire"
+  },
+  "/dry-hire/equipment/martin-audio-w8lmd/": {
+    "title": "Martin Audio W8LMD - Loud Hire"
+  },
+  "/dry-hire/equipment/112m-loudspeaker/": {
+    "title": "112M loudspeaker - Loud Hire"
+  },
+  "/dry-hire/equipment/qsc-gxd8-amplifier/": {
+    "title": "QSC GXD8 Amplifier - Loud Hire"
+  },
+  "/dry-hire/equipment/chauvet-rogue-1l-beam/": {
+    "title": "Chauvet Rogue 1L Beam - Loud Hire"
+  },
+  "/dry-hire/equipment/ipg-wp60ss-60kva-3phase-generator/": {
+    "title": "IPG WP60SS - 60KVA 3phase generator - Loud Hire"
+  },
+  "/dry-hire/equipment/instagrid-one/": {
+    "title": "Instagrid One - Loud Hire"
+  },
+  "/dry-hire/equipment/db-audiotechnik-c7-top/": {
+    "title": "D&amp;B audiotechnik C7-TOP - Loud Hire"
+  },
+  "/dry-hire/equipment/db-audiotechnik-c7-subwoofer/": {
+    "title": "D&amp;B audiotechnik C7 subwoofer - Loud Hire"
+  },
+  "/dry-hire/equipment/db-audiotechnik-d12-amplifier/": {
+    "title": "D&amp;B Audiotechnik D12 amplifier - Loud Hire"
+  },
+  "/dry-hire/equipment/db-audiotechnik-q-subwoofer-q-sub/": {
+    "title": "D&amp;B Audiotechnik Q Subwoofer ( Q-sub ) - Loud Hire"
+  },
+  "/dry-hire/equipment/iiyama-pl7564u-75-4k-commercial-display/": {
+    "title": "iiyama PL7564U 75\" 4K commercial display - Loud Hire"
+  },
+  "/dry-hire/equipment/db-audiotechnik-d20-amplifier/": {
+    "title": "D&amp;B Audiotechnik D20 amplifier - Loud Hire"
+  },
+  "/dry-hire/equipment/drum-mic-set-audix-dp7/": {
+    "title": "Drum Mic Set - Audix DP7 - Loud Hire"
+  },
+  "/dry-hire/equipment/elumen8-evora-850-zoom-spot/": {
+    "title": "Elumen8 Evora 850 Zoom Spot - Loud Hire"
+  },
+  "/dry-hire/equipment/elumen8-tour-batten-tw-ip-rated/": {
+    "title": "eLumen8 Tour Batten TW IP Rated - Loud Hire"
+  },
+  "/dry-hire/equipment/gtdeck-staging-2m-x-1m/": {
+    "title": "GTDeck Staging - 2m x 1m - Loud Hire"
+  },
+  "/dry-hire/equipment/broughton-ffht32-3phase-28kw-heater/": {
+    "title": "Broughton FFHT32 3phase 28KW heater - Loud Hire"
+  },
+  "/dry-hire/equipment/500mm-x-1000mm-led-panel-3-9mm-pitch-ip-rated/": {
+    "title": "500mm x 1000mm LED Panel 3.9mm pitch - IP rated - Loud Hire"
+  },
+  "/dry-hire/equipment/500mm-x-500mm-led-panel-3-9mm-pitch-ip-rated/": {
+    "title": "500mm x 500mm LED Panel 3.9mm pitch - IP rated - Loud Hire"
+  },
+  "/dry-hire/equipment/allen-heath-sq5-plus/": {
+    "title": "Allen &amp; Heath SQ5+ [PLUS] - Loud Hire"
+  },
+  "/dry-hire/equipment/rcf-nx-932-a-active-speaker/": {
+    "title": "RCF NX 932-A active speaker - Loud Hire"
+  },
+  "/dry-hire/equipment/rcf-sub-18-ax-active-subwoofer/": {
+    "title": "RCF SUB-18-AX active subwoofer - Loud Hire"
+  },
+  "/dry-hire/equipment/chamsys-quickq-20/": {
+    "title": "Chamsys QuickQ 20+ - Loud Hire"
+  },
+  "/dry-hire/equipment/jcb-g65qs-60kva-generator/": {
+    "title": "JCB G65QS - 60KVA Generator - Loud Hire"
+  },
+  "/dry-hire/sound/": {
+    "title": "PA & Sound System Hire Bristol & Cotswolds | Loud Hire"
+  },
+  "/dry-hire/lighting/": {
+    "title": "Lighting Hire Bristol & Cotswolds | Loud Hire",
+    "description": "Allow us to enlighten your event using architectural and entertainment lighting systems? Contact our Bristol team today to see how we can help!"
+  },
+  "/ex-hire-equipment/": {
+    "title": "EX HIRE EQUIPMENT - Loud Hire"
+  }
+}

@@ -5,9 +5,7 @@
  * src/pages/[...legacy].astro (server-side fallback for anything else).
  * Product URLs (/product/<slug>/) are generated from src/data/equipment.json.
  */
-import { createRequire } from 'node:module';
-const require = createRequire(import.meta.url);
-const equipment = require('./equipment.json');
+import equipment from './equipment.json' with { type: 'json' };
 
 const NP = '/news-and-projects';
 const EQ = '/dry-hire/equipment';
@@ -25,12 +23,14 @@ export const pageRedirects = {
   '/live-events': '/event-production/festivals/',
   '/live-events-2': '/event-production/festivals/',
   '/production-services': '/event-production/',
+  '/services': '/event-production/',
   '/production-services/corporate-event-management': '/event-production/corporate-events/',
   '/production-services/festivals': '/event-production/festivals/',
   '/production-services/parties': '/event-production/private-events/',
   '/production-services/performing-arts': '/event-production/performing-arts/',
   '/production-services/production-packages': '/event-production/',
   '/production-services/public-announcement-horn-speakers': `${NP}/public-announcement-horn-speakers/`,
+  '/public-announcement-horn-speakers': `${NP}/public-announcement-horn-speakers/`,
   '/corporate': '/event-production/corporate-events/',
   '/sound': '/event-production/sound/',
   '/event-sound-design': '/event-production/sound/',
@@ -47,22 +47,23 @@ export const pageRedirects = {
   '/feed': `${NP}/`,
   '/news/feed': `${NP}/`,
   '/author/admin': `${NP}/`,
+  '/news/author/admin': `${NP}/`,
   '/contact-us': '/contact/',
   '/thank_you': '/thank-you/',
   '/privacy-policy-2': '/privacy-policy/',
 
   // Shop / equipment rental
   '/equipment-rental': '/dry-hire/',
-  '/equipment-rental/sound': '/dry-hire/#sound',
-  '/equipment-rental/lighting': '/dry-hire/#lighting',
+  '/equipment-rental/sound': '/dry-hire/sound/',
+  '/equipment-rental/lighting': '/dry-hire/lighting/',
   '/equipment-rental/effects': '/dry-hire/#lighting',
   '/equipment-rental/staging': '/dry-hire/#staging',
   '/equipment-rental/video': '/dry-hire/#video',
   '/equipment-rental/power': '/dry-hire/#power',
   '/equipment-rental/cable-rental': '/dry-hire/#accessories',
-  '/equipment-rental/party-packages': '/dry-hire/#packages',
+  '/equipment-rental/party-packages': '/dry-hire/party-packages/',
+  '/party-packages': '/dry-hire/party-packages/',
   '/dry-hire-explorer': '/dry-hire/',
-  '/ex-hire-equipment': '/dry-hire/',
   '/store': `${EQ}/`,
   '/shop': `${EQ}/`,
   '/cart': '/dry-hire/',
@@ -97,6 +98,11 @@ export const pageRedirects = {
   '/product-category/cable/cable-mains-power': `${EQ}/category/cable-mains-power/`,
   '/product-category/cable/cable-speaker-microphone-control': `${EQ}/category/cable-speaker-microphone-control/`,
   '/product-category/staging-hardware/rigging': `${EQ}/category/rigging/`,
+  '/product-category/hvac': `${EQ}/category/power/`,
+
+  // Historical hire-duration taxonomy pages from the WordPress sitemap.
+  '/hire-duration/day-hire': '/dry-hire/',
+  '/hire-duration/week-hire': '/dry-hire/',
 
   // News posts
   '/news/led-video-wall-hire': `${NP}/led-video-wall-hire/`,
@@ -174,6 +180,8 @@ export const productRedirects = Object.fromEntries(
 /** Catch-alls for archives, tags and pagination (mirrored in vercel.json). */
 export const patternRedirects = {
   '/news/page/[...rest]': `${NP}/`,
+  '/shop/page/[...rest]': `${EQ}/`,
+  '/hire-duration/[...rest]': '/dry-hire/',
   '/case-studies/page/[...rest]': `${NP}/projects/`,
   '/product-tag/[...rest]': `${EQ}/`,
   '/product_brand/[...rest]': `${EQ}/`,

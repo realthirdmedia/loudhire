@@ -4,6 +4,7 @@ import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
 import ContactSection from '../../components/ContactSection.astro';
 import equipment from '../../data/equipment.json';
+import { partyPackages } from '../../data/partyPackages';
 import heroImage from '../../assets/news/wireless-microphone-hire/28-channels.jpg';
 import imgSound from '../../assets/news/danley-sound-labs-pa/j7-bc415.jpg';
 import imgLighting from '../../assets/projects/aerospace-bristol-5th-anniversary/desk.jpg';
@@ -68,13 +69,6 @@ const sections = [
   },
 ];
 
-const packages = [
-  { name: 'Mini Rave', price: '£35', spec: '1,000W speaker on a stand, one cable, set up in two minutes. House parties and small gatherings, indoors or under cover.' },
-  { name: 'Rave', price: '£55', spec: '2,000W two-speaker package with a link cable so you can put a speaker in a second room. Medium-sized birthdays and small weddings.' },
-  { name: 'Ibiza', price: '£155', spec: '6,000W package with subwoofers for real low end, tops stacked on the subs so the footprint stays small. Ten-minute set-up.' },
-  { name: 'Ibiza XL', price: '£200', spec: '7,200W with full range and headroom for bands as well as playlists. Weddings, large parties and live music.' },
-];
-
 const faqs = [
   { q: 'Can anyone dry hire from you?', a: 'Yes. We hire to other production companies, venues, bands, DJs, schools, churches and occasional customers alike. If you are providing services for an event and need extra stock, get in touch.' },
   { q: 'Collection or delivery?', a: 'Collect from our Thornbury warehouse by appointment, Monday to Friday, 9am to 5pm, or ask us to quote for delivery. We deliver anywhere in the UK.' },
@@ -84,12 +78,26 @@ const faqs = [
   { q: 'How are prices shown?', a: 'Prices in the equipment list are per day excluding VAT where listed; weekly rates are available and many items are priced on enquiry. Tell us the dates and the list and we will quote the lot.' },
 ];
 
-const title = 'Dry Hire: Sound, Lighting, Staging, Video & Power Equipment Hire | Thornbury, Bristol';
+const title = 'Equipment Hire Bristol & Cotswolds | Loud Hire';
 const description =
   'Equipment-only hire from our Thornbury warehouse near Bristol: PA systems, microphones, mixers, stage lighting, Litedeck staging, LED video wall, generators, distribution and cabling. Collection or delivery, day and week rates, open to production companies and occasional customers.';
+const serviceLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': 'https://www.loudhire.co.uk/dry-hire/#service',
+  name: 'Equipment dry hire',
+  description,
+  provider: { '@id': 'https://www.loudhire.co.uk/#organisation' },
+  areaServed: ['Bristol', 'The Cotswolds', 'South West England'],
+};
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(({ q, a }) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+};
 ---
 
-<Base title={title} description={description}>
+<Base title={title} description={description} jsonLd={[serviceLd, faqLd]}>
   <PageHero
     variant="split"
     image={heroImage}
@@ -100,7 +108,7 @@ const description =
     ctaLabel="Enquire about equipment hire"
     ctaHref="/contact/?subject=dry-hire#enquiry"
     secondaryLabel="Browse the full equipment list"
-    secondaryHref="/dry-hire/equipment/"
+    secondaryHref="/quote/#equipment"
     breadcrumb={[
       { label: 'Home', href: '/' },
       { label: 'Dry Hire', href: '/dry-hire/' },
@@ -166,11 +174,11 @@ const description =
       </div>
       <div class="packages__grid">
         {
-          packages.map((p) => (
+          partyPackages.map((p) => (
             <div class="pkg">
               <h3>{p.name}</h3>
               <p class="pkg__price">
-                {p.price} <span>+ VAT per day</span>
+                £{p.price} <span>+ VAT per day</span>
               </p>
               <p>{p.spec}</p>
               <a class="text-link" href={`/contact/?subject=${encodeURIComponent(`${p.name} party package`)}#enquiry`}>Check availability</a>
@@ -178,6 +186,7 @@ const description =
           ))
         }
       </div>
+      <p class="packages__more"><a class="text-link" href="/dry-hire/party-packages/">Compare all party PA packages</a></p>
     </div>
   </section>
 
@@ -257,7 +266,7 @@ const description =
     height: 1.75rem;
     border-radius: 50%;
     background: var(--c-black);
-    color: var(--c-orange);
+    color: #fff;
     font-family: var(--font-display);
     font-weight: 800;
     font-size: 0.85rem;

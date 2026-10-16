@@ -15,9 +15,20 @@ const siblings = categories.filter((c) => c.section === category.section && c.sl
 
 const title = `${category.name} Hire | ${sectionName(category.section)} Dry Hire near Bristol`;
 const description = `${items.length} ${category.name.toLowerCase()} items for dry hire from Loud Hire in Thornbury, near Bristol. Day and week rates, collection or delivery across the South West.`;
+const itemListLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: `${category.name} for hire`,
+  itemListElement: items.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: item.name,
+    url: new URL(`/dry-hire/equipment/${item.slug}/`, Astro.site).href,
+  })),
+};
 ---
 
-<Base title={title} description={description}>
+<Base title={title} description={description} pageType="CollectionPage" jsonLd={[itemListLd]}>
   <PageHero
     variant="plain"
     eyebrow={`Dry hire · ${sectionName(category.section)}`}
