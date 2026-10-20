@@ -1,0 +1,106 @@
+<section id="analytics-choice" class="analytics-choice" aria-label="Analytics cookies" hidden>
+  <div>
+    <strong>Analytics cookies</strong>
+    <p>May we use Google Analytics to understand how visitors use our site? Your choice won’t affect enquiries or quotes. <a href="/privacy-policy/">Privacy policy</a></p>
+  </div>
+  <div class="analytics-choice__actions">
+    <button type="button" class="btn btn--outline btn--sm" data-analytics-choice="denied">Reject analytics</button>
+    <button type="button" class="btn btn--outline btn--sm" data-analytics-choice="granted">Accept analytics</button>
+  </div>
+</section>
+
+<script is:inline>
+  (() => {
+    // Keep development and Vercel previews out of the existing live GA4 property.
+    if (!['www.loudhire.co.uk', 'loudhire.co.uk'].includes(location.hostname)) return;
+    const measurementId = 'G-0BRD96ZVY5';
+    const storageKey = 'loudhire-analytics-choice-v1';
+    const banner = document.getElementById('analytics-choice');
+    const settings = document.querySelector('[data-analytics-settings]');
+    if (!banner) return;
+    let loaded = false;
+    let saved;
+    try {
+      saved = JSON.parse(localStorage.getItem(storageKey) || 'null');
+      if (!saved || saved.expires < Date.now()) saved = null;
+    } catch { saved = null; }
+
+    function startAnalytics() {
+      if (loaded) return;
+      loaded = true;
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      window.gtag('consent', 'default', {
+        analytics_storage: 'granted',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+      });
+      window.gtag('js', new Date());
+      // Do not pass arbitrary query strings or form contents into analytics.
+      const page = new URL(location.origin + location.pathname);
+      const query = new URLSearchParams(location.search);
+      for (const key of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid']) {
+        if (query.has(key)) page.searchParams.set(key, query.get(key));
+      }
+      let referrer = '';
+      try {
+        const url = new URL(document.referrer);
+        referrer = url.origin + url.pathname;
+      } catch {}
+      window.gtag('config', measurementId, {
+        page_location: page.href,
+        page_referrer: referrer,
+        allow_google_signals: false,
+        allow_ad_personalization_signals: false,
+      });
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+      document.head.append(script);
+    }
+
+    if (settings) {
+      settings.hidden = false;
+      settings.addEventListener('click', () => {
+        banner.hidden = false;
+        banner.querySelector('button').focus();
+      });
+    }
+    if (saved?.choice === 'granted') startAnalytics();
+    else if (saved?.choice !== 'denied') banner.hidden = false;
+
+    banner.querySelectorAll('[data-analytics-choice]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const choice = button.dataset.analyticsChoice;
+        try {
+          localStorage.setItem(storageKey, JSON.stringify({
+            choice, expires: Date.now() + 180 * 24 * 60 * 60 * 1000,
+          }));
+        } catch {}
+        banner.hidden = true;
+        if (choice === 'granted') startAnalytics();
+        else if (loaded) {
+          window[`ga-disable-${measurementId}`] = true;
+          window.gtag('consent', 'update', { analytics_storage: 'denied' });
+          for (const cookie of document.cookie.split(';')) {
+            const name = cookie.split('=')[0].trim();
+            if (!/^_ga(?:_|$)/.test(name)) continue;
+            for (const domain of ['', '; Domain=loudhire.co.uk', `; Domain=${location.hostname}`]) {
+              document.cookie = `${name}=; Max-Age=0; Path=/${domain}; SameSite=Lax`;
+            }
+          }
+          location.reload();
+        }
+      });
+    });
+  })();
+</script>
+
+<style>
+  .analytics-choice{position:fixed;bottom:1rem;left:1rem;right:1rem;z-index:1100;max-width:62rem;margin:auto;padding:1.2rem 1.4rem;background:#fff;color:var(--c-ink);border:1px solid var(--c-line);border-radius:var(--radius);box-shadow:0 4px 24px #0003;display:flex;align-items:center;gap:1.5rem}
+  .analytics-choice p{font-size:var(--text-xs);margin:.35rem 0 0}
+  .analytics-choice a{text-decoration:underline}
+  .analytics-choice__actions{display:flex;gap:.6rem;flex-shrink:0}
+  @media(max-width:48rem){.analytics-choice{display:block}.analytics-choice__actions{margin-top:1rem;flex-wrap:wrap}}
+</style>
