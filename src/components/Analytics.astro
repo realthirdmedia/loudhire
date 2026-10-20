@@ -1,11 +1,11 @@
 <section id="analytics-choice" class="analytics-choice" aria-label="Analytics cookies" hidden>
   <div>
-    <strong>Analytics cookies</strong>
-    <p>May we use Google Analytics to understand how visitors use our site? Your choice won’t affect enquiries or quotes. <a href="/privacy-policy/">Privacy policy</a></p>
+    <p>We use cookies on our site to provide you the best experience.</p>
+    <a class="analytics-choice__privacy" href="/privacy-policy/">Privacy policy</a>
   </div>
   <div class="analytics-choice__actions">
-    <button type="button" class="btn btn--outline btn--sm" data-analytics-choice="denied">Reject analytics</button>
-    <button type="button" class="btn btn--outline btn--sm" data-analytics-choice="granted">Accept analytics</button>
+    <button type="button" class="btn btn--primary analytics-choice__accept" data-analytics-choice="granted">Accept</button>
+    <button type="button" class="btn btn--ghost btn--sm analytics-choice__decline" data-analytics-choice="denied">Decline</button>
   </div>
 </section>
 
@@ -99,8 +99,13 @@
 
 <style>
   .analytics-choice{position:fixed;bottom:1rem;left:1rem;right:1rem;z-index:1100;max-width:62rem;margin:auto;padding:1.2rem 1.4rem;background:#fff;color:var(--c-ink);border:1px solid var(--c-line);border-radius:var(--radius);box-shadow:0 4px 24px #0003;display:flex;align-items:center;gap:1.5rem}
-  .analytics-choice p{font-size:var(--text-xs);margin:.35rem 0 0}
+  .analytics-choice p{font-size:var(--text-sm);margin:0}
   .analytics-choice a{text-decoration:underline}
-  .analytics-choice__actions{display:flex;gap:.6rem;flex-shrink:0}
-  @media(max-width:48rem){.analytics-choice{display:block}.analytics-choice__actions{margin-top:1rem;flex-wrap:wrap}}
+  .analytics-choice__privacy{display:inline-block;margin-top:.4rem;font-size:var(--text-xs)}
+  .analytics-choice__actions{display:flex;gap:.75rem;align-items:center;flex-shrink:0}
+  .analytics-choice__actions button{appearance:none;-webkit-appearance:none;color:#000;min-height:44px}
+  .analytics-choice__accept{min-width:10rem}
+  .analytics-choice__decline{background:#fff;min-width:6rem}
+  .analytics-choice__decline:hover{background:#f5f4f1;color:#000}
+  @media(max-width:48rem){.analytics-choice{display:block}.analytics-choice__actions{margin-top:1rem}.analytics-choice__accept{flex:2;min-width:0}.analytics-choice__decline{flex:1;min-width:0}}
 </style>
