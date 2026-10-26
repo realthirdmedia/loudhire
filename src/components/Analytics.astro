@@ -2,17 +2,13 @@
 const openAiPixelId = 'JbaCgE7PfoABEfYDTU3U2d';
 ---
 
-<section id="analytics-choice" class="analytics-choice" aria-label="Measurement cookies" data-openai-pixel-id={openAiPixelId} hidden>
+<section id="analytics-choice" class="analytics-choice" aria-label="Analytics cookies" data-openai-pixel-id={openAiPixelId} hidden>
   <div>
-    <p>Choose whether we can measure site visits and enquiries with Google Analytics and Google Ads, and with ChatGPT Ads. Enquiries work without either choice. See our <a href="/privacy-policy/">privacy policy</a>.</p>
-    <div class="analytics-choice__options">
-      <label><input type="checkbox" data-consent-google /> Google Analytics and Google Ads</label>
-      <label><input type="checkbox" data-consent-openai /> ChatGPT Ads measurement</label>
-    </div>
+    <p>We use cookies on our site to provide you with the best experience. View our <a href="/privacy-policy/">privacy policy</a> to learn more.</p>
   </div>
   <div class="analytics-choice__actions">
-    <button type="button" class="btn btn--primary analytics-choice__accept" data-consent-save>Save choices</button>
-    <button type="button" class="btn btn--ghost btn--sm analytics-choice__decline" data-consent-reject>Reject optional</button>
+    <button type="button" class="btn btn--primary analytics-choice__accept" data-analytics-choice="granted">Accept</button>
+    <button type="button" class="btn btn--ghost btn--sm analytics-choice__decline" data-analytics-choice="denied">Decline</button>
   </div>
 </section>
 
@@ -27,25 +23,18 @@ const openAiPixelId = 'JbaCgE7PfoABEfYDTU3U2d';
     const settings = document.querySelector('[data-analytics-settings]');
     if (!banner) return;
     const pixelId = banner.dataset.openaiPixelId;
-    const googleBox = banner.querySelector('[data-consent-google]');
-    const openAiBox = banner.querySelector('[data-consent-openai]');
     let googleLoaded = false;
     let openAiLoaded = false;
     let saved = null;
-    let legacyAnalytics = false;
+    let legacyChoice = null;
     try {
       saved = JSON.parse(localStorage.getItem(storageKey) || 'null');
       if (!saved || saved.expires < Date.now()) saved = null;
       if (!saved) {
         const old = JSON.parse(localStorage.getItem(legacyKey) || 'null');
-        legacyAnalytics = !!old && old.expires > Date.now() && old.choice === 'granted';
-        if (old && old.choice === 'denied' && old.expires > Date.now()) {
-          saved = { google: false, openai: false, expires: old.expires };
-        }
+        if (old && old.expires > Date.now()) legacyChoice = old.choice;
       }
     } catch { saved = null; }
-    googleBox.checked = !!(saved && saved.google);
-    openAiBox.checked = !!(saved && saved.openai);
 
     const lead = new URLSearchParams(location.search).get('enquiry');
     const pageLead = location.pathname === '/thank-you/' && /^[a-f0-9-]{36}$/i.test(lead || '') ? lead : null;
@@ -120,15 +109,13 @@ const openAiPixelId = 'JbaCgE7PfoABEfYDTU3U2d';
     if (settings) {
       settings.hidden = false;
       settings.addEventListener('click', () => {
-        googleBox.checked = !!(saved && saved.google);
-        openAiBox.checked = !!(saved && saved.openai);
         banner.hidden = false;
-        googleBox.focus();
+        banner.querySelector('button').focus();
       });
     }
-    if ((saved && saved.google) || legacyAnalytics) startGoogle(!!(saved && saved.google));
+    if ((saved && saved.google) || legacyChoice === 'granted') startGoogle(!!(saved && saved.google));
     if (saved && saved.openai) startOpenAi();
-    if (!saved) banner.hidden = false;
+    if (!saved && !legacyChoice) banner.hidden = false;
 
     document.addEventListener('loudhire:lead', (event) => {
       const id = event.detail && event.detail.id;
@@ -145,9 +132,9 @@ const openAiPixelId = 'JbaCgE7PfoABEfYDTU3U2d';
         document.cookie = name + '=; Max-Age=0; Path=/' + domain + '; SameSite=Lax';
       }
     }
-    function saveChoice(google, openai) {
-      if (openAiLoaded && !openai) window.oaiq('consent', false);
-      if (googleLoaded && !google) {
+    function saveChoice(granted) {
+      if (openAiLoaded && !granted) window.oaiq('consent', false);
+      if (googleLoaded && !granted) {
         window['ga-disable-' + measurementId] = true;
         window.gtag('consent', 'update', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied' });
         for (const cookie of document.cookie.split(';')) {
@@ -156,13 +143,14 @@ const openAiPixelId = 'JbaCgE7PfoABEfYDTU3U2d';
         }
       }
       try {
-        localStorage.setItem(storageKey, JSON.stringify({ google, openai, expires: Date.now() + 180 * 24 * 60 * 60 * 1000 }));
+        localStorage.setItem(storageKey, JSON.stringify({ google: granted, openai: granted, expires: Date.now() + 180 * 24 * 60 * 60 * 1000 }));
         localStorage.removeItem(legacyKey);
       } catch {}
       location.reload();
     }
-    banner.querySelector('[data-consent-save]').addEventListener('click', () => saveChoice(googleBox.checked, openAiBox.checked));
-    banner.querySelector('[data-consent-reject]').addEventListener('click', () => saveChoice(false, false));
+    banner.querySelectorAll('[data-analytics-choice]').forEach((button) => {
+      button.addEventListener('click', () => saveChoice(button.dataset.analyticsChoice === 'granted'));
+    });
   })();
 </script>
 
@@ -170,9 +158,6 @@ const openAiPixelId = 'JbaCgE7PfoABEfYDTU3U2d';
   .analytics-choice{position:fixed;bottom:1rem;left:1rem;right:1rem;z-index:1100;max-width:62rem;margin:auto;padding:1.2rem 1.4rem;background:#fff;color:var(--c-ink);border:1px solid var(--c-line);border-radius:var(--radius);box-shadow:0 4px 24px #0003;display:flex;align-items:center;gap:1.5rem}
   .analytics-choice p{font-size:var(--text-sm);margin:0}
   .analytics-choice a{text-decoration:underline}
-  .analytics-choice__options{display:flex;flex-wrap:wrap;gap:.5rem 1rem;margin-top:.6rem;font-size:var(--text-sm)}
-  .analytics-choice__options label{display:flex;align-items:center;gap:.35rem;cursor:pointer}
-  .analytics-choice__options input{width:1.1rem;height:1.1rem;accent-color:var(--c-orange)}
   .analytics-choice__actions{display:flex;gap:.75rem;align-items:center;flex-shrink:0}
   .analytics-choice__actions button{appearance:none;-webkit-appearance:none;color:#000;min-height:44px}
   .analytics-choice__accept{min-width:10rem}
