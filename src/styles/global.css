@@ -351,6 +351,19 @@ hr {
   color: #fff;
 }
 
+.whatsapp-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+}
+.whatsapp-link__icon {
+  width: 1.1em;
+  height: 1.1em;
+  flex-shrink: 0;
+  background: currentColor;
+  mask: url('/images/social/whatsapp.svg') center / contain no-repeat;
+}
+
 /* Tags ------------------------------------------------------------ */
 .tag {
   display: inline-block;
@@ -365,10 +378,6 @@ hr {
   color: var(--c-ink);
   text-decoration: none;
   line-height: 1;
-}
-.tag--orange {
-  background: var(--c-orange);
-  color: #000;
 }
 .tag--outline {
   background: transparent;

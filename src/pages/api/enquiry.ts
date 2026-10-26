@@ -15,7 +15,7 @@ export const prerender = false;
  * Responds with JSON when the client asks for it (fetch), otherwise redirects.
  */
 
-const TO = import.meta.env.ENQUIRY_TO || 'info@loudhire.co.uk';
+const TO = import.meta.env.ENQUIRY_TO || 'tomgrey@loudhire.co.uk';
 const FROM = import.meta.env.ENQUIRY_FROM || 'website@loudhire.co.uk';
 const RESEND_API_KEY = import.meta.env.RESEND_API_KEY;
 
@@ -44,11 +44,11 @@ function escapeHtml(s: string) {
 
 export const POST: APIRoute = async ({ request, clientAddress, redirect }) => {
   const wantsJson = (request.headers.get('accept') || '').includes('application/json');
-  const respond = (status: number, body: { ok: boolean; error?: string }) => {
+  const respond = (status: number, body: { ok: boolean; error?: string; conversionId?: string }) => {
     if (wantsJson) {
       return new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
     }
-    return redirect(body.ok ? '/thank-you/' : `/contact/?error=${encodeURIComponent(body.error || 'Something went wrong')}#enquiry`, 303);
+    return redirect(body.ok ? `/thank-you/?enquiry=${encodeURIComponent(body.conversionId || '')}` : `/contact/?error=${encodeURIComponent(body.error || 'Something went wrong')}#enquiry`, 303);
   };
 
   let form: FormData;
@@ -60,7 +60,8 @@ export const POST: APIRoute = async ({ request, clientAddress, redirect }) => {
 
   // Honeypot
   if (clean(form.get('website'), 200)) {
-    return respond(200, { ok: true });
+    console.warn('[enquiry] submission blocked by spam check');
+    return respond(422, { ok: false, error: 'We could not validate this submission. Please reload the page and enter your details manually, or call 0117 214 1470.' });
   }
 
   const ip = clientAddress || request.headers.get('x-forwarded-for') || 'unknown';
@@ -115,6 +116,10 @@ export const POST: APIRoute = async ({ request, clientAddress, redirect }) => {
         }),
       });
       if (!res.ok) throw new Error(`Resend responded ${res.status}`);
+      const receipt = await res.json();
+      if (typeof receipt.id !== 'string' || !receipt.id) throw new Error('Resend returned no message ID');
+      // Provider reference only: never log the sender's details or message.
+      console.info('[enquiry] accepted by Resend', { messageId: receipt.id, to: TO, from: FROM });
     } else {
       const res = await fetch(`https://formsubmit.co/ajax/${TO}`, {
         method: 'POST',
@@ -134,13 +139,14 @@ export const POST: APIRoute = async ({ request, clientAddress, redirect }) => {
       });
       const body = await res.json().catch(() => ({}));
       if (!res.ok || String(body.success) !== 'true') throw new Error(`FormSubmit responded ${res.status}: ${JSON.stringify(body)}`);
+      console.info('[enquiry] accepted by FormSubmit');
     }
   } catch (err) {
     console.error('[enquiry] delivery failed', err);
     return respond(502, { ok: false, error: 'We could not send your enquiry just now. Please call 0117 214 1470 or email info@loudhire.co.uk.' });
   }
 
-  return respond(200, { ok: true });
+  return respond(200, { ok: true, conversionId: crypto.randomUUID() });
 };
 
 export const GET: APIRoute = ({ redirect }) => redirect('/contact/', 302);

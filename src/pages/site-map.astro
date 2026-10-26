@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { nav, capabilities, eventTypes } from '../data/site';
+import { equipment, categories, categoryUrl, itemUrl } from '../lib/equipment';
+import { getEntries, entryUrl } from '../lib/entries';
+const entries = await getEntries();
+const mainLinks = [...nav, {label:'Build a quote',href:'/quote/'}, {label:'Privacy policy',href:'/privacy-policy/'}, {label:'Site map',href:'/site-map/'}];
+const hireLinks = [{label:'Sound & PA hire',href:'/dry-hire/sound/'},{label:'Lighting hire',href:'/dry-hire/lighting/'},{label:'FOH PA packages',href:'/dry-hire/party-packages/'},{label:'Full equipment list',href:'/dry-hire/equipment/'},{label:'Ex-hire equipment for sale',href:'/ex-hire-equipment/'}];
+---
+<Base title="Site map | Loud Hire" description="Find Loud Hire services, hire equipment, party packages, news and event projects. Browse every equipment category and product page." pageType="CollectionPage">
+  <PageHero variant="plain" title="Site map" intro="Find a service, browse our equipment or explore our latest news and projects." />
+  <section class="section section--tight"><div class="container directory">
+    <div><h2>Explore Loud Hire</h2><ul>{mainLinks.map((p)=><li><a href={p.href}>{p.label}</a></li>)}</ul></div>
+    <div><h2>Event production</h2><ul>{[...capabilities,...eventTypes].map((p)=><li><a href={p.href}>{p.name}</a></li>)}</ul></div>
+    <div><h2>Equipment hire & sales</h2><ul>{hireLinks.map((p)=><li><a href={p.href}>{p.label}</a></li>)}</ul></div>
+    <div><h2>News & projects</h2><ul>
+      <li><a href="/news-and-projects/news/">All news</a></li><li><a href="/news-and-projects/projects/">All projects</a></li>
+      {capabilities.map((c)=><li><a href={`/news-and-projects/service/${c.key}/`}>{c.name} news & projects</a></li>)}
+      {entries.map((p)=><li><a href={entryUrl(p)}>{p.data.title}</a></li>)}
+    </ul></div>
+    {categories.map((c)=><div><h2><a href={categoryUrl(c)}>{c.name}</a></h2><ul>{equipment.filter((p)=>p.categorySlug===c.slug).map((p)=><li><a href={itemUrl(p)}>{p.name}</a></li>)}</ul></div>)}
+  </div></section>
+</Base>
+<style>
+  .directory { columns:3 18rem; column-gap:3rem; }
+  .directory > div { break-inside:avoid; margin-bottom:2.5rem; }
+  .directory h2 { font-size:var(--text-xl); }
+  .directory ul { padding-left:1.1rem; }
+  .directory li { margin-block:.5rem; }
+  .directory a { text-underline-offset:.2em; }
+</style>

@@ -46,7 +46,7 @@ export const subPages: SubPage[] = [
     service: 'sound',
     navName: 'Sound',
     title: 'Event sound hire and engineering',
-    metaTitle: 'Event Sound Hire Bristol & the Cotswolds | PA Systems, Wireless Mics, Engineers',
+    metaTitle: 'Event Sound Hire Bristol & Cotswolds | Loud Hire',
     metaDescription:
       'PA systems from 20 people to 20,000, Danley and d&b loudspeakers, Sennheiser wireless microphones and Allen & Heath mixing, with engineers on site. Event sound hire from Thornbury for Bristol, the Cotswolds and the South West.',
     intro:
@@ -91,7 +91,7 @@ export const subPages: SubPage[] = [
     service: 'lighting',
     navName: 'Lighting',
     title: 'Event lighting design and hire',
-    metaTitle: 'Event Lighting Hire Bristol & the Cotswolds | Stage, Architectural & Programmed Shows',
+    metaTitle: 'Event Lighting Bristol & Cotswolds | Loud Hire',
     metaDescription:
       'Stage and architectural lighting for corporate events, festivals, weddings and theatre: LED washes, moving lights, followspots, festoon and uplighting, designed in advance and operated by our crew. Based in Thornbury, serving Bristol, the Cotswolds and the South West.',
     intro:
@@ -135,7 +135,7 @@ export const subPages: SubPage[] = [
     service: 'staging',
     navName: 'Staging',
     title: 'Stage hire: decks, roofs and trailer stages',
-    metaTitle: 'Stage Hire Bristol & the Cotswolds | Litedeck, Konligo Roofs & Trailer Stages',
+    metaTitle: 'Stage Hire Bristol & Cotswolds | Loud Hire',
     metaDescription:
       'Indoor decks and risers, the Konligo Fastival stage roof for outdoor events, and Stagemobil trailer stages up to 10m x 6m with our sister company Big Stage Hire. Stage hire and rigging from Thornbury for Bristol, the Cotswolds and the South West.',
     intro:
@@ -178,7 +178,7 @@ export const subPages: SubPage[] = [
     service: 'video',
     navName: 'Video',
     title: 'LED video wall, screen and projection hire',
-    metaTitle: 'LED Video Wall Hire Bristol & the Cotswolds | Screens, Projection & Live Broadcast',
+    metaTitle: 'LED Video Wall Hire Bristol & Cotswolds | Loud Hire',
     metaDescription:
       'Outdoor-rated 3.9mm LED video walls up to 6,000 nits, 55 to 85 inch displays, laser projection and live streaming for presentations, launches and big-screen broadcasts. Video hire from Thornbury for Bristol, the Cotswolds and the South West.',
     intro:
@@ -213,7 +213,7 @@ export const subPages: SubPage[] = [
     service: 'power',
     navName: 'Power',
     title: 'Event power: generators, distribution and cabling',
-    metaTitle: 'Event Power Hire Bristol & the Cotswolds | Generators, Distribution & Cabling',
+    metaTitle: 'Generator Hire Bristol & Cotswolds | Loud Hire',
     metaDescription:
       'Generators from 20kVA to 115kVA, three-phase and single-phase distribution, cabling, tower lights and battery power for events with no mains supply. Planned alongside your sound, lighting and staging. Based in Thornbury, serving Bristol, the Cotswolds and the South West.',
     intro:
@@ -255,7 +255,7 @@ export const subPages: SubPage[] = [
     kind: 'event-type',
     navName: 'Corporate events',
     title: 'Corporate event production',
-    metaTitle: 'Corporate Event Production Bristol & the Cotswolds | Conferences, Dinners & Celebrations',
+    metaTitle: 'Corporate Event Production Bristol & Cotswolds | Loud Hire',
     metaDescription:
       'Sound, lighting, staging, video and power for conferences, awards dinners, team meetings, company celebrations and staff festivals. One production partner across Bristol, the Cotswolds and the South West, based in Thornbury.',
     intro:
@@ -293,7 +293,7 @@ export const subPages: SubPage[] = [
     kind: 'event-type',
     navName: 'Brand launches',
     title: 'Brand and product launch production',
-    metaTitle: 'Brand Launch Event Production Bristol & the Cotswolds | Sound, LED Walls & Staging',
+    metaTitle: 'Brand Launch Production Bristol & Cotswolds | Loud Hire',
     metaDescription:
       'Production for product launches, advert premieres, press days and hospitality: LED walls for the reveal, sound for presenters and live acts, lighting, staging and overnight builds. Bristol, the Cotswolds and the South West.',
     intro:
@@ -324,7 +324,7 @@ export const subPages: SubPage[] = [
     kind: 'event-type',
     navName: 'Festivals and public events',
     title: 'Festival and public event production',
-    metaTitle: 'Festival & Public Event Production Bristol, Cotswolds & South West | Stages, Sound & Lighting',
+    metaTitle: 'Festival Production Bristol & Cotswolds | Loud Hire',
     metaDescription:
       'Main stages, racecourse shows, town-centre events, proms, fireworks and mass-participation sports: full production packages with noise management, tight build windows and site power. Loud Hire, based in Thornbury near Bristol.',
     intro:
@@ -364,7 +364,7 @@ export const subPages: SubPage[] = [
     kind: 'event-type',
     navName: 'Private events',
     title: 'Private event and wedding production',
-    metaTitle: 'Private Party & Wedding Production Bristol & the Cotswolds | Sound, Lighting, Staging & Power',
+    metaTitle: 'Party & Wedding Production Bristol & Cotswolds | Loud Hire',
     metaDescription:
       'Festival-style parties, weddings and celebrations on private land: site planning, stages, sound for bands and DJs, lighting, festoon and generators from one team. Loud Hire serves Bristol, the Cotswolds and the South West from Thornbury.',
     intro:
@@ -399,7 +399,7 @@ export const subPages: SubPage[] = [
     kind: 'event-type',
     navName: 'Theatre and performing arts',
     title: 'Theatre and performing arts production',
-    metaTitle: 'Theatre Lighting & Sound Hire Bristol & the Cotswolds | Performing Arts Production',
+    metaTitle: 'Theatre Sound & Lighting Bristol & Cotswolds | Loud Hire',
     metaDescription:
       'Lighting, sound, radio microphones and staging for theatre productions, concerts, schools and performing arts venues, as full production or dry hire with training. Loud Hire, Thornbury near Bristol.',
     intro:

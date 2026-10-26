@@ -1,0 +1,66 @@
+---
+interface Props { name: string; label: string; }
+const { name, label } = Astro.props;
+---
+<div class="uk-date">
+  <label>{label} <span class="uk-date__hint">DD/MM/YYYY</span>
+    <input class="uk-date__text" name={name} type="text" inputmode="numeric" placeholder="DD/MM/YYYY" maxlength="10" autocomplete="off" required />
+  </label>
+  <button class="uk-date__button" type="button" aria-label={`Choose ${name === 'start' ? 'start' : 'end'} date from calendar`} hidden>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg>
+  </button>
+  <input class="uk-date__picker" type="date" lang="en-GB" tabindex="-1" aria-hidden="true" />
+</div>
+
+<script>
+  import { parseBritishDate, formatBritishDate } from '../lib/dates';
+  document.querySelectorAll<HTMLButtonElement>('.uk-date__button').forEach((button) => {
+    button.hidden = typeof HTMLInputElement.prototype.showPicker !== 'function';
+  });
+  document.addEventListener('click', (event) => {
+    const button = (event.target as Element).closest<HTMLButtonElement>('.uk-date__button');
+    if (!button) return;
+    const field = button.closest('.uk-date')!;
+    const text = field.querySelector<HTMLInputElement>('.uk-date__text')!;
+    const picker = field.querySelector<HTMLInputElement>('.uk-date__picker')!;
+    picker.value = parseBritishDate(text.value) || '';
+    try { picker.showPicker(); } catch { text.focus(); }
+  });
+  document.addEventListener('change', (event) => {
+    const picker = event.target as HTMLInputElement;
+    if (!picker.matches('.uk-date__picker')) return;
+    const text = picker.closest('.uk-date')!.querySelector<HTMLInputElement>('.uk-date__text')!;
+    text.value = formatBritishDate(picker.value);
+    text.setCustomValidity('');
+  });
+  document.addEventListener('input', (event) => {
+    const input = event.target as HTMLInputElement;
+    if (!input.matches('.uk-date__text')) return;
+    // Insert the separators so the numeric keyboard also works on phones.
+    if (/^[\d/]*$/.test(input.value) && !parseBritishDate(input.value)) {
+      const before = input.value.slice(0, input.selectionStart ?? input.value.length).replace(/\D/g, '').length;
+      const digits = input.value.replace(/\D/g, '').slice(0, 8);
+      input.value = [digits.slice(0, 2), digits.slice(2, 4), digits.slice(4)].filter(Boolean).join('/');
+      const caret = before + (before > 2 ? 1 : 0) + (before > 4 ? 1 : 0);
+      input.setSelectionRange(caret, caret);
+    }
+    input.setCustomValidity(!input.value || parseBritishDate(input.value) ? '' : 'Enter a valid date as DD/MM/YYYY.');
+  });
+  document.addEventListener('blur', (event) => {
+    const input = event.target as HTMLInputElement;
+    if (!input.matches?.('.uk-date__text')) return;
+    const iso = parseBritishDate(input.value);
+    if (iso) input.value = formatBritishDate(iso);
+  }, true);
+</script>
+
+<style is:global>
+  .uk-date { position: relative; min-width: 0; }
+  .uk-date__hint { font-size: .75rem; font-weight: 400; color: var(--c-muted); }
+  #quote-form .uk-date__text { padding-right: 3rem; }
+  .uk-date__button { position: absolute; right: .4rem; bottom: .4rem; width: 2.4rem; height: 2.4rem; display: grid; place-items: center; border: 0; border-radius: var(--radius); background: transparent; color: var(--c-black); cursor: pointer; }
+  .uk-date__button[hidden] { display: none; }
+  .uk-date__button:hover { background: var(--c-paper-2); }
+  .uk-date__button svg { width: 1.25rem; height: 1.25rem; }
+  #quote-form .uk-date__picker { position: absolute; right: 0; bottom: 0; width: 1px; height: 1px; padding: 0; border: 0; opacity: 0; pointer-events: none; }
+</style>

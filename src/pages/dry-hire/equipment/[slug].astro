@@ -21,25 +21,37 @@ const description = `${item.name} available for dry hire from Loud Hire in Thorn
 const productLd = {
   '@context': 'https://schema.org',
   '@type': 'Product',
+  '@id': `${new URL(Astro.url.pathname, Astro.site).href}#product`,
+  url: new URL(Astro.url.pathname, Astro.site).href,
   name: item.name,
   category: item.category,
   image: img ? new URL(img.src, Astro.site).href : undefined,
   description: item.description || `${item.name} for hire`,
-  brand: undefined,
-  offers: item.pricePerDay
+  offers: item.pricePerDay !== null
     ? {
         '@type': 'Offer',
         priceCurrency: 'GBP',
         price: item.pricePerDay,
-        availability: 'https://schema.org/InStock',
         url: new URL(Astro.url.pathname, Astro.site).href,
+        seller: { '@id': 'https://www.loudhire.co.uk/#organisation' },
         priceSpecification: { '@type': 'UnitPriceSpecification', price: item.pricePerDay, priceCurrency: 'GBP', unitText: 'per day, excluding VAT' },
       }
     : undefined,
 };
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { name: 'Home', path: '/' },
+    { name: 'Dry Hire', path: '/dry-hire/' },
+    { name: 'Equipment list', path: '/dry-hire/equipment/' },
+    ...(category ? [{ name: category.name, path: categoryUrl(category) }] : []),
+    { name: item.name, path: Astro.url.pathname },
+  ].map((part, index) => ({ '@type': 'ListItem', position: index + 1, name: part.name, item: new URL(part.path, Astro.site).href })),
+};
 ---
 
-<Base title={title} description={description} jsonLd={[productLd]} ogImage={img ? img.src : undefined}>
+<Base title={title} description={description} pageType="ItemPage" jsonLd={[productLd, breadcrumbLd]} ogImage={img ? img.src : undefined}>
   <section class="section section--tight">
     <div class="container">
       <nav class="crumb" aria-label="Breadcrumb">
@@ -58,7 +70,7 @@ const productLd = {
           <p class="item__price">{formatPrice(item)}</p>
           {paragraphs.length > 0 ? <div class="prose">{paragraphs.map((p) => <p>{p}</p>)}</div> : <p class="muted">Ask us for the full specification and availability.</p>}
           <div class="btn-row">
-            <a class="btn btn--primary" href={enquireUrl(item)}>Enquire about this item</a>
+            <a class="btn btn--primary" href={enquireUrl(item)}>Add to quote basket</a>
             <a class="text-link" href={`/dry-hire/equipment/#${item.section}`}>All {sectionName(item.section).toLowerCase()} equipment</a>
           </div>
           <ul class="item__notes">

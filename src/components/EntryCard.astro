@@ -37,7 +37,7 @@ const projectMeta = [data.client, data.location].filter(Boolean).join(' · ');
   </div>
   <div class="card__body">
     <div class="card__meta">
-      <span class:list={['tag', { 'tag--orange': data.type !== 'news' }]}>{typeLabel(entry)}</span>
+      <span class="tag">{typeLabel(entry)}</span>
       {showDate && !data.hideDate && <time datetime={data.date.toISOString()}>{formatDate(data.date)}</time>}
       {data.hideDate && projectMeta && <span>{projectMeta}</span>}
     </div>

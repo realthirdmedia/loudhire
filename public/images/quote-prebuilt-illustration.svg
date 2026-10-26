@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="260" viewBox="0 0 360 260" role="img" aria-labelledby="title">
+  <title id="title">Complete event sound and lighting setup</title>
+  <defs>
+    <linearGradient id="stage" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#363636"/><stop offset="1" stop-color="#141414"/></linearGradient>
+    <linearGradient id="speaker" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#444"/><stop offset=".55" stop-color="#222"/><stop offset="1" stop-color="#0e0e0e"/></linearGradient>
+    <pattern id="grille" width="5" height="5" patternUnits="userSpaceOnUse"><circle cx="2.5" cy="2.5" r=".55" fill="#777" opacity=".45"/></pattern>
+  </defs>
+  <ellipse cx="180" cy="230" rx="146" ry="13" fill="#171717" opacity=".08"/>
+  <path d="M57 151V56h246v95" fill="none" stroke="#2b2b2b" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M57 56h246M57 80l22-24 22 24 22-24 22 24 22-24 22 24 22-24 22 24 22-24 22 24 22-24" fill="none" stroke="#737373" stroke-width="2"/>
+  <path d="M44 202h272l-13 19H57z" fill="#1a1a1a"/><path d="M44 197h272v8H44z" fill="#f39b00"/><path d="M70 174h220v23H70z" fill="url(#stage)"/>
+  <path d="M104 83v20m76-20v20m76-20v20" stroke="#333" stroke-width="3"/>
+  <g fill="#292929" stroke="#171717" stroke-width="2"><path d="M94 101h20l-4 11H98z"/><path d="M170 101h20l-4 11h-12z"/><path d="M246 101h20l-4 11h-12z"/></g>
+  <path d="M104 114l-20 40m20-40 20 40M180 114l-15 39m15-39 15 39M256 114l-20 40m20-40 20 40" stroke="#f4b840" stroke-width="2" opacity=".55"/>
+  <g fill="#f39b00"><circle cx="104" cy="110" r="4"/><circle cx="180" cy="110" r="4"/><circle cx="256" cy="110" r="4"/><circle cx="68" cy="67" r="3"/><circle cx="292" cy="67" r="3"/></g>
+  <g><path d="M39 111h42v77H39z" fill="url(#speaker)" stroke="#111" stroke-width="3"/><path d="M42 115h36v69H42z" fill="url(#grille)"/><circle cx="60" cy="138" r="13" fill="#171717" stroke="#666" stroke-width="1.5"/><circle cx="60" cy="169" r="8" fill="#171717" stroke="#666" stroke-width="1.5"/><path d="M48 119h23" stroke="#f39b00" stroke-width="2"/></g>
+  <g><path d="M279 111h42v77h-42z" fill="url(#speaker)" stroke="#111" stroke-width="3"/><path d="M282 115h36v69h-36z" fill="url(#grille)"/><circle cx="300" cy="138" r="13" fill="#171717" stroke="#666" stroke-width="1.5"/><circle cx="300" cy="169" r="8" fill="#171717" stroke="#666" stroke-width="1.5"/><path d="M288 119h23" stroke="#f39b00" stroke-width="2"/></g>
+  <path d="M132 147h96v27h-96z" fill="#202020" stroke="#101010" stroke-width="3"/><path d="M138 143h84l6 7h-96z" fill="#777" stroke="#222" stroke-width="2"/><path d="M148 145h12m13 0h14m13 0h12" stroke="#f39b00" stroke-width="3" stroke-linecap="round"/><path d="M145 163h70" stroke="#5a5a5a" stroke-width="2"/>
+  <path d="M120 176h120" stroke="#f39b00" stroke-width="2" opacity=".75"/>
+</svg>

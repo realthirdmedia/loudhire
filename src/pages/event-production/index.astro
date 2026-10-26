@@ -35,12 +35,34 @@ const faqs = [
   },
 ];
 
-const title = 'Event Production Services Bristol & the Cotswolds | Complete Packages';
+const title = 'Event Production Bristol & Cotswolds | Loud Hire';
 const description =
   'Complete event production packages: sound, lighting, staging, video and power planned and delivered by one team. Corporate events, brand launches, festivals, private events and performing arts across Bristol, the Cotswolds and the South West.';
+const serviceLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': 'https://www.loudhire.co.uk/event-production/#service',
+  name: 'Event production',
+  description,
+  provider: { '@id': 'https://www.loudhire.co.uk/#organisation' },
+  areaServed: ['Bristol', 'The Cotswolds', 'South West England'],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Event production capabilities',
+    itemListElement: ['Sound', 'Lighting', 'Staging', 'Video', 'Power'].map((name) => ({
+      '@type': 'Offer',
+      itemOffered: { '@type': 'Service', name: `${name} production` },
+    })),
+  },
+};
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(({ q, a }) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+};
 ---
 
-<Base title={title} description={description}>
+<Base title={title} description={description} jsonLd={[serviceLd, faqLd]}>
   <PageHero
     variant="banner"
     image={heroImage}

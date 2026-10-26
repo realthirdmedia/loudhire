@@ -5,11 +5,12 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/check-seo-migration.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",
-    "vercel-json": "node scripts/build-vercel-json.mjs"
+    "vercel-json": "node scripts/build-vercel-json.mjs",
+    "check:seo": "node scripts/check-seo-migration.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

@@ -49,7 +49,7 @@ const { id = 'enquiry-form', heading, prefill = '', dark = false } = Astro.props
     </div>
     <div class="field field--check enquiry__undecided">
       <input id={`${id}-undecided`} name="undecided" type="checkbox" value="yes" />
-      <label for={`${id}-undecided`}>Date or requirements not decided yet</label>
+      <label for={`${id}-undecided`}>Date not decided yet</label>
     </div>
     <div class="field enquiry__full">
       <label for={`${id}-message`}>Tell us about the event</label>
@@ -66,7 +66,7 @@ const { id = 'enquiry-form', heading, prefill = '', dark = false } = Astro.props
 
   <div class="enquiry__actions">
     <button class="btn btn--primary" type="submit">Send enquiry</button>
-    <p class="enquiry__note">We aim to reply within one working day. No spam, no mailing lists.</p>
+    <p class="enquiry__note">We aim to reply within one working day.</p>
   </div>
   <p class="enquiry__status" role="status" aria-live="polite" hidden></p>
 </form>
@@ -197,7 +197,7 @@ const { id = 'enquiry-form', heading, prefill = '', dark = false } = Astro.props
         });
         const data = await res.json().catch(() => ({}));
         if (res.ok && data.ok) {
-          window.location.assign('/thank-you/');
+          window.location.assign(`/thank-you/?enquiry=${encodeURIComponent(data.conversionId)}`);
           return;
         }
         show('error', data.error || 'Sorry, something went wrong. Please call us on 0117 214 1470 or email info@loudhire.co.uk.');

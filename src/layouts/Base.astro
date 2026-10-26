@@ -4,7 +4,9 @@ import '@fontsource-variable/inter';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Analytics from '../components/Analytics.astro';
 import { site } from '../data/site';
+import legacySeo from '../data/legacySeo.json';
 
 interface Props {
   title: string;
@@ -13,6 +15,7 @@ interface Props {
   ogImage?: string;
   ogType?: 'website' | 'article';
   noindex?: boolean;
+  pageType?: 'WebPage' | 'AboutPage' | 'ContactPage' | 'CollectionPage' | 'ItemPage';
   /** Extra JSON-LD objects to append to the page. */
   jsonLd?: Record<string, unknown>[];
   bodyClass?: string;
@@ -24,13 +27,18 @@ const {
   ogImage = '/images/og-default.jpg',
   ogType = 'website',
   noindex = false,
+  pageType = 'WebPage',
   jsonLd = [],
   bodyClass = '',
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImageUrl = new URL(ogImage, Astro.site);
-const fullTitle = title.includes('Loud Hire') ? title : `${title} | Loud Hire`;
+const preserved = (legacySeo as Record<string, { title: string; description?: string }>)[Astro.url.pathname];
+const pageTitle = preserved?.title || title;
+const pageDescription = preserved?.description || description;
+const fullTitle = pageTitle.includes('Loud Hire') ? pageTitle : `${pageTitle} | Loud Hire`;
+const json = (value: Record<string, unknown>) => JSON.stringify(value).replace(/</g, '\\u003c');
 
 const organisation = {
   '@context': 'https://schema.org',
@@ -63,6 +71,26 @@ const organisation = {
     itemOffered: { '@type': 'Service', name: `Event ${s.toLowerCase()} hire and production` },
   })),
 };
+const website = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${site.url}/#website`,
+  url: site.url,
+  name: site.name,
+  publisher: { '@id': `${site.url}/#organisation` },
+  inLanguage: 'en-GB',
+};
+const webpage = {
+  '@context': 'https://schema.org',
+  '@type': pageType,
+  '@id': `${canonical.href}#webpage`,
+  url: canonical.href,
+  name: fullTitle,
+  description: pageDescription,
+  isPartOf: { '@id': `${site.url}/#website` },
+  about: { '@id': `${site.url}/#organisation` },
+  inLanguage: 'en-GB',
+};
 ---
 
 <!doctype html>
@@ -71,7 +99,7 @@ const organisation = {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
-    <meta name="description" content={description} />
+    <meta name="description" content={pageDescription} />
     <link rel="canonical" href={canonical.href} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <meta name="theme-color" content="#0d0d0d" />
@@ -79,21 +107,24 @@ const organisation = {
     <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="describedby" href="/llms.txt" />
 
     <meta property="og:site_name" content={site.name} />
     <meta property="og:type" content={ogType} />
     <meta property="og:title" content={fullTitle} />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={pageDescription} />
     <meta property="og:url" content={canonical.href} />
     <meta property="og:image" content={ogImageUrl.href} />
     <meta property="og:locale" content="en_GB" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:description" content={pageDescription} />
     <meta name="twitter:image" content={ogImageUrl.href} />
 
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(organisation)} />
-    {jsonLd.map((obj) => <script is:inline type="application/ld+json" set:html={JSON.stringify(obj)} />)}
+    <script is:inline type="application/ld+json" set:html={json(organisation)} />
+    <script is:inline type="application/ld+json" set:html={json(website)} />
+    <script is:inline type="application/ld+json" set:html={json(webpage)} />
+    {jsonLd.map((obj) => <script is:inline type="application/ld+json" set:html={json(obj)} />)}
   </head>
   <body class={bodyClass}>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -102,5 +133,6 @@ const organisation = {
       <slot />
     </main>
     <Footer />
+    <Analytics />
   </body>
 </html>

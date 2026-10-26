@@ -39,6 +39,16 @@ const articleLd = {
   mainEntityOfPage: new URL(Astro.url.pathname, Astro.site).href,
   ...(data.location ? { contentLocation: { '@type': 'Place', name: data.location } } : {}),
 };
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { name: 'Home', path: '/' },
+    { name: 'News & Projects', path: '/news-and-projects/' },
+    { name: project ? 'Projects' : 'News', path: project ? '/news-and-projects/projects/' : '/news-and-projects/news/' },
+    { name: data.title, path: Astro.url.pathname },
+  ].map((part, index) => ({ '@type': 'ListItem', position: index + 1, name: part.name, item: new URL(part.path, Astro.site).href })),
+};
 
 const details: { label: string; value: string }[] = [];
 if (data.client) details.push({ label: 'Client', value: data.client });
@@ -46,7 +56,7 @@ if (data.location) details.push({ label: 'Location', value: data.location });
 if (data.eventType) details.push({ label: 'Event', value: data.eventType });
 ---
 
-<Base title={data.title} description={data.summary} ogImage={og.src} ogType="article" jsonLd={[articleLd]}>
+<Base title={data.title} description={data.summary} ogImage={og.src} ogType="article" jsonLd={[articleLd, breadcrumbLd]}>
   <article>
     <header class="entry-head">
       <div class="container container--narrow">
@@ -56,7 +66,7 @@ if (data.eventType) details.push({ label: 'Event', value: data.eventType });
           <a href={project ? '/news-and-projects/projects/' : '/news-and-projects/news/'}>{project ? 'Projects' : 'News'}</a>
         </nav>
         <div class="entry-head__meta">
-          <span class:list={['tag', { 'tag--orange': project }]}>{typeLabel(entry)}</span>
+          <span class="tag">{typeLabel(entry)}</span>
           {!data.hideDate && <time datetime={data.date.toISOString()}>{formatDate(data.date)}</time>}
           {data.services.map((s) => <a class="tag tag--outline" href={`/news-and-projects/service/${s}/`}>{serviceLabel[s]}</a>)}
         </div>
@@ -158,7 +168,7 @@ if (data.eventType) details.push({ label: 'Event', value: data.eventType });
           <div class="gallery">
             {data.gallery.map((g) => (
               <figure class="gallery__item">
-                <Image src={g.src} alt={g.alt} widths={[480, 800, 1200]} sizes="(max-width: 48rem) 92vw, 600px" loading="lazy" decoding="async" format="webp" quality={72} />
+                <Image class:list={{ 'gallery__portrait': g.src.height > g.src.width }} src={g.src} alt={g.alt} widths={[480, 800, 1200]} sizes="(max-width: 48rem) 92vw, 600px" loading="lazy" decoding="async" format="webp" quality={72} />
                 {g.caption && <figcaption>{g.caption}</figcaption>}
               </figure>
             ))}
@@ -354,6 +364,9 @@ if (data.eventType) details.push({ label: 'Event', value: data.eventType });
     font-size: var(--text-xs);
     color: var(--c-muted);
     margin-top: 0.5rem;
+  }
+  .gallery__item :global(img.gallery__portrait) {
+    object-fit: contain;
   }
   @media (max-width: 64rem) {
     .entry-body {

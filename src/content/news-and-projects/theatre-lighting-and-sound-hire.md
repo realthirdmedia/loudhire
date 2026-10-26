@@ -25,4 +25,4 @@ We supply lighting and sound to theatres, theatre schools, churches and performi
 - Loudspeakers and subwoofers
 - Processing
 
-Browse the [equipment list](/dry-hire/equipment/) or, if you cannot find what you are looking for, [contact us](/contact/) and we will source it.
+Browse the [equipment list](/quote/#equipment) or, if you cannot find what you are looking for, [contact us](/contact/) and we will source it.

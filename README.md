@@ -123,7 +123,7 @@ After editing the map, run `npm run vercel-json` and commit `vercel.json`.
 
 The form posts to `/api/enquiry/` (see `src/pages/api/enquiry.ts`). It validates, drops honeypot submissions and rate-limits, then delivers by email:
 
-- **Default:** FormSubmit forwards the message to `ENQUIRY_TO` (defaults to `info@loudhire.co.uk`). The first submission triggers a one-time activation email to that inbox; click the link once and every enquiry after that is delivered.
+- **Default:** FormSubmit forwards the message to `ENQUIRY_TO` (defaults to `tom@loudhire.co.uk`). The first submission triggers a one-time activation email to that inbox; click the link once and every enquiry after that is delivered.
 - **Optional:** set `RESEND_API_KEY` (and `ENQUIRY_FROM` on a verified domain) in Vercel environment variables to send via Resend instead.
 
 Copy `.env.example` to `.env` for local overrides.

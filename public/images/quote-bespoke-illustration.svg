@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="260" viewBox="0 0 360 260" role="img" aria-labelledby="title">
+  <title id="title">Individual sound, lighting and microphone equipment</title>
+  <defs>
+    <linearGradient id="cabinet" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#4a4a4a"/><stop offset=".55" stop-color="#232323"/><stop offset="1" stop-color="#101010"/></linearGradient>
+    <pattern id="mesh" width="5" height="5" patternUnits="userSpaceOnUse"><circle cx="2.5" cy="2.5" r=".55" fill="#777" opacity=".5"/></pattern>
+  </defs>
+  <ellipse cx="180" cy="231" rx="148" ry="12" fill="#171717" opacity=".08"/>
+  <g transform="translate(42 74) rotate(-6 48 62)"><path d="M8 6h75v132H8z" fill="url(#cabinet)" stroke="#101010" stroke-width="4"/><path d="M13 12h65v120H13z" fill="url(#mesh)"/><circle cx="45" cy="48" r="20" fill="#1a1a1a" stroke="#707070" stroke-width="2"/><circle cx="45" cy="48" r="8" fill="#313131"/><circle cx="45" cy="100" r="13" fill="#1a1a1a" stroke="#707070" stroke-width="2"/><path d="M23 16h45" stroke="#f39b00" stroke-width="3"/></g>
+  <g transform="translate(211 36) rotate(8 55 58)"><path d="M15 27h96v73H15z" fill="#292929" stroke="#131313" stroke-width="4"/><path d="M19 31h88v65H19z" fill="#454545"/><circle cx="44" cy="62" r="22" fill="#1a1a1a" stroke="#666" stroke-width="2"/><circle cx="44" cy="62" r="9" fill="#f39b00"/><path d="M69 43h27v6H69zm0 15h27v6H69zm0 15h27v6H69z" fill="#a5a5a5"/><path d="M25 101l-18 69m98-69 18 69M63 100v68" stroke="#333" stroke-width="4" stroke-linecap="round"/><path d="M4 171h23m86 0h22m-62 0h-20" stroke="#333" stroke-width="4" stroke-linecap="round"/></g>
+  <g transform="translate(143 82)"><path d="M24 5l13 15-12 14-12-15z" fill="#252525" stroke="#101010" stroke-width="3"/><path d="M26 31l10 9" stroke="#444" stroke-width="6" stroke-linecap="round"/><path d="M36 40l5 129" stroke="#303030" stroke-width="4"/><path d="M41 108l-42 61m42-61 46 61" stroke="#303030" stroke-width="4" stroke-linecap="round"/><path d="M-7 170h26m58 0h25" stroke="#303030" stroke-width="4" stroke-linecap="round"/><path d="M13 17l14 16" stroke="#f39b00" stroke-width="2"/></g>
+  <g transform="translate(212 169) rotate(-5 46 25)"><path d="M7 11h94l-8 43H15z" fill="#252525" stroke="#111" stroke-width="3"/><path d="M18 18h72l-4 25H22z" fill="#4b4b4b"/><path d="M27 24h20m11 0h20M27 32h12m10 0h12m10 0h8" stroke="#f39b00" stroke-width="3" stroke-linecap="round"/><circle cx="42" cy="50" r="3" fill="#c8c8c8"/><circle cx="68" cy="50" r="3" fill="#c8c8c8"/></g>
+</svg>

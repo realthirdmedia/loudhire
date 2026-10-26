@@ -4,13 +4,14 @@ import Base from '../layouts/Base.astro';
 import EntryCard from '../components/EntryCard.astro';
 import ContactSection from '../components/ContactSection.astro';
 import CapabilityGrid from '../components/CapabilityGrid.astro';
+import BalloonRelease from '../components/BalloonRelease.astro';
 import ProcessSteps from '../components/ProcessSteps.astro';
 import { site, cta, eventTypes, testimonials } from '../data/site';
 import { getLatest, getEntriesByIds, entryUrl } from '../lib/entries';
 import heroImage from '../assets/pages/hero-konligo.jpg';
 import hawkstoneWall from '../assets/news/led-video-wall-hire/hawkstone-viewing.jpg';
 
-const [hawkstone] = await getEntriesByIds(['hawkstone-advert-launch']);
+const [hawkstone] = await getEntriesByIds(['groove-armada-hawkstone-farmers-choir']);
 const selected = await getEntriesByIds([
   'downend-fireworks-lighting',
   'the-wurzels-bath-racecourse',
@@ -19,7 +20,7 @@ const selected = await getEntriesByIds([
 const latest = await getLatest(3);
 const quotes = testimonials.slice(0, 3);
 
-const title = 'Event Production Bristol & the Cotswolds | Sound, Lighting, Staging, Video & Power';
+const title = 'Loud Hire | Cotswolds & Bristol | PA, Sound System, Lighting Hire';
 const description =
   'Loud Hire delivers complete event production across Bristol, the Cotswolds and the South West: sound, lighting, staging, video and power from one team, based in Thornbury. Discuss your corporate event, brand launch, festival or private event.';
 ---
@@ -30,7 +31,7 @@ const description =
     <div class="hero__media">
       <Image
         src={heroImage}
-        alt="Outdoor stage with a lit roof at dusk, crowd dancing and the Cotswold hills behind"
+        alt=""
         widths={[768, 1280, 1920, 2400]}
         sizes="100vw"
         loading="eager"
@@ -39,17 +40,92 @@ const description =
         format="webp"
         quality={70}
       />
+      <iframe
+        id="hero-video"
+        class="hero__video"
+        title="Loud Hire event production video"
+        data-src="https://www.youtube-nocookie.com/embed/aDiawmgLrug?enablejsapi=1&autoplay=1&mute=1&controls=0&loop=1&playlist=aDiawmgLrug&playsinline=1&rel=0&iv_load_policy=3&disablekb=1"
+        allow="autoplay; encrypted-media"
+        referrerpolicy="strict-origin-when-cross-origin"
+        tabindex="-1"
+        aria-hidden="true"
+      ></iframe>
     </div>
     <div class="container hero__content">
       <p class="hero__strap">{site.tagline}</p>
       <h1>Complete event production across Bristol and the Cotswolds.</h1>
       <p class="hero__text">
-        Loud Hire brings together sound, lighting, staging, video and power, with technical planning and delivery tailored to your event. One team, one plan, from the first brief to the final breakdown.
+        Loud Hire brings together sound, lighting, staging, video and power, with technical planning and delivery tailored to your event.
       </p>
       <div class="btn-row">
         <a class="btn btn--primary" href={cta.href}>{cta.label}</a>
         <a class="btn btn--ghost-light" href="/news-and-projects/projects/">Explore our work</a>
       </div>
+    </div>
+  </section>
+
+  <script>
+    type BackgroundPlayer = { mute(): void; playVideo(): void; pauseVideo(): void; getPlayerState(): number };
+    type PlayerEvent = { target: BackgroundPlayer; data?: number };
+    const youtubeWindow = window as typeof window & {
+      YT?: { Player: new (element: HTMLIFrameElement, options: {
+        events: Record<string, (event: PlayerEvent) => void>;
+      }) => BackgroundPlayer };
+      onYouTubeIframeAPIReady?: () => void;
+    };
+    const heroVideo = document.querySelector<HTMLIFrameElement>('.hero__video');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (heroVideo && !reducedMotion.matches) {
+      let revealTimer: ReturnType<typeof setTimeout> | undefined;
+      const hidePlayer = () => {
+        clearTimeout(revealTimer);
+        heroVideo.classList.remove('is-playing');
+      };
+      const initialisePlayer = () => {
+        if (!youtubeWindow.YT || reducedMotion.matches) return;
+        const source = new URL(heroVideo.dataset.src!);
+        source.searchParams.set('origin', window.location.origin);
+        heroVideo.src = source.toString();
+        const player = new youtubeWindow.YT.Player(heroVideo, {
+          events: {
+            onReady: ({ target }) => { target.mute(); target.playVideo(); },
+            onStateChange: ({ target, data }) => {
+              hidePlayer();
+              // Keep the poster visible until playback and the startup overlay have settled.
+              if (data === 1) revealTimer = setTimeout(() => {
+                if (target.getPlayerState() === 1 && !reducedMotion.matches) heroVideo.classList.add('is-playing');
+              }, 3000);
+            },
+            onError: hidePlayer,
+            onAutoplayBlocked: hidePlayer,
+          },
+        });
+        reducedMotion.addEventListener('change', () => {
+          if (reducedMotion.matches) { hidePlayer(); player.pauseVideo(); }
+          else player.playVideo();
+        });
+      };
+      if (youtubeWindow.YT?.Player) initialisePlayer();
+      else {
+        const previousReady = youtubeWindow.onYouTubeIframeAPIReady;
+        youtubeWindow.onYouTubeIframeAPIReady = () => { previousReady?.(); initialisePlayer(); };
+        const script = document.createElement('script');
+        script.src = 'https://www.youtube.com/iframe_api';
+        script.async = true;
+        document.head.append(script);
+      }
+    }
+  </script>
+
+  <!-- Client logos from the original Loud Hire site -->
+  <section class="client-ribbon" aria-label="Clients we've worked with">
+    <div class="client-ribbon__inner">
+      <img src="/images/bbc.png" alt="BBC" width="400" height="150" loading="lazy" />
+      <img src="/images/boots.png" alt="Boots" width="400" height="150" loading="lazy" />
+      <img src="/images/aerospace-bristol.png" alt="Aerospace Bristol" width="400" height="150" loading="lazy" />
+      <img class="client-ribbon__wurzels" src="/images/wurzels-logo.png" alt="The Wurzels" width="2170" height="725" loading="lazy" />
+      <img class="client-ribbon__wood" src="/images/wood.png" alt="Wood" width="400" height="150" loading="lazy" />
+      <img src="/images/university-of-bristol.png" alt="University of Bristol" width="400" height="150" loading="lazy" />
     </div>
   </section>
 
@@ -113,13 +189,14 @@ const description =
   }
 
   <!-- 3. Capabilities -->
-  <section class="section section--paper-2">
+  <section class="section section--paper-2 capabilities-section">
+    <BalloonRelease />
     <div class="container">
       <div class="section-head section-head--center">
-        <span class="eyebrow">What we deliver</span>
+        <span class="eyebrow">Based in Bristol</span>
         <h2>Sound, lighting, staging, video and power.</h2>
         <p>
-          Five disciplines, one production partner. Coordinating them through one team means one site visit, one technical plan, one crew and one point of contact, so nothing falls between suppliers on the day.
+          We can bring all five disciplines together under one roof, making the whole process easier, smoother and a lot less stressful. One team, working together to bring your event to life.
         </p>
       </div>
       <CapabilityGrid />
@@ -179,6 +256,13 @@ const description =
           ))
         }
       </div>
+      <p class="reviews-note">
+        <a href="https://maps.google.com/?cid=5436811372523858860" rel="noopener" aria-label="Read Loud Hire's five-star Google reviews">
+          <span class="reviews-note__stars" aria-hidden="true">★★★★★</span>
+          <strong>5.0 on Google</strong>
+          <span class="reviews-note__link">Read our reviews →</span>
+        </a>
+      </p>
     </div>
   </section>
 
@@ -205,6 +289,14 @@ const description =
 </Base>
 
 <style>
+  .capabilities-section {
+    position: relative;
+    isolation: isolate;
+  }
+  .capabilities-section > .container {
+    position: relative;
+    z-index: 1;
+  }
   /* Hero */
   .hero {
     position: relative;
@@ -226,12 +318,31 @@ const description =
     object-fit: cover;
     object-position: 50% 45%;
   }
+  .hero__media {
+    container-type: size;
+  }
+  .hero__video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Overscan the player so its title and edge controls stay outside the hero. */
+    width: max(calc(100cqw + 341.34px), calc(177.78cqh + 341.34px));
+    height: max(calc(56.25cqw + 192px), calc(100cqh + 192px));
+    border: 0;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    opacity: 0;
+  }
+  .hero__video.is-playing {
+    opacity: 1;
+    transition: opacity 0.35s ease;
+  }
   .hero__media::after {
     content: '';
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(to top, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.55) 40%, rgba(0, 0, 0, 0.15) 75%, rgba(0, 0, 0, 0.25) 100%);
+      linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.68) 45%, rgba(0, 0, 0, 0.35) 100%);
   }
   .hero__content {
     position: relative;
@@ -246,11 +357,10 @@ const description =
     font-size: var(--text-sm);
     color: #fff;
     margin: 0 0 1.25rem;
-    padding: 0.55rem 0.9rem 0.55rem 0.8rem;
-    border-left: 3px solid var(--c-orange);
+    padding: 0.55rem 0.9rem;
     background: rgba(0, 0, 0, 0.55);
     backdrop-filter: blur(4px);
-    border-radius: 0 var(--radius) var(--radius) 0;
+    border-radius: var(--radius);
     max-width: 100%;
   }
   .hero h1 {
@@ -265,6 +375,32 @@ const description =
     margin-bottom: 1.75rem;
   }
 
+  /* Client logo ribbon */
+  .client-ribbon {
+    background: linear-gradient(rgba(255, 153, 0, 0.78), rgba(255, 153, 0, 0.78)),
+      url('/images/ribbon-background.gif') center / 30rem;
+  }
+  .client-ribbon__inner {
+    max-width: 100rem;
+    margin-inline: auto;
+    padding: 1rem 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    align-items: center;
+    gap: clamp(0.5rem, 1.5vw, 2rem);
+  }
+  .client-ribbon__inner img {
+    display: block;
+    width: 100%;
+    max-height: 6.5rem;
+    object-fit: contain;
+  }
+  .client-ribbon__wurzels {
+    filter: brightness(0);
+  }
+  .client-ribbon__wood {
+    transform: translateX(clamp(0.35rem, 1vw, 1.25rem));
+  }
   /* Trust strip */
   .trust {
     background: var(--c-paper);
@@ -427,6 +563,32 @@ const description =
   .quote figcaption strong {
     color: var(--c-ink);
   }
+  .reviews-note {
+    margin: clamp(2rem, 4vw, 3rem) 0 0;
+    text-align: center;
+  }
+  .reviews-note a {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem 0.65rem;
+    color: var(--c-ink);
+    text-decoration: none;
+    font-size: var(--text-sm);
+  }
+  .reviews-note a:hover .reviews-note__link {
+    text-decoration: underline;
+  }
+  .reviews-note__stars {
+    color: var(--c-orange-deep);
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+  .reviews-note__link {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
 
   .latest__more {
     margin: 2.5rem 0 0;
@@ -446,11 +608,19 @@ const description =
     }
   }
   @media (max-width: 40rem) {
+    .client-ribbon__inner {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.25rem;
+      padding: 0.5rem;
+    }
+    .client-ribbon__inner img {
+      max-height: 3.5rem;
+    }
     .hero {
       min-height: 0;
     }
     .hero__content {
-      padding-top: 9rem;
+      padding-top: calc(2.5rem + 6px);
     }
     .hero__strap {
       display: none;

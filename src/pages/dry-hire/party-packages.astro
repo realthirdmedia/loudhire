@@ -1,0 +1,60 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import ContactSection from '../../components/ContactSection.astro';
+import FohPackages from '../../components/FohPackages.astro';
+import heroImage from '../../assets/pages/danley-sm80.jpg';
+
+const service = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': 'https://www.loudhire.co.uk/dry-hire/party-packages/#service',
+  name: 'FOH PA package hire',
+  serviceType: 'Front of house sound system rental',
+  description: 'Front of house PA packages for parties, live music and events, available from Loud Hire in Thornbury, near Bristol.',
+  provider: { '@id': 'https://www.loudhire.co.uk/#organisation' },
+  areaServed: ['Bristol', 'Cotswolds', 'Bath', 'South West England'],
+};
+---
+
+<Base
+  title="FOH PA Packages Bristol & Cotswolds | Loud Hire"
+  description="Explore our current FOH PA packages for parties, live music and events in Bristol and the Cotswolds. Configure your sound system and request price and availability."
+  pageType="CollectionPage"
+  jsonLd={[service]}
+>
+  <PageHero
+    variant="split"
+    image={heroImage}
+    imageAlt="Loud Hire PA speaker"
+    eyebrow="Dry hire"
+    title="FOH PA packages"
+    intro="Front of house sound systems for parties, live bands and events. Explore our current packages, tailor the contents and send us your dates for a quote."
+    ctaLabel="Browse FOH packages"
+    ctaHref="/quote/?packageGroup=FOH%20Packages#packages"
+    breadcrumb={[
+      { label: 'Home', href: '/' },
+      { label: 'Dry Hire', href: '/dry-hire/' },
+      { label: 'FOH PA packages', href: '/dry-hire/party-packages/' },
+    ]}
+  />
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Choose your system</span>
+        <h2>Find the right sound for your event</h2>
+        <p>These packages come from our live equipment catalogue. Open a package to choose its contents and request a quote. We will confirm the price and availability for your dates.</p>
+      </div>
+      <FohPackages />
+    </div>
+  </section>
+  <section class="section section--paper-2">
+    <div class="container container--narrow prose">
+      <h2>How to hire a PA package</h2>
+      <p>Choose a package, add your dates and venue, and tell us whether you need collection, delivery, setup or an engineer. Collection is from our Thornbury warehouse by appointment.</p>
+      <p>Unsure which system fits? Tell us how many guests you expect and whether you need sound for a playlist, speeches or a live act. We can recommend a system and any additional equipment.</p>
+      <p><a href="/quote/#equipment">Browse the full equipment list</a> to build a request from individual items.</p>
+    </div>
+  </section>
+  <ContactSection heading="Find your FOH package" text="Tell us about your event, venue and audience. We will help you choose a sound system and confirm a tailored hire quote." />
+</Base>
