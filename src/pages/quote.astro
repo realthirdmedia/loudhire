@@ -901,6 +901,7 @@ const packagePhoto = (id: string) => id.startsWith('festival-extra-large') ? fes
       if (!response.ok || !result.ok) throw new Error(result.error || 'We could not send your request.');
       basket = []; save(); form.reset(); while (periods.children.length > 1) periods.lastElementChild?.remove(); renumberPeriods(); syncCollectionOption(periods.firstElementChild as HTMLElement);
       message.setAttribute('data-success', ''); message.textContent = `Thanks — your request ${result.reference} has been sent. Loud Hire will be in touch with a tailored quote.`;
+      document.dispatchEvent(new CustomEvent('loudhire:lead', { detail: { id: result.reference, type: 'quote' } }));
       message.scrollIntoView({ behavior: 'smooth', block: 'center' });
     } catch (error) { message.textContent = error instanceof Error ? error.message : 'We could not send your request. Please try again.'; }
     finally { button.disabled = false; button.textContent = 'Send quote request'; }

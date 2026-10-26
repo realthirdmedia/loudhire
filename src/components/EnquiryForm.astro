@@ -197,7 +197,7 @@ const { id = 'enquiry-form', heading, prefill = '', dark = false } = Astro.props
         });
         const data = await res.json().catch(() => ({}));
         if (res.ok && data.ok) {
-          window.location.assign('/thank-you/');
+          window.location.assign(`/thank-you/?enquiry=${encodeURIComponent(data.conversionId)}`);
           return;
         }
         show('error', data.error || 'Sorry, something went wrong. Please call us on 0117 214 1470 or email info@loudhire.co.uk.');

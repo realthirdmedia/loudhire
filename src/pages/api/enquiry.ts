@@ -44,11 +44,11 @@ function escapeHtml(s: string) {
 
 export const POST: APIRoute = async ({ request, clientAddress, redirect }) => {
   const wantsJson = (request.headers.get('accept') || '').includes('application/json');
-  const respond = (status: number, body: { ok: boolean; error?: string }) => {
+  const respond = (status: number, body: { ok: boolean; error?: string; conversionId?: string }) => {
     if (wantsJson) {
       return new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
     }
-    return redirect(body.ok ? '/thank-you/' : `/contact/?error=${encodeURIComponent(body.error || 'Something went wrong')}#enquiry`, 303);
+    return redirect(body.ok ? `/thank-you/?enquiry=${encodeURIComponent(body.conversionId || '')}` : `/contact/?error=${encodeURIComponent(body.error || 'Something went wrong')}#enquiry`, 303);
   };
 
   let form: FormData;
@@ -146,7 +146,7 @@ export const POST: APIRoute = async ({ request, clientAddress, redirect }) => {
     return respond(502, { ok: false, error: 'We could not send your enquiry just now. Please call 0117 214 1470 or email info@loudhire.co.uk.' });
   }
 
-  return respond(200, { ok: true });
+  return respond(200, { ok: true, conversionId: crypto.randomUUID() });
 };
 
 export const GET: APIRoute = ({ redirect }) => redirect('/contact/', 302);
